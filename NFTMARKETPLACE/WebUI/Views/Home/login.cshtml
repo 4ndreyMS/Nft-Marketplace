@@ -1,0 +1,251 @@
+@using WebUI.Models.Helpers
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>NETMARKETPLACE - By NetQuality</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content=" " />
+    <meta name="keywords" content="" />
+    <meta content="Pichforest" name="author" />
+
+    <link rel="shortcut icon" href="../../Content/images/HeadIcon.png">
+
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" href="../../css/bootstrap.min.css" type="text/css" id="bootstrap-style" />
+
+    <!-- Material Icon Css -->
+    <link rel="stylesheet" href="../../css/materialdesignicons.min.css" type="text/css" />
+
+    <!-- Unicon Css -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/../../css/line.css" />
+
+    <!-- Custom Css -->
+    <link rel="stylesheet" href="../../css/style.min.css" type="text/css" />
+
+    <script src="~/Scripts/Views/Login.js"></script>
+
+
+</head>
+
+<body>
+
+    <!-- light-dark mode button -->
+    <a href="javascript: void(0);" id="mode" class="mode-btn text-white rounded-end">
+        <i class="uil uil-brightness mode-dark mx-auto"></i>
+        <i class="uil uil-moon bx-spin mode-light"></i>
+    </a>
+
+
+
+    <!--Navbar Start-->
+    <nav class="navbar navbar-expand-lg fixed-top sticky" id="navbar">
+        <div class="container-fluid custom-container">
+            <a class="navbar-brand logo f-30 text-dark fw-bold" href="index.html">
+                <img src="../../Content/images/NETQUALITY.png" class="logo-dark" alt="" height="40">
+                <img src="../../Content/images/NETQUALITY.png" class="logo-light" alt="" height="40">
+            </a>
+            <div>
+                <button class="navbar-toggler me-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-label="Toggle navigation">
+                    <i class="mdi mdi-menu"></i>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mx-auto navbar-center">
+                    <li class="nav-item dropdown dropdown-hover">
+                        @Html.ActionLink("Home", "Index", "Home", new { @class = "nav-link" })
+
+
+                    </li>
+
+                    <li class="nav-item">
+                        @Html.ActionLink("Marketplace", "Marketplace", "Marketplace", new { @class = "nav-link" })
+                    </li>
+
+                    <li class="nav-item">
+
+                        @Html.ActionLink("Collection", "Collection", "Collection", new { @class = "nav-link" })
+                    </li>
+
+
+                    <li class="nav-item">
+
+                        @Html.ActionLink("NFT'S", "ItemDetails", "NFT", new { @class = "nav-link" })
+
+
+                    </li>
+
+
+
+                    <li class="nav-item">
+                        @Html.ActionLink("Login", "Login", "Login", new { @class = "nav-link" })
+
+                    </li>
+
+
+                    <li class="nav-item dropdown dropdown-hover">
+                        @Html.ActionLink("Register", "Register", "Registration", new { @class = "nav-link dropdown-toggle" })
+
+                        <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="homedrop">
+                            <li>
+
+                                @Html.ActionLink("Register", "Register", "Register", new { @class = "dropdown-item" })
+
+                            </li>
+                            <li>
+
+                                @Html.ActionLink("As content creator", "RegisterContentCreator", "RegisterContentCreator", new { @class = "dropdown-item" })
+                            </li>
+                        </ul>
+                    </li>
+
+
+                    <!--end dropdown-->
+
+
+                    <li class="nav-item dropdown dropdown-hover">
+
+                        @Html.ActionLink("Profile", "Profile", "Profile", new { @class = "nav-link dropdown-toggle" })
+                        <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="homedrop">
+                            <li>
+
+                                @Html.ActionLink("Profile", "Profile", "Profile", new { @class = "dropdown-item" })
+                            </li>
+                            <li>
+
+                                @Html.ActionLink("EditProfile", "EditProfile", "EditProfile", new { @class = "dropdown-item" })
+                            </li>
+                        </ul>
+                    </li>
+
+
+                    <li class="nav-item">
+                        @Html.ActionLink("Contact", "Contact", "Contact", new { @class = "nav-link" })
+
+                    </li>
+                    <!--end dropdown-->
+                </ul>
+                <!--end navbar-nav-->
+                @Html.ActionLink("Connect to Wallet", "Wallet", "Wallet", new { @class = "btn btn-primary" })
+
+
+            </div>
+
+        </div>
+        <!--end container-->
+    </nav>
+    <!-- Navbar End -->
+    <!-- start section -->
+    <section class="login section position-relative overflow-hidden"
+             style="background-image: url(./../../Content/images/inner-image/login.png); background-repeat: no-repeat;">
+        <!-- start container -->
+        <!-- <div class="bg-overlay"></div> -->
+        <div class="container position-relative">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <form class="mt-2 inner-heading" id="frmLogin">
+                        <h1 class="fw-bold">Welcome To NetMarketplace</h1>
+
+                        <p class="text-muted">
+                            Don't have an account yet?
+                            @Html.ActionLink("Register", "Register", "Register", new { @class = "text-blue" })
+
+                        </p>
+
+                        <div class="info-box">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="email  mt-4">
+
+                                        @Html.CtrlInput("txtIdUser", "text", "User Id:", "Enter your User Id", "UserId")
+
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12">
+                                    <div class="password  mt-4">
+
+                                        @Html.CtrlInput("txtUserPass", "password", "Password: ", "********", "UserPass")
+
+                                    </div>
+                                </div>
+
+
+                                <div class="col-12 ">
+                                    <div class="d-flex align-items-center mt-4">
+                                        <div class="verify">
+                                            <button type="button" class="btn border btn-light text-dark shadow-sm"
+                                                    id="liveToastBtn">
+                                                Click to verify
+                                            </button>
+                                        </div>
+                                        <div class="other ms-auto">
+                                            <div class="mb-0 text-muted fw-semibold">
+                                                Log With : <a href=""
+                                                              class="text-dark ms-2">Google</a> <a href=""
+                                                                                                   class="text-dark ms-4">Facebook</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="position-fixed start-0 bottom-50 p-3" style="z-index: 999">
+                            <div id="liveToast" class="toast position-relative" role="alert" aria-live="assertive"
+                                 aria-atomic="true">
+                                <div class="toast-header">
+
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex-shrink-0">
+                                            <i class="mdi mdi-check-circle text-success f-30"></i>
+                                        </div>
+                                        <div class="flex-grow-1 ms-2">
+                                            <strong>Your Account Is Verify</strong>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="toast-body">
+                                    Login to your account!
+                                </div>
+                                <div class="progress" style="height: 5px;">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                                         role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
+                                         style="width: 95%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="submit-button mt-4">
+
+                        @Html.CtrlButton("Login", "btnSubmitLogin", "Submit", "LoginUser", "primary w - 100")
+
+                    </div>
+
+
+                </div>
+            </div>
+
+
+        </div>
+        <!-- end container -->
+    </section>
+
+
+    <!--Bootstrap Js-->
+    <script src="../../Scripts/bootstrap.bundle.min.js"></script>
+
+    <script src="../../Scripts/bootstrap-toasts.init.js"></script>
+
+    <!-- App Js -->
+    <script src="../../Scripts/app.js"></script>
+
+
+</body>
+
+</html>

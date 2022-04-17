@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E962DDC6-0905-468A-9DB4-556D951F274A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataAccess</RootNamespace>
+    <AssemblyName>DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Crud\ActionLogFactory.cs" />
+    <Compile Include="Crud\AppMessagesCrudFactory.cs" />
+    <Compile Include="Crud\CategoryCrudFactory.cs" />
+    <Compile Include="Crud\CollectionCrud.cs" />
+    <Compile Include="Crud\Collection_CategoryCrudFactory.cs" />
+    <Compile Include="Crud\CompanyFactory.cs" />
+    <Compile Include="Crud\CrudFactory.cs" />
+    <Compile Include="Crud\HistoryPasswordCrudFactory.cs" />
+    <Compile Include="Crud\LogginCrudFactory.cs" />
+    <Compile Include="Crud\NFTCrudFactory.cs" />
+    <Compile Include="Crud\NFT_CategoryCrudFactory.cs" />
+    <Compile Include="Crud\OtpCrudFactory.cs" />
+    <Compile Include="Crud\PricesCrudFactory.cs" />
+    <Compile Include="Crud\TransactionCrudFactory.cs" />
+    <Compile Include="Crud\UserFactory.cs" />
+    <Compile Include="Crud\UserRoleFactory.cs" />
+    <Compile Include="Crud\User_CompanyCrudFactory.cs" />
+    <Compile Include="Crud\WalletFactory.cs" />
+    <Compile Include="Dao\SqlDao.cs" />
+    <Compile Include="Dao\SqlOperation.cs" />
+    <Compile Include="Mapper\ActionLogMapper.cs" />
+    <Compile Include="Mapper\AppMessageMapper.cs" />
+    <Compile Include="Mapper\CategoryMapper.cs" />
+    <Compile Include="Mapper\CollectionMapper.cs" />
+    <Compile Include="Mapper\Collection_CategoryMapper.cs" />
+    <Compile Include="Mapper\CompanyMapper.cs" />
+    <Compile Include="Mapper\EntityMapper.cs" />
+    <Compile Include="Mapper\HistoryPasswordMapper.cs" />
+    <Compile Include="Mapper\IObjectMapper.cs" />
+    <Compile Include="Mapper\ISqlStaments.cs" />
+    <Compile Include="Mapper\LogginMapper.cs" />
+    <Compile Include="Mapper\NFTMapper.cs" />
+    <Compile Include="Mapper\NFT_CategoryMapper.cs" />
+    <Compile Include="Mapper\OtpMapper.cs" />
+    <Compile Include="Mapper\PricesMapper.cs" />
+    <Compile Include="Mapper\TransactionMapper.cs" />
+    <Compile Include="Mapper\UserMapper.cs" />
+    <Compile Include="Mapper\UserRoleMapper.cs" />
+    <Compile Include="Mapper\User_CompanyMapper.cs" />
+    <Compile Include="Mapper\WalletMapper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DTO_POJOS\DTO_POJOS.csproj">
+      <Project>{3b195d1e-610e-4f56-8ca2-df153b097283}</Project>
+      <Name>DTO_POJOS</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ScriptsBD\CollectionScriptsBD.sql" />
+    <Content Include="ScriptsBD\ScriptsBd.sql" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
