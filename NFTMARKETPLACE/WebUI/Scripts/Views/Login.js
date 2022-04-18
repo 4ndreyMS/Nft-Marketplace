@@ -10,12 +10,18 @@
 
 
         var validation = false;
+        sessionStorage.removeItem('UserCedula');
 
         //lee la informacion del form con el id = frmLogin
         var userLog = this.ctrlActions.GetDataForm("frmLogin");
 
         if (userLog.UserId === "" || userLog.UserPass === "") {
-            alert("FILL ALL THE BLANKS");
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'FILL ALL THE BLANKS ',
+
+            })
         } else {
             //creacion de un objeto personalizado
             var UserPass = { Cedula: userLog.UserId, Password: userLog.UserPass }
@@ -24,11 +30,25 @@
 
             this.ctrlActions.PostToAPI(this.ServicePass + "/RetrieveLoggin", UserPass, function (response) {
                 if (response === 0) {
-                    alert("Incorrect User Id or Password, Try again!");
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Do you want to continue',
+                        icon: 'error',
+                        confirmButtonText: 'Cool',
+                        confirmButtonColor: "#DD6B55",
+                    })
                 } else if (response === 1) {
 
                     sessionStorage.setItem("UserCedula", UserPass.Cedula);
-                    alert("Login sucessfull");
+                    Swal.fire({
+                        title: 'Succesfull Login!',
+                        width: 600,
+                        padding: '3em',
+                        color: '#000',
+                        background: '#fff',
+                        confirmButtonColor: "#DD6B55"
+
+                    })
                     validation = true;
                 }
 
@@ -53,7 +73,13 @@
                     }
 
                 } else {
-                    alert("Incorrect User Id or Password, Try again!");
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Incorrect User Id or Password, Try again!',
+                        icon: 'error',
+                        confirmButtonText: 'Cool',
+                        confirmButtonColor: "#DD6B55",
+                    })
                 }
             });
 

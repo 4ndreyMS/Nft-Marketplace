@@ -19,7 +19,11 @@
 
             var responseApi = response;
             console.log(responseApi.Id)
-            alert("Collection created");
+            
+            Swal.fire(
+                'Collection created!',
+                'success'
+            )
 
         });
 

@@ -120,6 +120,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AlertController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -129,6 +131,7 @@
     <Compile Include="Models\Controls\CtrlButtonModel.cs" />
     <Compile Include="Models\Controls\CtrlInputModel.cs" />
     <Compile Include="Models\Controls\CtrlTableModel.cs" />
+    <Compile Include="Models\Enum.cs" />
     <Compile Include="Models\Helpers\ControlExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -320,7 +323,13 @@
     <Content Include="Content\images\testi\t-3.png" />
     <Content Include="Content\images\up-arrow.png" />
     <Content Include="Content\jquery.dataTables.min.css" />
+    <Content Include="Content\images\nyan-cat.gif" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\sweetalert2.css" />
+    <Content Include="fonts\boxicons.svg" />
+    <Content Include="fonts\materialdesignicons-webfont.svg" />
+    <Content Include="fonts\mobirise.svg" />
+    <Content Include="Scripts\sweetalert2.js" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\bootstrap.rtl.min.css" />
     <Content Include="css\materialdesignicons.min.css" />
@@ -398,6 +407,17 @@
     <Content Include="css\sourcemaps\tiny-slider.css.map" />
     <Content Include="css\style.css.map" />
     <Content Include="css\style.min.css.map" />
+    <Content Include="fonts\boxicons.eot" />
+    <Content Include="fonts\boxicons.ttf" />
+    <Content Include="fonts\boxicons.woff" />
+    <Content Include="fonts\boxicons.woff2" />
+    <Content Include="fonts\materialdesignicons-webfont.eot" />
+    <Content Include="fonts\materialdesignicons-webfont.ttf" />
+    <Content Include="fonts\materialdesignicons-webfont.woff" />
+    <Content Include="fonts\materialdesignicons-webfont.woff2" />
+    <Content Include="fonts\mobirise.eot" />
+    <Content Include="fonts\mobirise.ttf" />
+    <Content Include="fonts\mobirise.woff" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

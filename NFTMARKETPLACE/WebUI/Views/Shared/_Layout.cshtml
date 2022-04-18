@@ -19,17 +19,30 @@
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/jquery.dataTables.min.js"></script>
     <script src="~/Scripts/Views/ControlActions.js"></script>
-
+    <link href="~/Content/sweetalert2.css" rel="stylesheet" />
+    <script src="~/Scripts/sweetalert2.js"></script>
 </head>
 <body>
-    
+
     <div class="container body-content">
         @RenderBody()
-       
+
     </div>
-@*
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")*@
-@*    @RenderSection("scripts", required: false)
-*@</body>
+
+  @*  <div class="container body-content">
+        @Html.Partial("_NotificationPanel")
+        @RenderBody()
+        <hr />
+    </div>*@
+    @*
+          <div class="container body-content">
+             @Html.Partial("_NotificationPanel")
+             @RenderBody()
+             <hr />
+        </div>
+         @Scripts.Render("~/bundles/jquery")
+         @Scripts.Render("~/bundles/bootstrap")*@
+    @*    @RenderSection("scripts", required: false)
+    *@
+</body>
 </html>
