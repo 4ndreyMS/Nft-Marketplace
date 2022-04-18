@@ -81,7 +81,12 @@
         if (frmUser.Otp === localOtp) {
 
             this.ctrlActions.PostToAPI(this.serviceCompany + "/UpdateCompanyStatus", Company, function (response) { });
-            alert("Successful Register!");
+            Swal.fire({
+                title:'Succesfull register!',
+                icon: 'success',
+                confirmButtonText: 'Cool',
+                confirmButtonColor: "#DD6B55",
+            })
             window.location.href = "Login"
         } else {
             Swal.fire({
