@@ -18,6 +18,12 @@
 
     let UserLog = { Cedula: sessionStorage.getItem('UserCedula') }
 
+
+
+    if (localStorage.getItem('UserCedula') != null) {
+        load.LoadInfo();
+    }
+
     this.LoadInfo = function () {
         
         this.ctrlActions.PostToAPI(service + "/RetrieveUser", UserLog, function (response) {
@@ -50,6 +56,7 @@
 
     }
 
+
     this.logOut = function () {
         sessionStorage.clear();
         window.location.href = "Index"
@@ -57,8 +64,21 @@
 
 }
 
+window.onload = function () {
+    var load = new Profile();
+
+    if (localStorage.getItem('UserCedula') !== null) {
+        load.LoadInfo();
+    }
+}
+
 
 $(document).ready(function () {
+
     var load = new Profile();
-    load.LoadInfo();
+
+    if (localStorage.getItem('UserCedula') !== null) {
+        load.LoadInfo();
+    }
+
 });

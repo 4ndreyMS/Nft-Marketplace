@@ -9,8 +9,8 @@
     this.LoginUser = function () {
 
 
-        var validation = false;
-
+        let validation = false;
+        sessionStorage.removeItem('UserCedula');
         //lee la informacion del form con el id = frmLogin
         var userLog = this.ctrlActions.GetDataForm("frmLogin");
 
@@ -23,13 +23,16 @@
             var RoleUser = { UserId: userLog.UserId }
 
             this.ctrlActions.PostToAPI(this.ServicePass + "/RetrieveLoggin", UserPass, function (response) {
-                if (response === 0) {
-                    alert("Incorrect User Id or Password, Try again!");
-                } else if (response === 1) {
 
+                if (response === 1) {
                     sessionStorage.setItem("UserCedula", UserPass.Cedula);
-                    alert("Login sucessfull");
                     validation = true;
+                    //alert("Login sucessfull");
+
+                } else if (response === 0) {
+                    validation = false;
+                    alert("Incorrect User Id or Password, Try again!");
+
                 }
 
             });
@@ -52,8 +55,6 @@
                         window.location.href = "Profile"
                     }
 
-                } else {
-                    alert("Incorrect User Id or Password, Try again!");
                 }
             });
 
