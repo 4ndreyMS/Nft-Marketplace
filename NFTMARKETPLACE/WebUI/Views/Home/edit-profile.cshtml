@@ -1,3 +1,7 @@
+@{
+    Layout = "~/Views/Shared/NavBar.cshtml";
+
+}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,143 +42,7 @@
     </a>
 
     <!--Navbar Start-->
-    <nav class="navbar navbar-expand-lg fixed-top sticky" id="navbar">
-        <div class="container-fluid custom-container">
-            <a class="navbar-brand logo f-30 text-dark fw-bold" href="index.html">
-                <img src="../../Content/images/NETQUALITY.png" class="logo-dark" alt="" height="40">
-                <img src="../../Content/images/NETQUALITY.png" class="logo-light" alt="" height="40">
-            </a>
-            <div>
-                <div>
-                    <button class="navbar-toggler me-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-label="Toggle navigation">
-                    <i class="mdi mdi-menu"></i>
-                </button>
-                </div>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <ul class="navbar-nav mx-auto navbar-center">
-                        <li class="nav-item dropdown dropdown-hover">
-                            <a class="nav-link" href="index.html" id="homedrop" role="button">
-                     Home
-                 </a>
-                            <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="homedrop">
-                                <li><a class="dropdown-item" href="index.html"><i
-                                        class="mdi mdi-home-outline f-20 me-2 align-middle"></i>Home Page 1</a></li>
-
-                            </ul>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="index-2.html" class="nav-link">Marketplace</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="collection.html" class="nav-link">Collection</a>
-                        </li>
-                        <!--end dropdown-->
-
-                        <li class="nav-item dropdown dropdown-hover">
-                            <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="pagedropdown" role="button" data-bs-toggle="dropdown">
-                            Pages
-                        </a>
-
-                            <div class="dropdown-menu dropmenu-width dropdown-menu-center">
-                                <div class="row">
-                                    <ul class="col-lg-6 list-unstyled">
-                                        <li><a class="dropdown-item" href="~/Views/Home/activity.html"><i
-                                                class="mdi mdi-chart-line f-20 me-2 align-middle"></i>Activity</a></li>
-
-                                        <li><a class="dropdown-item" href="~/Views/Home/item-details.html"><i
-                                                class="mdi mdi-image-filter-frames f-20 me-2 align-middle"></i>Item
-                                            Details</a></li>
-                                        <li><a class="dropdown-item" href="~/Views/Home/item-details.html"><i
-                                                class="mdi mdi-image-filter-center-focus-weak f-20 me-2 align-middle"></i>Post
-                                            Details</a></li>
-                                        <li><a class="dropdown-item" href="~/Views/Home/newsletter.html"><i
-                                                class="mdi mdi-email-open-outline f-20 me-2 align-middle"></i>Newsletter</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="~/Views/Home/creatore.html"><i
-                                                class="mdi mdi-comment-account-outline f-20 me-2 align-middle"></i>Creatore</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="~/Views/Home/login.html"><i
-                                                class="mdi mdi-account-outline f-20 me-2 align-middle"></i>Login</a></li>
-
-                                        <li><a class="dropdown-item" href="~/Views/Home/register.html"><i
-                                                class="mdi mdi-account-box-outline f-20 me-2 align-middle"></i>Register</a></li>
-
-                                        <li><a class="dropdown-item" href="~/Views/Home/privacy.html"><i
-                                                class="mdi mdi-lock-open-outline f-20 me-2 align-middle"></i>Privacy</a></li>
-
-                                    </ul>
-
-                                    <ul class="col-lg-6 list-unstyled">
-                                        <li><a class="dropdown-item" href="~/Views/Home/wallet.html"><i
-                                                class="mdi mdi-wallet-travel f-20 me-2 align-middle"></i>Connect Wallet</a>
-                                        </li>
-
-                                        <li><a class="dropdown-item" href="~/Views/Home/faq.html"><i
-                                                class="mdi mdi-comment-question-outline f-20 me-2 align-middle"></i>Faq</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="~/Views/Home/submit-request.html"><i
-                                                class="mdi mdi-check-circle-outline f-20 me-2 align-middle"></i>submit
-                                            Reqeust</a></li>
-
-                                        <li><a class="dropdown-item" href="~/Views/Home/chat.html"><i
-                                                class="mdi mdi-message-text-outline f-20 me-2 align-middle"></i>Chat</a>
-                                        </li>
-
-                                        <li><a class="dropdown-item" href="~/Views/Home/artical.html"><i
-                                                class="mdi mdi-comment-account-outline f-20 me-2 align-middle"></i>Artical</a>
-                                        </li>
-
-                                        <li><a class="dropdown-item" href="~/Views/Home/ranking.html"><i
-                                                class="mdi mdi-numeric-1-box-outline f-20 me-2 align-middle"></i>Ranking</a></li>
-
-                                        <li><a class="dropdown-item" href="~/Views/Home/404.html"><i
-                                                class="mdi mdi-alert-outline f-20 me-2 align-middle"></i>404</a></li>
-
-                                    </ul>
-                                </div>
-                            </div>
-
-                        </li>
-                        <!--end dropdown-->
-
-
-                        <li class="nav-item dropdown dropdown-hover">
-                            <a class="nav-link dropdown-toggle" href="index.html" id="homedrop" role="button" data-bs-toggle="dropdown">
-                            Profile
-                        </a>
-                            <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="homedrop">
-                                <li><a class="dropdown-item" href="profile.html"><i
-                                        class="mdi mdi-account-box-outline f-20 me-2 align-middle"></i>Profile</a></li>
-                                <li><a class="dropdown-item" href="edit-profile.html"><i
-                                        class="mdi mdi-account-edit f-20 me-2 align-middle"></i>Edit profile</a></li>
-                            </ul>
-                        </li>
-
-
-
-                        <li class="nav-item">
-                            <a href="blog.html" class="nav-link">Blog</a>
-                        </li>
-                        <!--end dropdown-->
-
-                        <li class="nav-item">
-                            <a href="contact.html" class="nav-link">Contact</a>
-                        </li>
-                        <!--end dropdown-->
-                    </ul>
-                    <!--end navbar-nav-->
-
-                    <a href="~/Views/Home/wallet.html" class="btn btn-primary">Connect to Wallet</a>
-                </div>
-
-            </div>
-            <!--end container-->
-    </nav>
     <!-- Navbar End -->
-
-
     <!-- start section -->
     <section class="home section bg-light">
         <!-- start container -->
@@ -241,8 +109,10 @@
                             <div class=" mt-4">
                                 <div class="mt-3">
                                     <div class="Name">
-                                        <label for="validationDefault01" class="form-label fw-semibold">Display Name
-                                            :</label>
+                                        <label for="validationDefault01" class="form-label fw-semibold">
+                                            Display Name
+                                            :
+                                        </label>
                                         <input type="text" class="form-control" id="validationDefault01" placeholder="mickel_fenn" required>
                                     </div>
                                 </div>
@@ -250,9 +120,12 @@
                                 <div class="mt-4">
                                     <div class="Name">
                                         <div class="d-flex">
-                                            <label for="validationDefault02" class="form-label fw-semibold"> Email
-                                                :</label>
-                                            <p class="mb-0 f-14 text-muted ms-auto">Enter Valid Email * mickel@gmail.com
+                                            <label for="validationDefault02" class="form-label fw-semibold">
+                                                Email
+                                                :
+                                            </label>
+                                            <p class="mb-0 f-14 text-muted ms-auto">
+                                                Enter Valid Email * mickel@gmail.com
                                             </p>
                                         </div>
                                         <input type="text" class="form-control" id="validationDefault02" placeholder="Enter Your Email" required>
@@ -261,8 +134,10 @@
 
                                 <div class="mt-4">
                                     <div class="Name">
-                                        <label for="validationDefault03" class="form-label fw-semibold"> Custom URL
-                                            :</label>
+                                        <label for="validationDefault03" class="form-label fw-semibold">
+                                            Custom URL
+                                            :
+                                        </label>
                                         <input type="text" class="form-control" id="validationDefault03" placeholder="NetQuality" value="NetQuality" required>
                                     </div>
                                 </div>
@@ -281,34 +156,43 @@
                             <div class=" mt-4">
                                 <div class="mt-3">
                                     <div class="Name">
-                                        <label for="validationDefault3" class="form-label fw-semibold">Facebook
-                                            :</label>
+                                        <label for="validationDefault3" class="form-label fw-semibold">
+                                            Facebook
+                                            :
+                                        </label>
                                         <input type="text" class="form-control" id="validationDefault3" placeholder="Facebook Username" required>
-                                        <button type="submit" class="btn btn-sm btn-blue mt-3"><i
-                                                class="mdi mdi-facebook f-18 align-middle me-2"></i>Connect To
-                                            Facebook</button>
+                                        <button type="submit" class="btn btn-sm btn-blue mt-3">
+                                            <i class="mdi mdi-facebook f-18 align-middle me-2"></i>Connect To
+                                            Facebook
+                                        </button>
                                     </div>
                                 </div>
 
                                 <div class="mt-4">
                                     <div class="Name">
-                                        <label for="validationDefault001" class="form-label fw-semibold">twitter
-                                            :</label>
+                                        <label for="validationDefault001" class="form-label fw-semibold">
+                                            twitter
+                                            :
+                                        </label>
                                         <input type="text" class="form-control" id="validationDefault001" placeholder="twitter Username" required>
-                                        <button type="submit" class="btn btn-sm btn-blue mt-3"><i
-                                                class="mdi mdi-twitter f-18 align-middle me-2"></i>Connect To
-                                            twitter</button>
+                                        <button type="submit" class="btn btn-sm btn-blue mt-3">
+                                            <i class="mdi mdi-twitter f-18 align-middle me-2"></i>Connect To
+                                            twitter
+                                        </button>
                                     </div>
                                 </div>
 
                                 <div class="mt-4">
                                     <div class="Name">
-                                        <label for="validationDefault04" class="form-label fw-semibold">Linkedin
-                                            :</label>
+                                        <label for="validationDefault04" class="form-label fw-semibold">
+                                            Linkedin
+                                            :
+                                        </label>
                                         <input type="text" class="form-control" id="validationDefault04" placeholder="Linkedin Username" required>
-                                        <button type="submit" class="btn btn-sm btn-blue mt-3"><i
-                                                class="mdi mdi-linkedin f-18 align-middle me-2"></i>Connect To
-                                            Linkedin</button>
+                                        <button type="submit" class="btn btn-sm btn-blue mt-3">
+                                            <i class="mdi mdi-linkedin f-18 align-middle me-2"></i>Connect To
+                                            Linkedin
+                                        </button>
                                     </div>
                                 </div>
 
@@ -426,11 +310,6 @@
         </div>
     </section>
     <!-- end footer -->
-
-
-
-
-
     <!--Bootstrap Js-->
     <script src="../../Scripts/bootstrap.bundle.min.js"></script>
 

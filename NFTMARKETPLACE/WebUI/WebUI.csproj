@@ -482,6 +482,7 @@
     <Content Include="Scripts\Views\RegisterContentCreator.js" />
     <Content Include="Scripts\wizard.js" />
     <Content Include="Scripts\x-editable.js" />
+    <Content Include="Views\Shared\Scripts\Logout.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -549,6 +550,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\NavBar.cshtml" />
+    <Content Include="Views\Shared\NavBarHome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
