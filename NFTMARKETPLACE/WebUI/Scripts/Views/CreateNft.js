@@ -22,12 +22,21 @@ function CreateNft() {
             IdCategory: frmNFTRegister.CategotyId
         }
 
-        if (frmNFTRegister.NameNFT == "" || frmNFTRegister.Precio == "" || frmNFTRegister.Collection == "") {
-            alert("FILL ALL THE BLANKS");
+        if (frmNFTRegister.NameNFT == "" ||    alert("FILL ALL THE BLANKS");
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'FILL ALL THE BLANKS ',
+               
+            })
 
         } else {
             this.ctrlActions.PostToAPI(this.service + "/CreateNFT", NFT, function (response) { });
-            alert("NFT created")
+           
+            Swal.fire(
+                'NFT created!',
+                'success'
+            )
         }
 
 

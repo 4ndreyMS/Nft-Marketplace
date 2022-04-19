@@ -29,7 +29,12 @@
         if (UserCust.Name === "" || UserCust.Cedula === "" || UserCust.Password === "" ||
             UserCust.SureName === "" || UserCust.NickName === "" || UserCust.Phone === "" || UserCust.Email === "") {
 
-            alert("FILL ALL THE BLANKS");
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'FILL ALL THE BLANKS ',
+
+            })
         } else
         {
             if (UserCust.Password.length > 12 && UserCust.Password.match(this.upperCaseLetters) &&
@@ -76,10 +81,21 @@
         if (frmUser.Otp === localOtp) {
 
             this.ctrlActions.PostToAPI(this.serviceCompany + "/UpdateCompanyStatus", Company, function (response) { });
-            alert("Successful Register!");
+            Swal.fire({
+                title:'Succesfull register!',
+                icon: 'success',
+                confirmButtonText: 'Cool',
+                confirmButtonColor: "#DD6B55",
+            })
             window.location.href = "Login"
         } else {
-            alert("Incorrect code!");
+            Swal.fire({
+                title: 'Error!',
+                text: 'Incorrect code!',
+                icon: 'error',
+                confirmButtonText: 'Cool',
+                confirmButtonColor: "#DD6B55",
+            })
         }
     }
 }

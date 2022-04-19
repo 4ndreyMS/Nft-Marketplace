@@ -207,10 +207,10 @@
                     <div class="tab-content mt-5" id="pills-tabContent">
                         <div class="tab-pane fade show active" id="pills-games" role="tabpanel" aria-labelledby="pills-games-tab">
                             @Html.CtrlTable("ManagerUserTable", "userList", "Lista de usuarios", "Identification,Name,Email,Status", "Cedula,Name,Email,Status", "Prueba")
-                            @Html.CtrlButton("ManagerUserTable", "StatusButton", "Cambiar estado", "StatusUser")
+                            @Html.CtrlButton("ManagerUserTable", "StatusButton", "Change state", "StatusUser")
                         </div>
                         <div class="tab-pane fade" id="pills-art" role="tabpanel" aria-labelledby="pills-art-tab">
-                            @Html.CtrlTable("ManagerCollectionTable", "collectionList", "Lista de colecciones", "ID,Collection Name,ID Company,Category", "Id,CollectionName,CompanyId,CategoryName", "Prueba")
+                            @Html.CtrlTable("ManagerCollectionTable", "collectionList", "Collections list", "ID,Collection Name,ID Company,Category", "Id,CollectionName,CompanyId,CategoryName", "Prueba")
                         </div>
                         <div class="tab-pane fade" id="pills-tranding" role="tabpanel" aria-labelledby="pills-tranding-tab">
                             @Html.CtrlTable("ManagerNFTTable", "nftList", "Lista de NFTs", "Name,Price,Creator,Owner,Category", "NftName,Price,IdCreator,IdOwner,CategoryName", "Prueba")
@@ -226,7 +226,7 @@
                                 </div>
                             </div>
                             <div>
-                                @Html.CtrlTable("ManagerCategoryTable", "categoryList", "Lista de categoria", "ID,Category Name", "Id,CategoryName", "Prueba")
+                                @Html.CtrlTable("ManagerCategoryTable", "categoryList", "Category list", "ID,Category Name", "Id,CategoryName", "Prueba")
                             </div>
                         </div>
                         <div class="tab-pane fade" id="pills-domain" role="tabpanel" aria-labelledby="pills-domain-tab">
@@ -239,7 +239,7 @@
                                 </div>
                             </div>
                             <div>
-                                @Html.CtrlTable("ManagerPriceTable", "priceList", "Lista de precios", "ID,Price,Type", "Id,Amount,Type", "Prueba")
+                                @Html.CtrlTable("ManagerPriceTable", "priceList", "Prices list", "ID,Price,Type", "Id,Amount,Type", "Prueba")
                             </div>
                         </div>
                         <div class="tab-pane fade" id="pills-memes" role="tabpanel" aria-labelledby="pills-memes-tab">

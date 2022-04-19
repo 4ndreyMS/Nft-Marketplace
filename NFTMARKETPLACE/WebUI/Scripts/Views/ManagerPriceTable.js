@@ -23,7 +23,14 @@
 
         if (PType == "" && priceInfo.Amount == "") {
 
-            alert("Please select an item in the table.")
+           
+            Swal.fire({
+                title: 'Error!',
+                text: 'Please select and item in the table',
+                icon: 'error',
+                confirmButtonText: 'Cool',
+                confirmButtonColor: "#DD6B55",
+            })
 
         } else {
 

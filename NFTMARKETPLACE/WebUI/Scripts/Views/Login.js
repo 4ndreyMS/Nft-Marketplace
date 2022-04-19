@@ -26,9 +26,14 @@ function Login() {
 
 
         if (userLog.UserEmail === "" || userLog.UserPass === "") {
-            alert("FILL ALL THE BLANKS");
-        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'FILL ALL THE BLANKS ',
 
+            })
+        } else {
+            
             //verifica que exista un usuario con ese mismo correo
             ctrlActions.PostToAPI(ServiceController + "/RetriveUserByMail", userRequest, function (response) {
                 console.log(response);
@@ -37,8 +42,10 @@ function Login() {
                     userRequest.Status = response.Status;
                     sessionStorage.setItem("UserCompany", response.IdOrganization);
                     validMail = true;
+
                 } else {
                     validMail = false;
+
                 }
                 //verfica que el usuario esté activo y que si exista el correo
                 if (validMail && userRequest.Status === "Active") {
@@ -50,18 +57,31 @@ function Login() {
                             sessionStorage.setItem("UserCedula", UserPass.Cedula);
                             RoleUser.UserId = UserPass.Cedula;
                             validation = true;
-                            //alert("Login sucessfull");
+                            Swal.fire({
+                                title: 'Succesfull Login!',
+                                width: 600,
+                                padding: '3em',
+                                color: '#000',
+                                background: '#fff',
+                                confirmButtonColor: "#DD6B55"
+
+                            })
 
                         } else {
                             validation = false;
-                            alert("Incorrect Password, Try again!");
 
+                            Swal.fire({
+                                title: 'Error!',
+                                text: 'Incorrect Password',
+                                icon: 'error',
+                                confirmButtonText: 'Try again!',
+                                confirmButtonColor: "#DD6B55"
+                            })
                         }
 
                         if (validation) {
                             //se realiza el post a un api si la validasion es verdera
                             ctrlActions.PostToAPI( ServiceControllerUserRole + "/RetriveUserRoleByUserId", RoleUser, function (response) {
-
 
                                 if (response === 1) {
                                     window.location.href = "Manager";
@@ -74,15 +94,17 @@ function Login() {
 
                                     window.location.href = "Profile";
                                 }
-
-
                             });
                         }
-
                     });
                 } else {
-                    alert("Incorrect User name or Password, Try again!");
-
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Incorrect User Id or Password',
+                        icon: 'error',
+                        confirmButtonText: 'Try again!',
+                        confirmButtonColor: "#DD6B55",
+                    })
                 }
 
             });

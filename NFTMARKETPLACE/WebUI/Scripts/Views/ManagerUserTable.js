@@ -27,7 +27,13 @@
         }
 
         if (idUser == "" && UserOldStatus == "") {
-            alert("Por favor seleccione un usuario antes de cambiar su estado")
+            Swal.fire({
+                title: 'Error!',
+                text: 'Please select an user before changing their state',
+                icon: 'error',
+                confirmButtonText: 'Cool',
+                confirmButtonColor: "#DD6B55",
+            })
         } else {
             var UserInfo = {
                 Cedula: idUser,
