@@ -29,6 +29,11 @@
         if (UserCust.Name === "" || UserCust.Cedula === "" || UserCust.Password === "" ||
             UserCust.SureName === "" || UserCust.NickName === "" || UserCust.Phone === "" || UserCust.Email === "") {
 
+            if (UserCust.Name === "" ) {
+                var x = document.getElementById('txtName');
+                x.classList.add('fillAllBlanks');
+            }
+
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
