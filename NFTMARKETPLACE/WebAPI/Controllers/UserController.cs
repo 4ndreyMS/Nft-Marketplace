@@ -80,7 +80,7 @@ namespace WebAPI.Controllers
             return response;
         }
 
-        [HttpGet]
+        [HttpPost]
         public APIResponse RetriveUserByMail(User _user)
         {
             APIResponse response = new APIResponse()
@@ -94,7 +94,7 @@ namespace WebAPI.Controllers
         }
 
 
-        [HttpGet]
+        [HttpPost]
         public APIResponse ExistUserByMail(User _user)
         {
             var retUser = uManager.RetrieveUserBymail(_user);
