@@ -1,8 +1,5 @@
 @using WebUI.Models.Helpers
-@{
-    Layout = "~/Views/Shared/NavBar.cshtml";
 
-}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,6 +43,9 @@
 
 
     <!--Navbar Start-->
+    @{
+        ViewBag.Title = "NavBar";
+    }
     <!-- Navbar End -->
     <!-- start section -->
     <section class="login section position-relative overflow-hidden"

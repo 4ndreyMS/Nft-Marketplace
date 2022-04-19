@@ -1,10 +1,7 @@
 @{
     ViewBag.Title = "MarketPlace";
 }
-@{
-    Layout = "~/Views/Shared/NavBar.cshtml";
 
-}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,7 +29,7 @@
 
     <!-- Custom Css -->
     <link rel="stylesheet" href="../../css/style.min.css" type="text/css" />
-
+  
 </head>
 
 <body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="71">
@@ -45,6 +42,10 @@
     </a>
 
     <!--Navbar Start-->
+    @{
+        Layout = "~/Views/Shared/NavBar.cshtml";
+
+    }
     <!-- Navbar End -->
     <!-- start home -->
     <section class="home-2 overflow-hidden" style="background-image: url(./../../Content/images/bg-2.png); background-repeat: no-repeat;" id="home">

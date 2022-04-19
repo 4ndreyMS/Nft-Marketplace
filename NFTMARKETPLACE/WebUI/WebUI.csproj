@@ -471,6 +471,7 @@
     <Content Include="Scripts\Views\CreateCollection.js" />
     <Content Include="Scripts\Views\CreateNft.js" />
     <Content Include="Scripts\Views\Login.js" />
+    <Content Include="Scripts\Views\Logout.js" />
     <Content Include="Scripts\Views\Manager.UserTable.js" />
     <Content Include="Scripts\Views\ManagerCategoryTable.js" />
     <Content Include="Scripts\Views\ManagerCollectionTable.js" />
@@ -482,7 +483,6 @@
     <Content Include="Scripts\Views\RegisterContentCreator.js" />
     <Content Include="Scripts\wizard.js" />
     <Content Include="Scripts\x-editable.js" />
-    <Content Include="Views\Shared\Scripts\Logout.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
