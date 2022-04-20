@@ -275,6 +275,7 @@ namespace AppLogic.Managers
             try
             {
                 result = UserFactory.Retrieve<User>(_user);
+                var sendMail = SendMailManager.SendRecoveryPassword(result.Name, result.Email);
                 return result;
             }
             catch (Exception e)

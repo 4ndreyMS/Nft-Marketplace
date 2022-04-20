@@ -15,7 +15,7 @@ namespace WebUI.Controllers
             return View();
         }
 
-     
+
 
         public ActionResult Contact()
         {
@@ -76,6 +76,16 @@ namespace WebUI.Controllers
             return View();
         }
         public ActionResult CreateCollection()
+        {
+            return View();
+        }
+
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        public ActionResult PasswordRecovery() 
         {
             return View();
         }

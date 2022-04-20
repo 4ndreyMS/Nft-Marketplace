@@ -89,4 +89,33 @@
         }
     }
 
+    this.forgotPassword = function () {
+        var element = document.getElementById("forgotPass");
+        element.style.display = "block";
+
+    }
+
+    this.RecoveryPassword = function () {
+        var User = this.ctrlActions.GetDataForm("forgotPass");
+
+        if (User != null && User.Cedula != "") {
+            this.ctrlActions.PostToAPI(this.ServiceController + "/retriveUser", User, function (_response) {
+
+                if (_response == null) {
+                    alert("Invalid Id")
+
+                } else if (_response.Cedula == User.Cedula && _response.Cedula != null) {
+                    alert("Check your email")
+                    window.location.href("PasswordRecovery")
+                }
+
+            });
+
+        } else {
+            alert("Enter an ID")
+        }
+
+
+    }
+
 }
