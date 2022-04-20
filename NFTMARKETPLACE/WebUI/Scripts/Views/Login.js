@@ -84,15 +84,15 @@ function Login() {
                             ctrlActions.PostToAPI( ServiceControllerUserRole + "/RetriveUserRoleByUserId", RoleUser, function (response) {
 
                                 if (response === 1) {
+                                    sessionStorage.setItem("UserRole", response);
                                     window.location.href = "Manager";
                                 } else if (response === 2) {
+                                    sessionStorage.setItem("UserRole", response);
                                     window.location.href = "Profile";
-/*                                    userProfile.LoadInfo();*/
-
 
                                 } else if (response === 3) {
+                                    sessionStorage.setItem("UserRole", response);
                                     window.location.href = "Profile";
-                                  /*  userProfile.LoadInfo();*/
 
                                 }
                             });
