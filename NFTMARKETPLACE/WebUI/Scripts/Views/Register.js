@@ -98,9 +98,7 @@
                         UserCust.Password.match(this.lowerCaseLetters) &&
                         UserCust.Password.match(this.specialChars)) {
 
-                        ctrlActions.PostToAPI(this.service + "/CreateUserCustomer",
-                            UserCust,
-                            function (response) {
+                        ctrlActions.PostToAPI(service + "/CreateUserCustomer", UserCust, function (response) {
                                 console.log(response);
                                 var responseUserOrgId = response.IdOrganization;
                                 var responseUserOtp = response.Otp;
@@ -130,13 +128,6 @@
                             confirmButtonText: 'Try Again!',
                             confirmButtonColor: "#DD6B55",
                         })
-
-                        //alert("Password is incorrect!\n\n" +
-                        //    "It must contains :\n" +
-                        //    "- Upper Cases\n" +
-                        //    "- Lower Cases\n" +
-                        //    "- More than 12 characters\n" +
-                        //    "- Special Characters");
                     }
                 } else {
                     fEmail.classList.add('fillAllBlanks');

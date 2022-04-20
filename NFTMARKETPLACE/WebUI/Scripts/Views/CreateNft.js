@@ -22,7 +22,7 @@ function CreateNft() {
             IdCategory: frmNFTRegister.CategotyId
         }
 
-        if (frmNFTRegister.NameNFT == "" ||    alert("FILL ALL THE BLANKS");
+        if (frmNFTRegister.NameNFT == "" ||    alert("FILL ALL THE BLANKS")){
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
