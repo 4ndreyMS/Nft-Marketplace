@@ -1,21 +1,31 @@
-﻿function Login() {
+﻿
+function Login() {
 
     //controller que va a buscar en el api
-    this.ServiceController = 'User';
-    this.ServiceControllerUserRole = 'RoleUser';
-    this.ServicePass = 'Loggin';
-    this.ctrlActions = new ControlActions();
+    const ServiceController = 'User';
+    const ServiceControllerUserRole = 'RoleUser';
+    const ServicePass = 'Loggin';
+    const ctrlActions = new ControlActions();
+/*    let userProfile = new Profile();*/
+    this.validateUser = function () {
+
+    }
 
     this.LoginUser = function () {
 
-
-        var validation = false;
+        let RoleUser = { UserId: "" };
+        let validation = false;
         sessionStorage.removeItem('UserCedula');
+        sessionStorage.removeItem('UserCompany');
 
         //lee la informacion del form con el id = frmLogin
-        var userLog = this.ctrlActions.GetDataForm("frmLogin");
+        var userLog = ctrlActions.GetDataForm("frmLogin");
+        let validMail = false;
+        let userRequest = { Email: userLog.UserEmail, Status: "" };
+        let UserPass = { Cedula: "", Password: userLog.UserPass }
 
-        if (userLog.UserId === "" || userLog.UserPass === "") {
+
+        if (userLog.UserEmail === "" || userLog.UserPass === "") {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -23,67 +33,82 @@
 
             })
         } else {
-            //creacion de un objeto personalizado
-            var UserPass = { Cedula: userLog.UserId, Password: userLog.UserPass }
+            
+            //verifica que exista un usuario con ese mismo correo
+            ctrlActions.PostToAPI(ServiceController + "/RetriveUserByMail", userRequest, function (response) {
+                console.log(response);
+                if (response != null) {
+                    UserPass.Cedula = response.Cedula;
+                    userRequest.Status = response.Status;
+                    sessionStorage.setItem("UserCompany", response.IdOrganization);
+                    validMail = true;
 
-            var RoleUser = { UserId: userLog.UserId }
+                } else {
+                    validMail = false;
 
-            this.ctrlActions.PostToAPI(this.ServicePass + "/RetrieveLoggin", UserPass, function (response) {
-                if (response === 0) {
-                    Swal.fire({
-                        title: 'Error!',
-                        text: 'Do you want to continue',
-                        icon: 'error',
-                        confirmButtonText: 'Cool',
-                        confirmButtonColor: "#DD6B55",
-                    })
-                } else if (response === 1) {
-
-                    sessionStorage.setItem("UserCedula", UserPass.Cedula);
-                    Swal.fire({
-                        title: 'Succesfull Login!',
-                        width: 600,
-                        padding: '3em',
-                        color: '#000',
-                        background: '#fff',
-                        confirmButtonColor: "#DD6B55"
-
-                    })
-                    validation = true;
                 }
+                //verfica que el usuario esté activo y que si exista el correo
+                if (validMail && userRequest.Status === "Active") {
 
-            });
+                    //consulta la clave con el id del usuario con el correo
+                    ctrlActions.PostToAPI(ServicePass + "/RetrieveLoggin", UserPass, function (response) {
 
-            //se realiza el post a un api
-            this.ctrlActions.PostToAPI(this.ServiceControllerUserRole + "/RetriveUserRoleByUserId", RoleUser, function (response) {
+                        if (response === 1) {
+                            sessionStorage.setItem("UserCedula", UserPass.Cedula);
+                            RoleUser.UserId = UserPass.Cedula;
+                            validation = true;
+                            //Swal.fire({
+                            //    title: 'Succesfull Login!',
+                            //    width: 600,
+                            //    padding: '3em',
+                            //    color: '#000',
+                            //    background: '#fff',
+                            //    confirmButtonColor: "#DD6B55"
 
-                if (validation === true) {
+                            //})
 
+                        } else {
+                            validation = false;
 
-                    if (response === 1) {
-                        window.location.href = "Manager"
-                    } else if (response === 2) {
+                            Swal.fire({
+                                title: 'Error!',
+                                text: 'Incorrect Password',
+                                icon: 'error',
+                                confirmButtonText: 'Try again!',
+                                confirmButtonColor: "#DD6B55"
+                            })
+                        }
 
-                        window.location.href = "Profile"
+                        if (validation) {
+                            //se realiza el post a un api si la validasion es verdera
+                            ctrlActions.PostToAPI( ServiceControllerUserRole + "/RetriveUserRoleByUserId", RoleUser, function (response) {
 
+                                if (response === 1) {
+                                    sessionStorage.setItem("UserRole", response);
+                                    window.location.href = "Manager";
+                                } else if (response === 2) {
+                                    sessionStorage.setItem("UserRole", response);
+                                    window.location.href = "Profile";
 
-                    } else if (response === 3) {
+                                } else if (response === 3) {
+                                    sessionStorage.setItem("UserRole", response);
+                                    window.location.href = "Profile";
 
-                        window.location.href = "Profile"
-                    }
-
+                                }
+                            });
+                        }
+                    });
                 } else {
                     Swal.fire({
                         title: 'Error!',
-                        text: 'Incorrect User Id or Password, Try again!',
+                        text: 'Incorrect User Id or Password',
                         icon: 'error',
-                        confirmButtonText: 'Cool',
+                        confirmButtonText: 'Try again!',
                         confirmButtonColor: "#DD6B55",
                     })
                 }
+
             });
-
-
 
 
         }

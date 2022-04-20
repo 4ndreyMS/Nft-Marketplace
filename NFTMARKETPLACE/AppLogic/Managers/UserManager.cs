@@ -303,7 +303,13 @@ namespace AppLogic.Managers
             try
             {
                 result = UserFactory.RetrieveByMail<User>(_user);
-                return result;
+
+                if (result!=null)
+                {
+                    return result;
+                }
+                
+                return null;
             }
             catch (Exception e)
             {
