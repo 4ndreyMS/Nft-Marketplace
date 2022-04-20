@@ -6,7 +6,7 @@ function Login() {
     const ServiceControllerUserRole = 'RoleUser';
     const ServicePass = 'Loggin';
     const ctrlActions = new ControlActions();
-
+/*    let userProfile = new Profile();*/
     this.validateUser = function () {
 
     }
@@ -57,15 +57,15 @@ function Login() {
                             sessionStorage.setItem("UserCedula", UserPass.Cedula);
                             RoleUser.UserId = UserPass.Cedula;
                             validation = true;
-                            Swal.fire({
-                                title: 'Succesfull Login!',
-                                width: 600,
-                                padding: '3em',
-                                color: '#000',
-                                background: '#fff',
-                                confirmButtonColor: "#DD6B55"
+                            //Swal.fire({
+                            //    title: 'Succesfull Login!',
+                            //    width: 600,
+                            //    padding: '3em',
+                            //    color: '#000',
+                            //    background: '#fff',
+                            //    confirmButtonColor: "#DD6B55"
 
-                            })
+                            //})
 
                         } else {
                             validation = false;
@@ -86,13 +86,14 @@ function Login() {
                                 if (response === 1) {
                                     window.location.href = "Manager";
                                 } else if (response === 2) {
-
                                     window.location.href = "Profile";
+/*                                    userProfile.LoadInfo();*/
 
 
                                 } else if (response === 3) {
-
                                     window.location.href = "Profile";
+                                  /*  userProfile.LoadInfo();*/
+
                                 }
                             });
                         }
