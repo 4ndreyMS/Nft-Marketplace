@@ -1,0 +1,183 @@
+﻿
+@using WebUI.Models.Helpers
+
+
+@{
+    ViewBag.Title = "NavBar";
+}
+@{
+    ViewBag.Title = "Home Page";
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>NETMARKETPLACE - By NetQuality</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content=" " />
+    <meta name="keywords" content="" />
+    <meta content="Pichforest" name="author" />
+
+    <link rel="shortcut icon" href="../../Content/images/HeadIcon.png">
+
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" href="../../css/bootstrap.min.css" type="text/css" id="bootstrap-style" />
+
+    <!-- Material Icon Css -->
+    <link rel="stylesheet" href="../../css/materialdesignicons.min.css" type="text/css" />
+
+    <!-- Unicon Css -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/../../css/line.css" />
+
+    <!-- Swiper Css -->
+    <link rel="stylesheet" href="../../css/tiny-slider.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/swiper.min.css" type="text/css" />
+
+    <!-- Custom Css -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../../css/style.min.css" type="text/css" />
+    <link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+    <link href="~/Content/sweetalert2.css" rel="stylesheet" />
+    <script src="~/Scripts/sweetalert2.js"></script>
+    <script src="~/Scripts/Views/Logout.js"></script>
+    <script src="~/Scripts/Views/ControlActions.js"></script>
+
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navbar-navlist" data-bs-offset="71">
+    @RenderBody()
+    <!-- light-dark mode button -->
+    <a href="javascript: void(0);" id="mode" class="mode-btn text-white rounded-end">
+        <i class="uil uil-brightness mode-dark mx-auto"></i>
+        <i class="uil uil-moon bx-spin mode-light"></i>
+    </a>
+
+    <!--Navbar Start-->
+    <nav class="navbar navbar-expand-lg fixed-top sticky" id="navbar">
+        <div class="container-fluid custom-container">
+            <a class="navbar-brand logo f-30 text-dark fw-bold" href="index.html">
+                <img src="../../Content/images/NETQUALITY.png" class="logo-dark" alt="" height="40">
+                <img src="../../Content/images/NETQUALITY.png" class="logo-light" alt="" height="40">
+            </a>
+            <div>
+                <button class="navbar-toggler me-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-label="Toggle navigation">
+                    <i class="mdi mdi-menu"></i>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mx-auto navbar-center">
+                    <li class="nav-item dropdown dropdown-hover">
+                        @Html.ActionLink("Home", "Index", "Home", new { @class = "nav-link" })
+
+
+                    </li>
+
+                    <li class="nav-item">
+                        @Html.ActionLink("Marketplace", "Marketplace", "Marketplace", new { @class = "nav-link" })
+                    </li>
+
+                    <li class="nav-item">
+
+                        @Html.ActionLink("Collection", "Collection", "Collection", new { @class = "nav-link" })
+
+                    </li>
+
+
+                    <li class="nav-item">
+
+                        @Html.ActionLink("NFT'S", "ItemDetails", "NFT", new { @class = "nav-link" })
+
+
+                    </li>
+
+
+                    <li class="nav-item">
+                        @Html.ActionLink("Login", "Login", "Login", new { @class = "nav-link" })
+
+                    </li>
+
+
+                    <li class="nav-item dropdown dropdown-hover">
+                        @Html.ActionLink("Register", "Register", "Registration", new { @class = "nav-link dropdown-toggle" })
+
+                        <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="homedrop">
+                            <li>
+
+                                @Html.ActionLink("Register", "Register", "Register", new { @class = "dropdown-item" })
+
+                            </li>
+                            <li>
+
+                                @Html.ActionLink("As content creator", "RegisterContentCreator", "RegisterContentCreator", new { @class = "dropdown-item" })
+                            </li>
+                        </ul>
+                    </li>
+
+
+                    <!--end dropdown-->
+
+
+                    <li class="nav-item dropdown dropdown-hover">
+
+                        @Html.ActionLink("Profile", "Profile", "Profile", new { @class = "nav-link dropdown-toggle" })
+                        <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="homedrop">
+                            <li>
+
+                                @Html.ActionLink("Profile", "Profile", "Profile", new { @class = "dropdown-item" })
+                            </li>
+                            <li>
+
+                                @Html.ActionLink("EditProfile", "EditProfile", "EditProfile", new { @class = "dropdown-item" })
+                            </li>
+                        </ul>
+                    </li>
+
+
+                    <li class="nav-item">
+                        @Html.ActionLink("Contact", "Contact", "Contact", new { @class = "nav-link" })
+
+                    </li>
+                    <!--end dropdown-->
+                </ul>
+                <!--end navbar-nav-->
+
+                <div class="button ms-3">
+
+                    @Html.CtrlButton("Logout", "btnLogOut", "Log out", onClickFunction: "logOut")
+
+                </div>
+
+
+            </div>
+
+        </div>
+        <!--end container-->
+    </nav>
+    <!-- Navbar End -->
+    <!--Bootstrap Js-->
+    <script src="../../Scripts/bootstrap.bundle.min.js"></script>
+
+    <!-- Slider Js -->
+    <script src="../../Scripts/tiny-slider.js"></script>
+    <script src="../../Scripts/swiper.min.js"></script>
+
+    <!-- counter -->
+    <script src="../../Scripts/counter.init.js"></script>
+
+    <!-- App Js -->
+    <script src="../../Scripts/app.js"></script>
+
+    <script src="../../Scripts/Swipper-Sliders.js"></script>
+
+
+
+
+
+</body>
+
+</html>

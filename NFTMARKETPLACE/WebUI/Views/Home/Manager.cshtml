@@ -7,6 +7,10 @@
 @{
     ViewBag.Title = "Manager";
 }
+
+@{
+    Layout = "~/Views/Shared/NavBar.cshtml";
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,101 +51,6 @@
     </a>
 
     <!--Navbar Start-->
-    <nav class="navbar navbar-expand-lg fixed-top sticky" id="navbar">
-        <div class="container-fluid custom-container">
-            <a class="navbar-brand logo f-30 text-dark fw-bold" href="index.html">
-                <img src="../../Content/images/NETQUALITY.png" class="logo-dark" alt="" height="40">
-                <img src="../../Content/images/NETQUALITY.png" class="logo-light" alt="" height="40">
-            </a>
-            <div>
-                <button class="navbar-toggler me-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-label="Toggle navigation">
-                    <i class="mdi mdi-menu"></i>
-                </button>
-            </div>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav mx-auto navbar-center">
-                    <li class="nav-item dropdown dropdown-hover">
-                        @Html.ActionLink("Home", "Index", "Home", new { @class = "nav-link" })
-
-
-                    </li>
-
-                    <li class="nav-item">
-                        @Html.ActionLink("Marketplace", "Marketplace", "Marketplace", new { @class = "nav-link" })
-                    </li>
-
-                    <li class="nav-item">
-
-                        @Html.ActionLink("Collection", "Collection", "Collection", new { @class = "nav-link" })
-
-                    </li>
-
-
-                    <li class="nav-item">
-
-                        @Html.ActionLink("NFT'S", "ItemDetails", "NFT", new { @class = "nav-link" })
-
-
-                    </li>
-
-
-                    <li class="nav-item">
-                        @Html.ActionLink("Login", "Login", "Login", new { @class = "nav-link" })
-
-                    </li>
-
-
-                    <li class="nav-item dropdown dropdown-hover">
-                        @Html.ActionLink("Register", "Register", "Registration", new { @class = "nav-link dropdown-toggle" })
-
-                        <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="homedrop">
-                            <li>
-
-                                @Html.ActionLink("Register", "Register", "Register", new { @class = "dropdown-item" })
-
-                            </li>
-                            <li>
-
-                                @Html.ActionLink("As content creator", "RegisterContentCreator", "RegisterContentCreator", new { @class = "dropdown-item" })
-                            </li>
-                        </ul>
-                    </li>
-
-
-                    <!--end dropdown-->
-
-
-                    <li class="nav-item dropdown dropdown-hover">
-
-                        @Html.ActionLink("Profile", "Profile", "Profile", new { @class = "nav-link dropdown-toggle" })
-                        <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="homedrop">
-                            <li>
-
-                                @Html.ActionLink("Profile", "Profile", "Profile", new { @class = "dropdown-item" })
-                            </li>
-                            <li>
-
-                                @Html.ActionLink("EditProfile", "EditProfile", "EditProfile", new { @class = "dropdown-item" })
-                            </li>
-                        </ul>
-                    </li>
-
-
-                    <li class="nav-item">
-                        @Html.ActionLink("Contact", "Contact", "Contact", new { @class = "nav-link" })
-
-                    </li>
-                    <!--end dropdown-->
-                </ul>
-                <!--end navbar-nav-->
-                @Html.ActionLink("Connect to Wallet", "Wallet", "Wallet", new { @class = "btn btn-primary" })
-
-
-            </div>
-
-        </div>
-        <!--end container-->
-    </nav>
 
     <!-- Navbar End -->
     <!-- start section -->
@@ -206,7 +115,7 @@
                     </ul>
                     <div class="tab-content mt-5" id="pills-tabContent">
                         <div class="tab-pane fade show active" id="pills-games" role="tabpanel" aria-labelledby="pills-games-tab">
-                            @Html.CtrlTable("ManagerUserTable", "userList", "Lista de usuarios", "Identification,Name,Email,Status", "Cedula,Name,Email,Status", "Prueba")
+                            @Html.CtrlTable("ManagerUserTable", "userList", "Lista de usuarios", "Identification,Name,Email,Status,Role", "Cedula,Name,Email,Status,Type", "Prueba")
                             @Html.CtrlButton("ManagerUserTable", "StatusButton", "Change state", "StatusUser")
                         </div>
                         <div class="tab-pane fade" id="pills-art" role="tabpanel" aria-labelledby="pills-art-tab">
@@ -235,7 +144,7 @@
                                     @Html.CtrlInput("txtPriceAmount", "text", "Price amount:", "Enter the price", "Amount")
                                 </form>
                                 <div class="submit-button mt-4">
-                                    @Html.CtrlButton("ManagerPriceTable", "btnUpdPrice", "Update price", "UpdatePrice", "primary w - 100")                              
+                                    @Html.CtrlButton("ManagerPriceTable", "btnUpdPrice", "Update price", "UpdatePrice", "primary w - 100")
                                 </div>
                             </div>
                             <div>

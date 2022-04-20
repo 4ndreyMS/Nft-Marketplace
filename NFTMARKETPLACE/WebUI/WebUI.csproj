@@ -471,6 +471,7 @@
     <Content Include="Scripts\Views\CreateCollection.js" />
     <Content Include="Scripts\Views\CreateNft.js" />
     <Content Include="Scripts\Views\Login.js" />
+    <Content Include="Scripts\Views\Logout.js" />
     <Content Include="Scripts\Views\Manager.UserTable.js" />
     <Content Include="Scripts\Views\ManagerCategoryTable.js" />
     <Content Include="Scripts\Views\ManagerCollectionTable.js" />
@@ -549,6 +550,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\NavBar.cshtml" />
+    <Content Include="Views\Shared\NavBarHome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

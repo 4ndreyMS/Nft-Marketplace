@@ -89,6 +89,26 @@ namespace DataAccess.Crud
 
         }
 
+        public List<T> RetrieveAllWithRole<T>()
+        {
+
+            var lstCustomers = new List<T>(); //inicializa la lista que va a devolver
+
+            var lstResult = dao.ExecuteQueryProcedure(mapper.GetRetriveAllStatementWithRole());
+            var dic = new Dictionary<string, object>();
+            if (lstResult.Count > 0)
+            {
+                var objs = mapper.BuildObjectsWithRole(lstResult);
+                foreach (var c in objs)
+                {
+                    lstCustomers.Add((T)Convert.ChangeType(c, typeof(T)));
+                }
+            }
+
+            return lstCustomers;
+
+        }
+
         //Updates
         public override void Update(BaseEntity entity)
         {

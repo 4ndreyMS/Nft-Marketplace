@@ -64,6 +64,7 @@
     <Compile Include="Transaction.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserPassword.cs" />
+    <Compile Include="UserR.cs" />
     <Compile Include="UserRole.cs" />
     <Compile Include="User_Company.cs" />
     <Compile Include="Wallet.cs" />
