@@ -4,7 +4,6 @@ function CreateNft() {
     this.ctrlActions = new ControlActions();
     this.service = 'NFT';
 
-    sessionStorage.setItem("Id", "7858");
     imagenCloudnary = sessionStorage.getItem("imagenLocal");
 
     this.RegisterNFT = function () {
@@ -16,13 +15,13 @@ function CreateNft() {
         var NFT = {
             NftName: frmNFTRegister.NameNFT,
             Price: frmNFTRegister.Precio,
-            Image: "UrlExample",
+            Image: sessionStorage.getItem("imagenLocal"),
             IdCollection: frmNFTRegister.Collection,
-            IdOwner: sessionStorage.getItem("Id"),
+            IdOwner: sessionStorage.getItem(""),
             IdCategory: frmNFTRegister.CategotyId
         }
 
-        if (frmNFTRegister.NameNFT == "" ||    alert("FILL ALL THE BLANKS");
+        if (frmNFTRegister.NameNFT == ""){
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -38,8 +37,6 @@ function CreateNft() {
                 'success'
             )
         }
-
-
 
         this.OpenWidget = function (image) {
             var cloudinary = new CloudinaryManager(image);
