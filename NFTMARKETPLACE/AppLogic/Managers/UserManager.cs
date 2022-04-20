@@ -108,6 +108,14 @@ namespace AppLogic.Managers
             return new User() { IdOrganization = "0", Status = "false" };
         }
 
+        public object RetrieveAllUserWithRole()
+        {
+            {
+                UserFactory = new UserFactory();
+                return UserFactory.RetrieveAllWithRole<UserR>();
+            }
+        }
+
         //crea usarios clientes
         public User CreateUserCustomer(User _user)
         {
