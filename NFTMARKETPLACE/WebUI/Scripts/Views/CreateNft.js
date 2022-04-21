@@ -45,7 +45,7 @@
 
 $(window).on("load", function () {
 
-    if (!sessionStorage.getItem('UserCedula') || !sessionStorage.getItem('UserCompany')) {
+    if (!sessionStorage.getItem('UserCedula') || !sessionStorage.getItem('UserCompany') || sessionStorage.getItem('UserRole') != 3) {
         window.location.href = "Login";
         return false;
     }
