@@ -1,28 +1,25 @@
-﻿
-function CreateNft() {
+﻿function CreateNft() {
 
     this.ctrlActions = new ControlActions();
     this.service = 'NFT';
 
-    sessionStorage.setItem("Id", "7858");
     imagenCloudnary = sessionStorage.getItem("imagenLocal");
 
     this.RegisterNFT = function () {
 
         var frmNFTRegister = this.ctrlActions.GetDataForm("frmNFTRegister");
         var cloudinary = new CloudinaryManager();
-        //var collection = new CreateCollection();
 
         var NFT = {
             NftName: frmNFTRegister.NameNFT,
             Price: frmNFTRegister.Precio,
-            Image: "UrlExample",
+            Image: sessionStorage.getItem("imagenLocal"),
             IdCollection: frmNFTRegister.Collection,
-            IdOwner: sessionStorage.getItem("Id"),
+            IdOwner: sessionStorage.getItem("UserCompany"),
             IdCategory: frmNFTRegister.CategotyId
         }
 
-        if (frmNFTRegister.NameNFT == "" ||    alert("FILL ALL THE BLANKS");
+        if (frmNFTRegister.NameNFT == ""){
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -39,12 +36,20 @@ function CreateNft() {
             )
         }
 
-
-
         this.OpenWidget = function (image) {
             var cloudinary = new CloudinaryManager(image);
             cloudinary.OpenWidget();
         }
     }
 }
+
+$(window).on("load", function () {
+
+    if (!sessionStorage.getItem('UserCedula') || !sessionStorage.getItem('UserCompany')) {
+        window.location.href = "Login";
+        return false;
+    }
+    return true;
+
+});
 

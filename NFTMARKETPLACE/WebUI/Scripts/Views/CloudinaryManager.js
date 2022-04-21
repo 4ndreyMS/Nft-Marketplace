@@ -14,7 +14,7 @@ function CloudinaryManager() {
                 if (!err && result && result.event === 'success') {
                     console.log('Imagen subida con éxito', result.info);
                     image.src = result.info.secure_url;
-                    var imagensubida = imagen.scr;
+                    var imagensubida = image.src;
                     sessionStorage.setItem("imagenLocal", imagensubida);
                     // document.getElementById('reporteDocumento').hidden = false;
                     // let pushToArray = window.urlDocumento.push(result.info.secure_url);
