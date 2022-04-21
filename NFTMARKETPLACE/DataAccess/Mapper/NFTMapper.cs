@@ -192,8 +192,6 @@ namespace DataAccess.Mapper
 
             return nft;
         }
-
-
     }
 }
 
