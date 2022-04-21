@@ -5,6 +5,11 @@
 
     imagenCloudnary = sessionStorage.getItem("imagenLocal");
 
+    this.loadDropdown = function () {
+        let slct = document.getElementById("slctCategory");
+        slct.innerHTML("<option >New name</option>");
+    }
+
     this.RegisterNFT = function () {
 
         var frmNFTRegister = this.ctrlActions.GetDataForm("frmNFTRegister");
