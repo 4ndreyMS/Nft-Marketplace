@@ -9,11 +9,9 @@
 
     this.RetrieveAllNfts = () => {
         cntrlAction.PostToAPI(this.service + "/RetrieveAllNFTWithCategories", card, function (response) {
-
-
                 response.forEach((card) => {
                     nftSection.innerHTML += `
-          <div class="col-lg-3 mt-4" >
+                             <div class="col-lg-3 mt-4" >
                                 <div class="tab-content p-4 border-0">
                                     <div class="header d-flex align-items-center justify-content-start">
                                         <div class="avatar-xs">
@@ -27,7 +25,7 @@
                                     <div class="body-content mt-3">
                                         <h6 class="fw-bold">  ${card.NftName}</h6>
                                         <div class="d-flex">
-                                            <p class="text-muted">6 in stock</p>
+                                            <p class="text-muted">1 in stock</p>
                                             <p class="ms-auto text-muted">
                                                 Price : <span class="text-success">
                                                    ${card.Price}
@@ -47,17 +45,10 @@
                                     </div>
                                 </div>
                             </div>
-  
     `
                 })
-
             })
-
-
-
     }
-
-   
 }
 
 $(document).ready(function () {

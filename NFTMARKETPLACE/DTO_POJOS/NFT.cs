@@ -18,6 +18,7 @@ namespace DTO_POJOS
         public string Image { get; set; }
         public int IdCategory { get; set; }
         public NFTCollection collection { get; set; }
+        public string OwnerName { get; set; }
 
     }
 }
