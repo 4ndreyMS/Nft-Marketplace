@@ -2,12 +2,29 @@
 
     this.ctrlActions = new ControlActions();
     this.service = 'NFT';
-
+    const catService = 'Category'
+    const collService = 'Collection'
     imagenCloudnary = sessionStorage.getItem("imagenLocal");
 
-    this.loadDropdown = function () {
-        let slct = document.getElementById("slctCategory");
-        slct.innerHTML("<option >New name</option>");
+    const slct = document.getElementById("slctCategory");
+    const slctCollection = document.getElementById("slctCollection");
+
+    let collection = { "CompanyId": sessionStorage.getItem("UserCompany")}
+    
+    this.loadDropdownColl = function () {
+        this.ctrlActions.PostToAPI(collService + "/", collection, function (response) {
+            response.forEach((val) => {
+                slctCollection.innerHTML += `<option value="${val.Id}" >${val.CollectionName}</option>`;
+            })
+        });
+    }
+
+    this.loadDropdownCat = function () {
+        this.ctrlActions.PostToAPI(catService + "/RetrieveCategories", "values", function (response) {
+            response.forEach((val) => {
+                slct.innerHTML += `<option value="${val.Id}" >${val.CategoryName}</option>`;
+            })
+        });
     }
 
     this.RegisterNFT = function () {
@@ -24,17 +41,17 @@
             IdCategory: frmNFTRegister.CategotyId
         }
 
-        if (frmNFTRegister.NameNFT == ""){
+        if (frmNFTRegister.NameNFT == "") {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 text: 'FILL ALL THE BLANKS ',
-               
+
             })
 
         } else {
             this.ctrlActions.PostToAPI(this.service + "/CreateNFT", NFT, function (response) { });
-           
+
             Swal.fire(
                 'NFT created!',
                 'success'
@@ -54,6 +71,8 @@ $(window).on("load", function () {
         window.location.href = "Login";
         return false;
     }
+    var nft = new CreateNft();
+    nft.loadDropdownCat();
     return true;
 
 });

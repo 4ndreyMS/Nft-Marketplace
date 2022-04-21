@@ -46,6 +46,20 @@ namespace WebAPI.Controllers
             };
         }
 
+        [HttpPost]
+        public APIResponse RetrieveCategories()
+        {
+            var cm = new CategoryManager();
+            return new APIResponse()
+            {
+                Data = cm.RetrieveAll(),
+                Message = "All categories in the data base",
+                Status = "Ok",
+                TransacctionDate = DateTime.Now.ToString()
+            };
+        }
+
+
         [HttpDelete]
         public void DeleteCategory(Category category)
         {
