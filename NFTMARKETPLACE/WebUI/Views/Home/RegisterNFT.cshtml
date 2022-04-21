@@ -108,30 +108,32 @@
                                     @Html.CtrlInput("txtInput", "Number", "NFT Price", "Ex: 100 cenfocoins", "Precio")
                                 </div>
                             </div>
-
+                            <div class="mt-4">
+                                <div class="Name">
+                                    <div class="form-group">
+                                        <label class="">Select the NFT collection</label>
+                                        <select id="slctCollection" class="form-control">
+                                            <option value="">- Select -</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="mt-4">
+                                <div class="Name">
+                                    <div class="form-group">
+                                        <label class="">Select the NFT category</label>
+                                        <select id="slctCategory" class="form-control">
+                                            <option value="">- Select -</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         
-                        <div class="mt-4">
-                            <div class="Name">
-                                <div class="form-group">
-                                    <label class="">Select the NFT collection</label>
-                                    <select id="slctCollection" class="form-control">
-                                        <option value="">- Select -</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="mt-4">
-                            <div class="Name">
-                                <div class="form-group">
-                                    <label class="">Select the NFT category</label>
-                                    <select id="slctCategory" class="form-control">
-                                        <option value="">- Select -</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
+
                         <hr class="my-4">
                         @*@Html.CtrlTable("ManagerCategoryTable", "categoryList", "Lista de categoria", "ID,Category Name", "Id,CategoryName", "Prueba")*@
                     </div>
