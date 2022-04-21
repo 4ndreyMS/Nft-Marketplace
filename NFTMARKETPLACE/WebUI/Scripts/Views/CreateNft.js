@@ -1,5 +1,4 @@
-﻿
-function CreateNft() {
+﻿function CreateNft() {
 
     this.ctrlActions = new ControlActions();
     this.service = 'NFT';
@@ -10,14 +9,13 @@ function CreateNft() {
 
         var frmNFTRegister = this.ctrlActions.GetDataForm("frmNFTRegister");
         var cloudinary = new CloudinaryManager();
-        //var collection = new CreateCollection();
 
         var NFT = {
             NftName: frmNFTRegister.NameNFT,
             Price: frmNFTRegister.Precio,
             Image: sessionStorage.getItem("imagenLocal"),
             IdCollection: frmNFTRegister.Collection,
-            IdOwner: sessionStorage.getItem(""),
+            IdOwner: sessionStorage.getItem("UserCompany"),
             IdCategory: frmNFTRegister.CategotyId
         }
 
@@ -44,4 +42,14 @@ function CreateNft() {
         }
     }
 }
+
+$(window).on("load", function () {
+
+    if (!sessionStorage.getItem('UserCedula') || !sessionStorage.getItem('UserCompany')) {
+        window.location.href = "Login";
+        return false;
+    }
+    return true;
+
+});
 

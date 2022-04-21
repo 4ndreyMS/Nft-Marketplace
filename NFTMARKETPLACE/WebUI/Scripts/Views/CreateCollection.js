@@ -5,13 +5,11 @@
     this.serviceCategory = 'Category';
     this.serviceCollectionCategory = 'Collection_Category';
 
-    sessionStorage.setItem("Id", "7858");
-
     this.RegisterCollection = function () {
 
         var frmCreateCollection = this.ctrlActions.GetDataForm("frmCreateCollection")
         var NameId = {
-            CompanyId: sessionStorage.getItem("Id"),
+            CompanyId: sessionStorage.getItem("UserCompany"),
             CollectionName: frmCreateCollection.CollectionName,
             CategoryId: frmCreateCollection.CollectionCategoryId
         }
@@ -29,3 +27,13 @@
 
     }
 }
+
+$(window).on("load", function () {
+
+    if (!sessionStorage.getItem('UserCedula') || !sessionStorage.getItem('UserComapny')) {
+        window.location.href = "Login";
+        return false;
+    }
+    return true;
+
+});
