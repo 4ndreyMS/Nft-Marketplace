@@ -48,10 +48,8 @@ namespace DataAccess.Mapper
         public SqlOperation GetRetriveStatementByCompanyId(BaseEntity entity)
         {
             var operation = new SqlOperation { ProcedureName = "RET_NFTCollection_CompanyId_PR" };
-
             var c = (NFTCollection)entity;
-            operation.AddIntParam(DB_COL_Id, c.Id);
-
+            operation.AddVarcharParam(DB_COL_CompanyId, c.CompanyId);
             return operation;
         }
 
@@ -70,14 +68,14 @@ namespace DataAccess.Mapper
             return operation;
         }
 
-      
+
         public SqlOperation GetRetriveAllCollectionWithCategory()
         {
             var operation = new SqlOperation { ProcedureName = "RET_ALL_COLLECTION_WITH_CATEGORY_PR" };
             return operation;
         }
 
-      
+
         public SqlOperation GetRetriveAllStatement()
         {
             var operation = new SqlOperation { ProcedureName = "RET_ALL_NFTCollection_PR" };

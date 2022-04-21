@@ -2,8 +2,32 @@
 
     this.ctrlActions = new ControlActions();
     this.service = 'NFT';
-
+    const catService = 'Category'
+    const collService = 'Collection'
     imagenCloudnary = sessionStorage.getItem("imagenLocal");
+
+    const slct = document.getElementById("slctCategory");
+    const slctCollection = document.getElementById("slctCollection");
+
+
+    //metodos para llenar los dropdowns
+    let collection = { "CompanyId": sessionStorage.getItem("UserCompany") }/*   '9066'*/
+    
+    this.loadDropdownColl = function () {
+        this.ctrlActions.PostToAPI(collService + "/RetrieveAllCollectionByCompany", collection, function (response) {
+            response.forEach((val) => {
+                slctCollection.innerHTML += `<option value="${val.Id}" >${val.CollectionName}</option>`;
+            })
+        });
+    }
+    //metodos para llenar los dropdowns
+    this.loadDropdownCat = function () {
+        this.ctrlActions.PostToAPI(catService + "/RetrieveCategories", "values", function (response) {
+            response.forEach((val) => {
+                slct.innerHTML += `<option value="${val.Id}" >${val.CategoryName}</option>`;
+            })
+        });
+    }
 
     this.RegisterNFT = function () {
 
@@ -14,22 +38,40 @@
             NftName: frmNFTRegister.NameNFT,
             Price: frmNFTRegister.Precio,
             Image: sessionStorage.getItem("imagenLocal"),
-            IdCollection: frmNFTRegister.Collection,
+            IdCollection: slctCollection.value,
             IdOwner: sessionStorage.getItem("UserCompany"),
-            IdCategory: frmNFTRegister.CategotyId
-        }
+            IdCategory: slct.value
+    }
 
-        if (frmNFTRegister.NameNFT == ""){
+        if (frmNFTRegister.NameNFT == "") {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'FILL ALL THE BLANKS ',
-               
+                text: 'Please fill the Nft name',
+
+            })
+        } else if (frmNFTRegister.Precio == "") {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please insert price',
             })
 
+        } else if (frmNFTRegister.Image == "") {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please upload image',
+            })
+        } else if (frmNFTRegister.IdCategory == "") {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please select a category',
+            })
         } else {
             this.ctrlActions.PostToAPI(this.service + "/CreateNFT", NFT, function (response) { });
-           
+
             Swal.fire(
                 'NFT created!',
                 'success'
@@ -49,6 +91,9 @@ $(window).on("load", function () {
         window.location.href = "Login";
         return false;
     }
+    var nft = new CreateNft();
+    nft.loadDropdownCat();
+    nft.loadDropdownColl();
     return true;
 
 });
