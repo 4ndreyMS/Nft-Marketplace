@@ -53,11 +53,11 @@ namespace DataAccess.Crud
             return lstCollections;
         }
 
-        public List<T> RetrieveAllNFTCollectionCompany<T>(BaseEntity category)
+        public List<T> RetrieveAllNFTCollectionCompany<T>(BaseEntity entity)
         {
             var lstCollections = new List<T>();
 
-            var lstResult = dao.ExecuteQueryProcedure(mapper.GetRetriveStatementByCompanyId(category));
+            var lstResult = dao.ExecuteQueryProcedure(mapper.GetRetriveStatementByCompanyId(entity));
             var dic = new Dictionary<string, object>();
             if (lstResult.Count > 0)
             {
@@ -87,6 +87,19 @@ namespace DataAccess.Crud
             return lstCollections;
         }
 
+        public object RetrieveAllCollectionByCompany<T>(NFTCollection collection)
+        {
+            var lstResult = dao.ExecuteQueryProcedure(mapper.GetRetriveStatementByCompanyId(collection));
+            var dic = new Dictionary<string, object>();
+            if (lstResult.Count > 0)
+            {
+                dic = lstResult[0];
+                var objs = mapper.BuildObject(dic);
+                return (T)Convert.ChangeType(objs, typeof(T));
+            }
+            return default(T);
+        }
+
         public List<T> RetrieveAllCollectionWithCategory<T>()
         {
             var lstCollections = new List<T>();
@@ -104,7 +117,7 @@ namespace DataAccess.Crud
             return lstCollections;
         }
 
-      public T RetrieveFilterByName<T>(NFTCollection collection)
+        public T RetrieveFilterByName<T>(NFTCollection collection)
         {
             var lstResult = dao.ExecuteQueryProcedure(mapper.GetRetriveStatementByName(collection));
             var dic = new Dictionary<string, object>();

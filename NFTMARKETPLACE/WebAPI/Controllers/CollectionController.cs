@@ -80,6 +80,19 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
+        public APIResponse RetrieveAllCollectionByCompany(NFTCollection collection)
+        {
+            return new APIResponse()
+            {
+                Data = CM.RetrieveAllCollectionByCompany(collection),
+                Message = "All collections of a category in the data base",
+                Status = "Ok",
+                TransacctionDate = DateTime.Now.ToString()
+            };
+        }
+
+
+        [HttpGet]
         public APIResponse RetrieveAllCollectionWithCategory()
         {
             return new APIResponse()
