@@ -89,15 +89,19 @@ namespace DataAccess.Crud
 
         public object RetrieveAllCollectionByCompany<T>(NFTCollection collection)
         {
+            var lstCollections = new List<T>();
+
             var lstResult = dao.ExecuteQueryProcedure(mapper.GetRetriveStatementByCompanyId(collection));
             var dic = new Dictionary<string, object>();
             if (lstResult.Count > 0)
             {
-                dic = lstResult[0];
-                var objs = mapper.BuildObject(dic);
-                return (T)Convert.ChangeType(objs, typeof(T));
+                var objs = mapper.BuildObjects(lstResult);
+                foreach (var c in objs)
+                {
+                    lstCollections.Add((T)Convert.ChangeType(c, typeof(T)));
+                }
             }
-            return default(T);
+            return lstCollections;
         }
 
         public List<T> RetrieveAllCollectionWithCategory<T>()
