@@ -537,7 +537,7 @@
     <Content Include="Views\Home\index-2-dark.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\ItemDetails.cshtml" />
-    <Content Include="Views\Home\login.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Manager.cshtml" />
     <Content Include="Views\Home\Marketplace.cshtml" />
     <Content Include="Views\Home\profile.cshtml" />
@@ -586,7 +586,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>59205</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44315/</IISUrl>
+          <IISUrl>https://localhost:44361/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

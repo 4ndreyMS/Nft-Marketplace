@@ -98,21 +98,41 @@
     this.RecoveryPassword = function () {
         var User = this.ctrlActions.GetDataForm("forgotPass");
 
-        if (User != null && User.Cedula != "") {
-            this.ctrlActions.PostToAPI(this.ServiceController + "/retriveUser", User, function (_response) {
+        if (User != null && User.Email != "") {
+            this.ctrlActions.PostToAPI(this.ServiceController + "/RetriveUserByMail", User, function (_response) {
 
                 if (_response == null) {
-                    alert("Invalid Id")
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Incorrect Id, Try again!',
+                        icon: 'error',
+                        confirmButtonText: 'Cool',
+                        confirmButtonColor: "#DD6B55",
+                    })
 
-                } else if (_response.Cedula == User.Cedula && _response.Cedula != null) {
-                    alert("Check your email")
-                    window.location.href("PasswordRecovery")
+                } else if (_response.Email == User.Email && _response.Email != null) {
+                    Swal.fire({
+                        title: 'Check your email!',
+                        width: 600,
+                        padding: '3em',
+                        color: '#000',
+                        background: '#fff',
+                        confirmButtonColor: "#DD6B55"
+
+                    })
+                   
                 }
 
             });
 
         } else {
-            alert("Enter an ID")
+            Swal.fire({
+                title: 'Error!',
+                text: 'Enter an Id, Try again!',
+                icon: 'error',
+                confirmButtonText: 'Cool',
+                confirmButtonColor: "#DD6B55",
+            })
         }
 
 

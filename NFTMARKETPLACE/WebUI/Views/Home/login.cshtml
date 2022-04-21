@@ -84,10 +84,10 @@
                                         <div class="Name" style="display:none" id="forgotPass">
                                             <div style="display: flex; flex-wrap: nowrap; align-items: flex-end; flex-direction: row; align-content: flex-start; justify-content: space-between;">
                                                 <form id="frmForgotPassword" style="margin-right:5px ">
-                                                    @Html.CtrlInput("frmForgotPassword", "text", "Identification", "Insert your id", "Cedula")
+                                                    @Html.CtrlInput("frmForgotPassword", "text", "Email", "Insert your email", "Email")
                                                 </form>
 
-                                                @Html.CtrlButton("Login", "btnSubmitOpt", "Send email", onClickFunction: "RecoveryPassword")
+                                                @Html.CtrlButton("Login", "btnSubmitRecovery", "Send email", onClickFunction: "RecoveryPassword")
                                             </div>
                                         </div>
                                     </div>
