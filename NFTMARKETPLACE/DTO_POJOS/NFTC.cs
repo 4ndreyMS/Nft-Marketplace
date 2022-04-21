@@ -17,5 +17,6 @@ namespace DTO_POJOS
         public string IdOwner { get; set; }
         public string Image { get; set; }
         public string CategoryName { get; set; }
+        public string OwnerName { get; set; }
     }
 }

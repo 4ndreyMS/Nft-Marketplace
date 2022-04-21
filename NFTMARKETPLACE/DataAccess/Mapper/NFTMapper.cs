@@ -177,7 +177,7 @@ namespace DataAccess.Mapper
         {
 
 
-            var nft = new NFT
+            var nft = new NFTC
             {
                 Id = GetStringValue(row, DB_COL_Id),
                 NftName = GetStringValue(row, DB_COL_NFTName),

@@ -8,7 +8,7 @@
  
 
     this.RetrieveAllNfts = () => {
-        cntrlAction.PostToAPI(this.service + "/RetrieveAllNFTWithCategories", card, function (response) {
+        cntrlAction.PostToAPI(this.service + "/RetrieveAllNFTWithOwner", card, function (response) {
                 response.forEach((card) => {
                     nftSection.innerHTML += `
                              <div class="col-lg-3 mt-4" >
@@ -17,7 +17,7 @@
                                         <div class="avatar-xs">
                                             <img src="../../Content/images/slider/user/img-1.jpg" alt="" class="img-fluid rounded-circle">
                                         </div>
-                                        <h6 class="mb-0 ms-2 fw-semibold text-muted f-14">Deniva_Pannini</h6>
+                                        <h6 class="mb-0 ms-2 fw-semibold text-muted f-14">${card.OwnerName}</h6>
                                     </div>
                                     <div class="card-image mt-3">
                                         <img src="../../Content/images/explore/img-1.png" alt="" class="img-fluid">
