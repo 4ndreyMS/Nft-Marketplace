@@ -1,4 +1,4 @@
-﻿function ManagerUserTable() {
+﻿ function ManagerUserTable() {
 
     this.idUser = "";
     this.UserOldStatus = "";
@@ -7,10 +7,8 @@
     this.service = 'User';
     this.cntrlAction = new ControlActions();
 
-    this.columns = "Identificacion,Nombre,Correo,Estado";
-
     this.RetrieveAllUsers = function () {
-        this.cntrlAction.FillTable(this.service + "/RetriveAll", this.tbluser, false);
+        this.cntrlAction.FillTable(this.service + "/RetriveAllWithRole", this.tbluser, false);
     }
 
     this.Prueba = function (User) {

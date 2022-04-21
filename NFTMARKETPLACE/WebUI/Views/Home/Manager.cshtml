@@ -10,7 +10,6 @@
 
 @{
     Layout = "~/Views/Shared/NavBar.cshtml";
-
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -116,7 +115,7 @@
                     </ul>
                     <div class="tab-content mt-5" id="pills-tabContent">
                         <div class="tab-pane fade show active" id="pills-games" role="tabpanel" aria-labelledby="pills-games-tab">
-                            @Html.CtrlTable("ManagerUserTable", "userList", "Lista de usuarios", "Identification,Name,Email,Status", "Cedula,Name,Email,Status", "Prueba")
+                            @Html.CtrlTable("ManagerUserTable", "userList", "Lista de usuarios", "Identification,Name,Email,Status,Role", "Cedula,Name,Email,Status,Type", "Prueba")
                             @Html.CtrlButton("ManagerUserTable", "StatusButton", "Change state", "StatusUser")
                         </div>
                         <div class="tab-pane fade" id="pills-art" role="tabpanel" aria-labelledby="pills-art-tab">
