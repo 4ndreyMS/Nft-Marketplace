@@ -73,6 +73,11 @@ namespace AppLogic.Managers
             return CollectionCF.RetrieveAllCollectionWithCategory<CollectionC>();
         }
 
+        public object RetrieveAllCollectionByCompany(NFTCollection collection)
+        {
+            return CollectionCF.RetrieveAllCollectionByCompany<NFTCollection>(collection);
+        }
+
         public List<NFTCollection> RetrieveNFTCollectionCompany(NFTCollection collection)
         {
             return CollectionCF.RetrieveAllNFTCollectionCompany<NFTCollection>(collection);

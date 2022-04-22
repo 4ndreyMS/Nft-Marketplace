@@ -22,7 +22,8 @@ namespace DataAccess.Mapper
             Status,
             Otp,
             IdOrganization,
-            Password
+            Password,
+            Type
         }
 
         private SqlOperation sqlOperation;
@@ -67,6 +68,44 @@ namespace DataAccess.Mapper
             return user;
         }
 
+        public List<BaseEntity> BuildObjectsWithRole(List<Dictionary<string, object>> lstRows)
+        {
+            try
+            {
+                var lstResults = new List<BaseEntity>();
+
+                foreach (var row in lstRows)
+                {
+                    var user = BuildObjectWithRole(row);
+                    lstResults.Add(user);
+                }
+
+                return lstResults;
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
+
+        public BaseEntity BuildObjectWithRole(Dictionary<string, object> row)
+        {
+            var user = new UserR()
+            {
+                Cedula = GetStringValue(row, RowNames.Cedula.ToString()),
+                Name = GetStringValue(row, RowNames.Name.ToString()),
+                Status = GetStringValue(row, RowNames.Status.ToString()),
+                SureName = GetStringValue(row, RowNames.SureNames.ToString()),
+                Email = GetStringValue(row, RowNames.Email.ToString()),
+                Phone = GetStringValue(row, RowNames.Phone.ToString()),
+                Otp = GetIntValue(row, RowNames.Otp.ToString()),
+                IdOrganization = GetStringValue(row, RowNames.IdOrganization.ToString()),
+                Nickname = GetStringValue(row, RowNames.Nickname.ToString()),
+                Type = GetStringValue(row, RowNames.Type.ToString())
+            };
+            return user;
+        }
+
         //Creates
         public SqlOperation GetCreateStatement(BaseEntity entity)
         {
@@ -88,6 +127,12 @@ namespace DataAccess.Mapper
             sqlOperation.AddVarcharParam(RowNames.IdOrganization.ToString(), user.IdOrganization);
             return sqlOperation;
 
+        }
+
+        internal SqlOperation GetRetriveAllStatementWithRole()
+        {
+            var operation = new SqlOperation { ProcedureName = "RET_ALL_USER_WITH_ROLE" };
+            return operation;
         }
 
         //Retrieves

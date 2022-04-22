@@ -484,6 +484,7 @@
     <Content Include="Scripts\Views\RegisterContentCreator.js" />
     <Content Include="Scripts\wizard.js" />
     <Content Include="Scripts\x-editable.js" />
+    <Content Include="Views\Home\login.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -538,7 +539,6 @@
     <Content Include="Views\Home\index-2-dark.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\ItemDetails.cshtml" />
-    <Content Include="Views\Home\login.cshtml" />
     <Content Include="Views\Home\Manager.cshtml" />
     <Content Include="Views\Home\Marketplace.cshtml" />
     <Content Include="Views\Home\profile.cshtml" />

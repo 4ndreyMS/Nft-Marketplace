@@ -2,7 +2,7 @@
 
 <script src="~/Scripts/Views/CreateNft.js"></script>
 <script src="~/Scripts/Views/CloudinaryManager.js"></script>
-<script src="~/Scripts/Views/ManagerCategoryTable.js"></script>
+@*<script src="~/Scripts/Views/ManagerCategoryTable.js"></script>*@
 
 @{
     ViewBag.Title = "Registro NFT";
@@ -108,21 +108,34 @@
                                     @Html.CtrlInput("txtInput", "Number", "NFT Price", "Ex: 100 cenfocoins", "Precio")
                                 </div>
                             </div>
-
                             <div class="mt-4">
                                 <div class="Name">
-                                    @Html.CtrlInput("txtInput", "Text", "Collection", "Collection Name", "Collection")
-                                    <!-- Html.DropDownList("") -->
+                                    <div class="form-group">
+                                        <label class="">Select the NFT collection</label>
+                                        <select id="slctCollection" class="form-control">
+                                            <option value="">- Select -</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
+                            
+                            
                             <div class="mt-4">
                                 <div class="Name">
-                                    @Html.CtrlInput("txtInput", "Text", "Category", "Id Category", "CategotyId")
+                                    <div class="form-group">
+                                        <label class="">Select the NFT category</label>
+                                        <select id="slctCategory" class="form-control">
+                                            <option value="">- Select -</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        
+
+
                         <hr class="my-4">
-                        @Html.CtrlTable("ManagerCategoryTable", "categoryList", "Lista de categoria", "ID,Category Name", "Id,CategoryName", "Prueba")
+                        @*@Html.CtrlTable("ManagerCategoryTable", "categoryList", "Lista de categoria", "ID,Category Name", "Id,CategoryName", "Prueba")*@
                     </div>
                 </form>
                 <div class="submit-button">

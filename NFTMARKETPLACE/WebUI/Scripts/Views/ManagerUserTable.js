@@ -1,4 +1,4 @@
-﻿function ManagerUserTable() {
+﻿ function ManagerUserTable() {
 
     this.idUser = "";
     this.UserOldStatus = "";
@@ -7,10 +7,8 @@
     this.service = 'User';
     this.cntrlAction = new ControlActions();
 
-    this.columns = "Identificacion,Nombre,Correo,Estado";
-
     this.RetrieveAllUsers = function () {
-        this.cntrlAction.FillTable(this.service + "/RetriveAll", this.tbluser, false);
+        this.cntrlAction.FillTable(this.service + "/RetriveAllWithRole", this.tbluser, false);
     }
 
     this.Prueba = function (User) {
@@ -51,9 +49,14 @@
     }
 }
 
-$(document).ready(function () {
-    var tblLoad = new ManagerUserTable();
-    tblLoad.RetrieveAllUsers();
-});
+$(window).on("load", function () {
 
+    if (!sessionStorage.getItem('UserCedula') || sessionStorage.getItem('UserRole') != 1) {
+        window.location.href = "Login";
+        return false;
+    } else {
+        var tblLoad = new ManagerUserTable();
+        tblLoad.RetrieveAllUsers();
+    }
+});
 
