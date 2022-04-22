@@ -108,6 +108,14 @@ namespace AppLogic.Managers
             return new User() { IdOrganization = "0", Status = "false" };
         }
 
+        public object RetrieveAllUserWithRole()
+        {
+            {
+                UserFactory = new UserFactory();
+                return UserFactory.RetrieveAllWithRole<UserR>();
+            }
+        }
+
         //crea usarios clientes
         public User CreateUserCustomer(User _user)
         {
@@ -295,7 +303,13 @@ namespace AppLogic.Managers
             try
             {
                 result = UserFactory.RetrieveByMail<User>(_user);
-                return result;
+
+                if (result!=null)
+                {
+                    return result;
+                }
+                
+                return null;
             }
             catch (Exception e)
             {

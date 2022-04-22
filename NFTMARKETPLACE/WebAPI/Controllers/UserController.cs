@@ -131,6 +131,18 @@ namespace WebAPI.Controllers
             return response;
         }
 
+            [HttpGet]
+            public APIResponse RetriveAllWithRole()
+            {
+                APIResponse response = new APIResponse()
+                {
+                    Data = uManager.RetrieveAllUserWithRole(),
+                    Status = "Ok",
+                    Message = "User created",
+                    TransacctionDate = DateTime.Now.ToString()
+                };
+                return response;
+            }
 
         // DELETE api/<controller>/5
         [HttpPost]

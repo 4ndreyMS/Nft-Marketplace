@@ -1,6 +1,6 @@
 ﻿@using WebUI.Models.Helpers
 <script src="~/Scripts/Views/CreateCollection.js"></script>
-<script src="~/Scripts/Views/ManagerCategoryTable.js"></script>
+@*<script src="~/Scripts/Views/ManagerCategoryTable.js"></script>*@
 @{
     ViewBag.Title = "Register Collection";
 }
@@ -177,18 +177,19 @@
                                     @Html.CtrlInput("txtInput", "Text", "Collection Name", "Ex: Magic Mushrooms", "CollectionName")
                                 </div>
                             </div>
-
                             <div class="mt-4">
                                 <div class="Name">
-                                    @Html.CtrlInput("txtInput", "Text", "Category Id", "Ex: 1", "CollectionCategoryId")
-
+                                    <div class="form-group">
+                                        <label class="">Select the collection category</label>
+                                        <select id="slctCollCategory" class="form-control">
+                                            <option value="">- Select -</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <hr class="my-4">
-                    @Html.CtrlTable("ManagerCategoryTable", "categoryList", "Lista de categoria", "ID,Category Name", "Id,CategoryName", "Prueba")
-
+                    <hr class="my-4">               
                 </form>
             </div>
             <div class="submit-button">
