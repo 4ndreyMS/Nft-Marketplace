@@ -15,15 +15,6 @@
         let frmUser = ctrlActions.GetDataForm("frmUserCustomer");
 
 
-        let UserCust = {
-            Name: frmUser.name,
-            Cedula: frmUser.cedula,
-            Password: frmUser.password,
-            SureName: frmUser.sureName,
-            NickName: frmUser.nickname,
-            Phone: frmUser.phone,
-            Email: frmUser.email
-        }
 
         let fName = document.getElementById('txtName');
         let fCedula = document.getElementById('txtCedula');
@@ -32,8 +23,18 @@
         let fPhone = document.getElementById('txtPhone');
         let fEmail = document.getElementById('txtEmail');
         let fPassword = document.getElementById('txtPassword');
+        let btnImage = localStorage.getItem('UserPhoto');
 
-
+        let UserCust = {
+            Name: frmUser.name,
+            Cedula: frmUser.cedula,
+            Password: frmUser.password,
+            SureName: frmUser.sureName,
+            NickName: frmUser.nickname,
+            Phone: frmUser.phone,
+            Email: frmUser.email,
+            UserPic: btnImage
+        }
 
         if (UserCust.Name === "") {
             fName.classList.add('fillAllBlanks');
@@ -77,12 +78,13 @@
             fEmail.classList.remove('fillAllBlanks');
         }
 
+
         if (UserCust.Name === "" || UserCust.Cedula === "" || UserCust.Password === "" ||
-            UserCust.SureName === "" || UserCust.NickName === "" || UserCust.Phone === "" || UserCust.Email === "") {
+            UserCust.SureName === "" || UserCust.NickName === "" || UserCust.Phone === "" || UserCust.Email === "" || btnImage === null) {
 
             Swal.fire({
                 title: 'Error!',
-                text: 'Fill All the blanks',
+                text: 'Fill All the blanks, and remember to upload you profile photo.',
                 icon: 'error',
                 confirmButtonText: 'Try Again!',
                 confirmButtonColor: "#DD6B55",
@@ -149,6 +151,7 @@
 
     this.ValidateOpt = function () {
         var frmUser = ctrlActions.GetDataForm("frmUserCustomer");
+        var userRegisterForm = document.getElementById("frmUserCustomer");
         var localOtp = localStorage.getItem("Otp");
         var localCed = localStorage.getItem("CompanyLog");
         var Company = {
@@ -165,7 +168,9 @@
                 confirmButtonText: 'Cool',
                 confirmButtonColor: "#DD6B55",
             })
+            userRegisterForm.reset();
             window.location.href = "Login"
+
         } else {
             Swal.fire({
                 title: 'Error!',
@@ -177,3 +182,8 @@
         }
     }
 }
+
+$(document).ready(function () {
+    localStorage.removeItem('UserPhoto');
+
+});
