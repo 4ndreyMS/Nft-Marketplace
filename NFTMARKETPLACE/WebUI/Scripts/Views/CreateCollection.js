@@ -22,18 +22,28 @@
             CollectionName: frmCreateCollection.CollectionName,
             CategoryId: slct.value
         }
-        this.ctrlActions.PostToAPI(this.service + "/CreateCollection", NameId, function (response) {
 
-            var responseApi = response;
-            console.log(responseApi.Id)
-            
-            Swal.fire(
-                'Collection created!',
-                'success'
-            )
+        if (NameId.CategoryId != '') {
+            this.ctrlActions.PostToAPI(this.service + "/CreateCollection", NameId, function (response) {
 
-        });
+                var responseApi = response;
+                console.log(responseApi.Id)
 
+                Swal.fire(
+                    'Collection created',
+                    'success'
+                )
+
+            });
+        } else {
+
+            Swal.fire({
+                title: 'Something is missing',
+                text: 'Select a category',
+                confirmButtonText: 'Try again!',
+                confirmButtonColor: "#DD6B55"
+            })
+        }
     }
 }
 

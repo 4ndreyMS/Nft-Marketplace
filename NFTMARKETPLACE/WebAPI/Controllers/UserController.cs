@@ -12,99 +12,124 @@ namespace WebAPI.Controllers
 {
     public class UserController : ApiController
     {
-      
-            private UserManager uManager;
 
-            public UserController()
-            {
-                uManager = new UserManager();
-            }
+        private UserManager uManager;
 
-            // GET api/<controller>
-            [HttpPost]
-            public void CreateUser(User _user)
-            {
-                 uManager.CreateUser(_user);
-            }
+        public UserController()
+        {
+            uManager = new UserManager();
+        }
+
+        // GET api/<controller>
+        [HttpPost]
+        public void CreateUser(User _user)
+        {
+            uManager.CreateUser(_user);
+        }
 
 
-            [HttpPost]
-            public void CreateUserAdmin(User _user)
-            {
-                uManager.CreateUserAdmin(_user);
-            }
+        [HttpPost]
+        public void CreateUserAdmin(User _user)
+        {
+            uManager.CreateUserAdmin(_user);
+        }
 
         //evualuar si el objeto es posible mandarlo dentro de otro en la UI
         [HttpPost]
-            public APIResponse CreateUserContentCreator(User _user)
-            {
-                var retUser = uManager.CreateUserContentCreator(_user);
-                return new APIResponse() { Data = retUser };
-            }
+        public APIResponse CreateUserContentCreator(User _user)
+        {
+            var retUser = uManager.CreateUserContentCreator(_user);
+            return new APIResponse() { Data = retUser };
+        }
 
-            [HttpPost]
-            public APIResponse CreateUserCustomer(User _user)
-            {
-                var retUser = uManager.CreateUserCustomer(_user);
-                return new APIResponse {Data = retUser};
-            }
+        [HttpPost]
+        public APIResponse CreateUserCustomer(User _user)
+        {
+            var retUser = uManager.CreateUserCustomer(_user);
+            return new APIResponse { Data = retUser };
+        }
 
-            [HttpPost]
-            public void UpdateUser(User _user)
-            {
-                uManager.UpdateUser(_user);
-            }
+        [HttpPost]
+        public void UpdateUser(User _user)
+        {
+            uManager.UpdateUser(_user);
+        }
 
-            [HttpPost]
-            public void UpdateUserOtp(User _user)
-            {
-                uManager.UpdateUserOtp(_user);
-            }
+        [HttpPost]
+        public void UpdateUserOtp(User _user)
+        {
+            uManager.UpdateUserOtp(_user);
+        }
 
-            [HttpPost]
-            public void UpdateUserStatus(User _user)
-            {
-                uManager.UpdateUserStatus(_user);
-            }
+        [HttpPost]
+        public void UpdateUserStatus(User _user)
+        {
+            uManager.UpdateUserStatus(_user);
+        }
 
-            [HttpPost]
-            public APIResponse RetrieveUser(User _user)
+        [HttpPost]
+        public APIResponse RetrieveUser(User _user)
+        {
+            APIResponse response = new APIResponse()
             {
-                APIResponse response = new APIResponse()
-                {
-                    Data = uManager.RetrieveUser(_user),
-                    Status = "Ok",
-                    Message = "User retrieve",
-                    TransacctionDate = DateTime.Now.ToString()
-                };
-                return response;
-            }
+                Data = uManager.RetrieveUser(_user),
+                Status = "Ok",
+                Message = "User retrieve",
+                TransacctionDate = DateTime.Now.ToString()
+            };
+            return response;
+        }
 
-            [HttpPost]
-            public APIResponse RetriveUserByMail(User _user)
+        [HttpPost]
+        public APIResponse RetriveUserByMail(User _user)
+        {
+            APIResponse response = new APIResponse()
             {
-                APIResponse response = new APIResponse()
-                {
-                    Data = uManager.RetrieveUserBymail(_user),
-                    Status = "Ok",
-                    Message = "User retrieve",
-                    TransacctionDate = DateTime.Now.ToString()
-                };
-                return response;
-            }
+                Data = uManager.RetrieveUserBymail(_user),
+                Status = "Ok",
+                Message = "User retrieve",
+                TransacctionDate = DateTime.Now.ToString()
+            };
+            return response;
+        }
 
-            [HttpGet]
-            public APIResponse RetriveAll()
+
+        [HttpPost]
+        public APIResponse ExistUserByMail(User _user)
+        {
+            var retUser = uManager.RetrieveUserBymail(_user);
+
+            APIResponse response = new APIResponse()
             {
-                APIResponse response = new APIResponse()
-                {
-                    Data = uManager.RetrieveAllUser(),
-                    Status = "Ok",
-                    Message = "User created",
-                    TransacctionDate = DateTime.Now.ToString()
-                };
-                return response;
+                Status = "Ok",
+                Message = "User retrieve",
+                TransacctionDate = DateTime.Now.ToString()
+            };
+
+            if (retUser != null)
+            {
+                response.Data = true;
             }
+            else
+            {
+                response.Data = false;
+
+            }
+            return response;
+        }
+
+        [HttpGet]
+        public APIResponse RetriveAll()
+        {
+            APIResponse response = new APIResponse()
+            {
+                Data = uManager.RetrieveAllUser(),
+                Status = "Ok",
+                Message = "User created",
+                TransacctionDate = DateTime.Now.ToString()
+            };
+            return response;
+        }
 
             [HttpGet]
             public APIResponse RetriveAllWithRole()
@@ -121,22 +146,22 @@ namespace WebAPI.Controllers
 
         // DELETE api/<controller>/5
         [HttpPost]
-            public void Delete(User _user)
+        public void Delete(User _user)
+        {
+
+            uManager.DeleteUser(_user);
+        }
+
+        [HttpPost]
+        public APIResponse UserLogin(User _user)
+        {
+            var x = _user;
+
+            return new APIResponse()
             {
-
-                uManager.DeleteUser(_user);
-            }
-
-            [HttpPost]
-            public APIResponse UserLogin(User _user)
-            {
-                var x = _user;
-
-                return new APIResponse()
-                {
-                    Data = true
-                };
-            }
+                Data = true
+            };
+        }
 
 
         [HttpGet]
@@ -154,4 +179,4 @@ namespace WebAPI.Controllers
         }
 
     }
-    }
+}
