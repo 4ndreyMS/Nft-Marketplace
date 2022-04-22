@@ -40,7 +40,7 @@
 
             document.getElementById('userName').innerHTML = User.Name + " " + User.SureName;
             document.getElementById('userCedula').innerHTML = User.Cedula;
-
+            document.getElementById('profilePic').innerHTML = `<img src="${User.UserPic}" alt="" class="img-fluid avatar-xl border border-4 border-white rounded-circle">`;
 
             document.getElementById('facebookName').innerHTML = "Facebook / "+User.Name;
             document.getElementById('messengerName').innerHTML = "Email / " + User.Email;

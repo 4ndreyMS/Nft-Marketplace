@@ -18,16 +18,7 @@
             email: frmUserContent.companyEmail
         }
 
-        let UserContent = {
-            Name: frmUserContent.name,
-            Cedula: frmUserContent.cedula,
-            Password: frmUserContent.password,
-            SureName: frmUserContent.sureName,
-            NickName: frmUserContent.nickname,
-            Phone: frmUserContent.phone,
-            Email: frmUserContent.email,
-            Company: company
-        }
+
 
         let fName = document.getElementById('txtNameContent');
         let fCedula = document.getElementById('txtCedulaContent');
@@ -38,7 +29,19 @@
         let fPassword = document.getElementById('txtPasswordContent');
         let fCompnayName = document.getElementById('txtCompanyName');
         let fCNameEmail = document.getElementById('txtEmailCompany');
+        let btnImage = localStorage.getItem('UserPhoto');
 
+        let UserContent = {
+            Name: frmUserContent.name,
+            Cedula: frmUserContent.cedula,
+            Password: frmUserContent.password,
+            SureName: frmUserContent.sureName,
+            NickName: frmUserContent.nickname,
+            Phone: frmUserContent.phone,
+            Email: frmUserContent.email,
+            Company: company,
+            UserPic: btnImage
+        }
 
         if (UserContent.Name === "") {
             fName.classList.add('fillAllBlanks');
@@ -99,11 +102,11 @@
 
         if (UserContent.Name === "" || UserContent.Cedula === "" || UserContent.Password === "" ||
             UserContent.SureName === "" || UserContent.NickName === "" || UserContent.Phone === "" || UserContent.Email === "" || company.name === "" ||
-            company.email === "") {
+            company.email === "" || btnImage === null) {
 
             Swal.fire({
                 title: 'Error!',
-                text: 'Fill All the blanks',
+                text: 'Fill All the blanks, and remember to upload you profile photo.',
                 icon: 'error',
                 confirmButtonText: 'Try Again!',
                 confirmButtonColor: "#DD6B55",
@@ -168,6 +171,7 @@
 
     this.ValidateOptContent = function () {
         var frmUser = ctrlActions.GetDataForm("frmUserContent");
+        var userRegisterForm = document.getElementById("frmUserContent");
         var localOtp = localStorage.getItem("OtpContent");
         var localCed = localStorage.getItem("CompanyLogContent");
         var Company = {
@@ -186,6 +190,7 @@
                 confirmButtonColor: "#DD6B55"
 
             })
+            userRegisterForm.reset();
             window.location.href = "Login"
         } else {
             Swal.fire({
