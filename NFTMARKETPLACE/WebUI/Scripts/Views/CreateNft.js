@@ -41,7 +41,7 @@
             IdCollection: slctCollection.value,
             IdOwner: sessionStorage.getItem("UserCompany"),
             IdCategory: slct.value
-    }
+        }
 
         if (frmNFTRegister.NameNFT == "") {
             Swal.fire({
@@ -57,24 +57,30 @@
                 text: 'Please insert price',
             })
 
-        } else if (frmNFTRegister.Image == "") {
+        } else if (sessionStorage.getItem("imagenLocal") == "") {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 text: 'Please upload image',
             })
-        } else if (frmNFTRegister.IdCategory == "") {
+        } else if (slct.value == "") { //Categoria
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 text: 'Please select a category',
             })
+        } else if (slctCollection.value == "") { //Collection
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please select a collection',
+            })
         } else {
             this.ctrlActions.PostToAPI(this.service + "/CreateNFT", NFT, function (response) { });
 
             Swal.fire(
-                'NFT created!',
-                'success'
+              'NFT created!',
+              'success'
             )
         }
 
