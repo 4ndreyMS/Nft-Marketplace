@@ -18,6 +18,7 @@ namespace DataAccess.Mapper
         private const string DB_COL_IdCreator = "IdCreator";
         private const string DB_COL_IdOwner = "IdOwner";
         private const string DB_COL_Image = "Image";
+        private const string DB_COL_SaleState = "SaleState";
         private const string DB_COL_CATEGORYNAME = "CategoryName";
 
 
@@ -35,6 +36,7 @@ namespace DataAccess.Mapper
             operation.AddVarcharParam(DB_COL_IdCreator, c.IdCreator);
             operation.AddVarcharParam(DB_COL_IdOwner, c.IdOwner);
             operation.AddVarcharParam(DB_COL_Image, c.Image);
+            operation.AddVarcharParam(DB_COL_SaleState, c.SaleState);
 
             return operation;
         }
@@ -80,6 +82,7 @@ namespace DataAccess.Mapper
             operation.AddVarcharParam(DB_COL_IdCreator, c.IdCreator);
             operation.AddVarcharParam(DB_COL_NFTName, c.IdOwner);
             operation.AddVarcharParam(DB_COL_Image, c.Image);
+            operation.AddVarcharParam(DB_COL_SaleState, c.SaleState);
 
             return operation;
         }
@@ -117,7 +120,8 @@ namespace DataAccess.Mapper
                 IdCollection = GetIntValue(row, DB_COL_IdCollection),
                 IdCreator = GetStringValue(row, DB_COL_IdCreator),
                 IdOwner = GetStringValue(row, DB_COL_IdOwner),
-                Image = GetStringValue(row, DB_COL_Image)
+                Image = GetStringValue(row, DB_COL_Image),
+                SaleState = GetStringValue(row, DB_COL_SaleState)
             };
 
             return nft;
@@ -147,7 +151,8 @@ namespace DataAccess.Mapper
                 IdCreator = GetStringValue(row, DB_COL_IdCreator),
                 IdOwner = GetStringValue(row, DB_COL_IdOwner),
                 Image = GetStringValue(row, DB_COL_Image),
-                CategoryName = GetStringValue(row, DB_COL_CATEGORYNAME)
+                CategoryName = GetStringValue(row, DB_COL_CATEGORYNAME),
+                SaleState = GetStringValue(row, DB_COL_SaleState)
             };
 
             return nft;
