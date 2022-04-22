@@ -20,6 +20,7 @@ namespace DTO_POJOS
         public string IdOrganization { get; set;}
         public string Password { get; set; }
         public Company Company { get; set; }
+        public string UserPic { get; set;}
 
 
         public User()
