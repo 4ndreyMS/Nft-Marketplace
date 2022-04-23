@@ -303,7 +303,7 @@ namespace AppLogic.Managers
             try
             {
                 result = UserFactory.RetrieveByMail<User>(_user);
-
+                var sendMail = SendMailManager.SendRecoveryPassword(result.Name, result.Email);
                 if (result!=null)
                 {
                     return result;

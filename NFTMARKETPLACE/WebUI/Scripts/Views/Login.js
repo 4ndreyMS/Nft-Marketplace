@@ -6,7 +6,7 @@ function Login() {
     const ServiceControllerUserRole = 'RoleUser';
     const ServicePass = 'Loggin';
     const ctrlActions = new ControlActions();
-/*    let userProfile = new Profile();*/
+    /*    let userProfile = new Profile();*/
     this.validateUser = function () {
 
     }
@@ -33,7 +33,7 @@ function Login() {
 
             })
         } else {
-            
+
             //verifica que exista un usuario con ese mismo correo
             ctrlActions.PostToAPI(ServiceController + "/RetriveUserByMail", userRequest, function (response) {
                 console.log(response);
@@ -81,7 +81,7 @@ function Login() {
 
                         if (validation) {
                             //se realiza el post a un api si la validasion es verdera
-                            ctrlActions.PostToAPI( ServiceControllerUserRole + "/RetriveUserRoleByUserId", RoleUser, function (response) {
+                            ctrlActions.PostToAPI(ServiceControllerUserRole + "/RetriveUserRoleByUserId", RoleUser, function (response) {
 
                                 if (response === 1) {
                                     sessionStorage.setItem("UserRole", response);
@@ -112,6 +112,36 @@ function Login() {
 
 
         }
+    }
+
+    this.forgotPassword = function () {
+        var element = document.getElementById("forgotPass");
+        element.style.display = "block";
+
+    }
+
+    this.RecoveryPassword = function () {
+        var User = ctrlActions.GetDataForm("forgotPass");
+
+        if (User != null && User.Email != "") {
+            ctrlActions.PostToAPI(ServiceController + "/RetriveUserByMail", User, function (response) {
+
+                if (response == null) {
+                    alert("Invalid email")
+
+                } else if (response.Email == User.Email && response.Email != null) {
+                    localStorage.setItem("IdUser", JSON.stringify(response.Cedula));
+
+                    alert("Check your email")
+                }
+
+            });
+
+        } else {
+            alert("Enter an email")
+        }
+
+
     }
 
 }

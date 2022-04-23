@@ -479,6 +479,7 @@
     <Content Include="Scripts\Views\ManagerPriceTable.js" />
     <Content Include="Scripts\Views\ManagerUserTable.js" />
     <Content Include="Scripts\Views\Profile.js" />
+    <Content Include="Scripts\Views\RecoveryPassword.js" />
     <Content Include="Scripts\Views\Register.js" />
     <Content Include="Scripts\Views\RegisterContentCreator.js" />
     <Content Include="Scripts\wizard.js" />
@@ -552,6 +553,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\NavBar.cshtml" />
     <Content Include="Views\Shared\NavBarHome.cshtml" />
+    <Content Include="Views\Home\RecoveryPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
