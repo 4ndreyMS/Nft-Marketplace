@@ -79,5 +79,9 @@ namespace WebUI.Controllers
         {
             return View();
         }
+        public ActionResult BuyCFC()
+        {
+            return View();
+        }
     }
 }

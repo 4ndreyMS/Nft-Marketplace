@@ -466,6 +466,7 @@
     <Content Include="Scripts\todolist.js" />
     <Content Include="Scripts\tooltips.js" />
     <Content Include="Scripts\typeahead.js" />
+    <Content Include="Scripts\Views\BuyCFC.js" />
     <Content Include="Scripts\Views\CloudinaryManager.js" />
     <Content Include="Scripts\Views\ControlActions.js" />
     <Content Include="Scripts\Views\CreateCollection.js" />
@@ -551,6 +552,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\NavBar.cshtml" />
     <Content Include="Views\Shared\NavBarHome.cshtml" />
+    <Content Include="Views\Home\BuyCFC.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
