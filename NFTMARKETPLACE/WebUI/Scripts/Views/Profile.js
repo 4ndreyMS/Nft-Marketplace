@@ -54,7 +54,7 @@
                 WalletRet = response;
 
                 document.getElementById('walletId').innerHTML = WalletRet.Identifier;
-                document.getElementById('walletAmount').innerHTML = WalletRet.Amount;
+                document.getElementById('walletAmount').innerHTML = WalletRet.Amount+' CFC';
 
             });
         });

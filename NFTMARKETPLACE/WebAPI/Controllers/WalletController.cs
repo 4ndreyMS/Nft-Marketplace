@@ -32,6 +32,19 @@ namespace WebAPI.Controllers
             return response;
         }
 
+
+        [HttpPost]
+        public APIResponse WalletInfoByCompnay(Wallet _wallet)
+        {
+
+            var response = new APIResponse()
+            {
+                Data = walletManager.RetriveWalletCompany(_wallet)
+            };
+
+            return response;
+        }
+
         [HttpPost]
         public APIResponse RetriveWalletByUserId(Wallet _wallet)
         {
