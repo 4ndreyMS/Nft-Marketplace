@@ -6,6 +6,9 @@ function Login() {
     const ServiceControllerUserRole = 'RoleUser';
     const ServicePass = 'Loggin';
     const ctrlActions = new ControlActions();
+
+  
+
 /*    let userProfile = new Profile();*/
     this.validateUser = function () {
 

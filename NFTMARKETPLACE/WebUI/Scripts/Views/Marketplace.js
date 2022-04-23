@@ -1,4 +1,7 @@
 ﻿function ManagerNFTCard() {
+
+
+ 
     const card = "nav-card"
 
     const nftSection = document.getElementById("row-cards")
@@ -9,18 +12,23 @@
 
     this.RetrieveAllNfts = () => {
         cntrlAction.PostToAPI(this.service + "/RetrieveAllNFTWithOwner", card, function (response) {
-                response.forEach((card) => {
+
+            
+
+            response.forEach((card) => {
+
+
                     nftSection.innerHTML += `
                              <div class="col-lg-3 mt-4" >
                                 <div class="tab-content p-4 border-0">
                                     <div class="header d-flex align-items-center justify-content-start">
                                         <div class="avatar-xs">
-                                            <img src="../../Content/images/slider/user/img-1.jpg" alt="" class="img-fluid rounded-circle">
+                                            <img src="" alt="" class="img-fluid rounded-circle">
                                         </div>
                                         <h6 class="mb-0 ms-2 fw-semibold text-muted f-14">${card.OwnerName}</h6>
                                     </div>
                                     <div class="card-image mt-3">
-                                        <img src="../../Content/images/explore/img-1.png" alt="" class="img-fluid">
+                                        <img src="${card.Image}" alt="" class="img-fluid">
                                     </div>
                                     <div class="body-content mt-3">
                                         <h6 class="fw-bold">  ${card.NftName}</h6>
