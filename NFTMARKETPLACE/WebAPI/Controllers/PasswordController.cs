@@ -29,10 +29,11 @@ namespace WebAPI.Controllers
         public APIResponse RetrieveAllPasswordById(UserPassword _userPassword)
         {
             APIResponse response = new APIResponse();
+            User user = new User();
             List<UserPassword> retrievePassword = new List<UserPassword>();
             _userPassword.Password = EncryptMd5Manager.Encrypt(_userPassword.Password);
             retrievePassword = passwordManager.RetrievePasswordById(_userPassword);
-            User user = new User();
+           
             user.Cedula = _userPassword.Cedula;
 
             foreach (var item in retrievePassword)
