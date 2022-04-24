@@ -78,3 +78,14 @@
 
     }
 }
+
+$(window).on("load", function () {
+
+    if (!sessionStorage.getItem('UserCedula') || !sessionStorage.getItem('UserCompany')) {
+        window.location.href = "Login";
+        return false;
+    }
+    var buyCFC = new BuyCFC();
+    buyCFC.BuyCoins();
+    return true;
+});
