@@ -52,15 +52,42 @@
                                 </div>
                             </div>
     `
-                })
+
+
+
+                let carts = document.querySelectorAll(".addToCart")
+                for (let i = 0; i < carts.length; i++) {
+                    carts[i].addEventListener('click', () => {
+                        cartNumbers()
+                    })
+                }
+
+                function cartNumbers() {
+
+                    let productNumbers = localStorage.getItem('NftName');
+                    productNumbers = parseInt(productNumbers)
+
+
+                    if (productNumbers) {
+                        localStorage.setItem('NftName', productNumbers + 1)
+                        document.querySelector('.cart span').textContent = productNumbers + 1
+                    } else {
+                        localStorage.setItem('NftName', 1)
+                        document.querySelector('.cart span').textContent = 1
+
+                    }
+
+
+                   
+                }
+
+            })
             })
     }
 
 
-
-    let carts = document.querySelectorAll(".addToCart")
-
-)}
+   
+}
 
 $(document).ready(function () {
     var tblLoad = new ManagerNFTCard();
