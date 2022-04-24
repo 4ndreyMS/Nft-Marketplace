@@ -23,7 +23,8 @@ namespace DataAccess.Mapper
             Otp,
             IdOrganization,
             Password,
-            Type
+            Type,
+            UserPic
         }
 
         private SqlOperation sqlOperation;
@@ -63,7 +64,8 @@ namespace DataAccess.Mapper
                 Phone = GetStringValue(row, RowNames.Phone.ToString()),
                 Otp = GetIntValue(row, RowNames.Otp.ToString()),
                 IdOrganization = GetStringValue(row, RowNames.IdOrganization.ToString()),
-                Nickname = GetStringValue(row, RowNames.Nickname.ToString())
+                Nickname = GetStringValue(row, RowNames.Nickname.ToString()),
+                UserPic = GetStringValue(row, RowNames.UserPic.ToString())
             };
             return user;
         }
@@ -125,6 +127,7 @@ namespace DataAccess.Mapper
             sqlOperation.AddVarcharParam(RowNames.SureNames.ToString(), user.SureName);
             sqlOperation.AddIntParam(RowNames.Otp.ToString(), user.Otp);
             sqlOperation.AddVarcharParam(RowNames.IdOrganization.ToString(), user.IdOrganization);
+            sqlOperation.AddVarcharParam(RowNames.UserPic.ToString(), user.UserPic);
             return sqlOperation;
 
         }

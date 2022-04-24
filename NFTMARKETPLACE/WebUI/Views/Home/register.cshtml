@@ -1,4 +1,6 @@
 ﻿@using WebUI.Models.Helpers
+<script src="~/Scripts/Views/CloudinaryManager.js"></script>
+
 @{
     ViewBag.Title = "register";
 }
@@ -37,6 +39,7 @@
 
     <script src="~/Scripts/Views/Register.js"></script>
 
+    <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
 
 </head>
 
@@ -49,7 +52,6 @@
     </a>
 
     <!--Navbar Start-->
-   
     <!-- Navbar End -->
     <!-- start section -->
     <section class="home section position-relative overflow-hidden" style="background-image: url(./../../Content/images/inner-image/login.png); background-repeat: no-repeat;">
@@ -77,18 +79,21 @@
                         <div class="col-lg-5">
                             <div class="profile-item">
                                 <div class="avatar">
-                                    <img src="../../Content/images/inner-image/img-1.png" alt="" class="img-fluid rounded-circle avatar-xl">
+                                    @*<img src="../../Content/images/inner-image/img-1.png" alt="" class="img-fluid rounded-circle avatar-xl" id="uploadedUserImage">*@
+                                    <img id="uploadedUserImage" alt="" class="img-fluid rounded-circle avatar-xl">
+
                                 </div>
                                 <p class=" mb-0 my-3 fw-bold">Profile Photo 📷</p>
 
                                 <p class="mt-2">Your introduction and credits are two of the most important elements of your StarNow profile.🙌</p>
-                                <button class="btn btn-dark shadow">Upload</button>
+                                @Html.CtrlButton("CloudinaryManager", "btnUserPhoto", "Upload", onClickFunction: "uploadUserPhoto")
+
                             </div>
 
 
                             @Html.CtrlInput("txtName", "Text", "Name :", "Ej: Chinchilla", "name")
 
-                            @Html.CtrlInput("txtInput", "Text", "Surenames :", "Ej: Chinchilla", "sureName")
+                            @Html.CtrlInput("txtSurename", "Text", "Surenames :", "Ej: Chinchilla", "sureName")
 
                             @Html.CtrlInput("txtCedula", "Text", "Identification :", "1-0920-0329", "cedula")
 

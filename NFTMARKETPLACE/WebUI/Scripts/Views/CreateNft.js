@@ -40,7 +40,8 @@
             Image: sessionStorage.getItem("imagenLocal"),
             IdCollection: slctCollection.value,
             IdOwner: sessionStorage.getItem("UserCompany"),
-            IdCategory: slct.value
+            IdCategory: slct.value,
+            SaleState: "InPropiety"
         }
 
         if (frmNFTRegister.NameNFT == "") {
