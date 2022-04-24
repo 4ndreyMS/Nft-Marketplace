@@ -19,6 +19,5 @@ namespace DTO_POJOS
         public int IdCategory { get; set; }
         public string SaleState { get; set; }
         public NFTCollection collection { get; set; }
-
     }
 }

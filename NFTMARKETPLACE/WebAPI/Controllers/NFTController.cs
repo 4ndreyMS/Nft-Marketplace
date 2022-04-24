@@ -67,6 +67,36 @@ namespace WebAPI.Controllers
             };
         }
 
+        [HttpPost]
+        public APIResponse RetrieveAllNFTWithCategories()
+        {
+            var nm = new NFTManager();
+            return new APIResponse()
+            {
+                Data = nm.RetrieveAllNFTWithCategory(),
+                Message = "All NFT in the data base",
+                Status = "Ok",
+                TransacctionDate = DateTime.Now.ToString()
+            };
+        }
+        
+
+
+
+        [HttpPost]
+        public APIResponse RetrieveAllNFTWithOwner()
+        {
+            var nm = new NFTManager();
+            return new APIResponse()
+            {
+                Data = nm.RetrieveNFTWithOwner(),
+                Message = "All NFT in the data base",
+                Status = "Ok",
+                TransacctionDate = DateTime.Now.ToString()
+            };
+        }
+
+
         [HttpGet]
         public APIResponse RetrieveAllNFTCategory(string nft)
         {

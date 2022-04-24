@@ -74,6 +74,24 @@ namespace DataAccess.Crud
             return lstNFTs;
         }
 
+        public List<T> RetrieveAllNFTWithOwner<T>()
+        {
+            var lstNFTs = new List<T>();
+
+            var lstResult = dao.ExecuteQueryProcedure(mapper.GetRetriveAllNFTWithOwnerName());
+            var dic = new Dictionary<string, object>();
+            if (lstResult.Count > 0)
+            {
+                var objs = mapper.BuildObjectsWithOwner(lstResult);
+                foreach (var c in objs)
+                {
+                    lstNFTs.Add((T)Convert.ChangeType(c, typeof(T)));
+                }
+            }
+            return lstNFTs;
+        }
+
+
         public List<T> RetrieveAllNFTCategory<T>(string category)
         {
             var lstNFTs = new List<T>();

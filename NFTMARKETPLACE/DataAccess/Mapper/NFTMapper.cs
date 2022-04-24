@@ -20,7 +20,7 @@ namespace DataAccess.Mapper
         private const string DB_COL_Image = "Image";
         private const string DB_COL_SaleState = "SaleState";
         private const string DB_COL_CATEGORYNAME = "CategoryName";
-
+        private const string DB_COL_OwnerName = "OwnerName";
 
 
         public SqlOperation GetCreateStatement(BaseEntity entity)
@@ -153,6 +153,47 @@ namespace DataAccess.Mapper
                 Image = GetStringValue(row, DB_COL_Image),
                 CategoryName = GetStringValue(row, DB_COL_CATEGORYNAME),
                 SaleState = GetStringValue(row, DB_COL_SaleState)
+            };
+
+            return nft;
+        }
+
+
+        public SqlOperation GetRetriveAllNFTWithOwnerName()
+        {
+            var operation = new SqlOperation { ProcedureName = "RET_ALL_NFT_WITH_OWNER_PR" };
+            return operation;
+        }
+
+
+        public List<BaseEntity> BuildObjectsWithOwner(List<Dictionary<string, object>> lstRows)
+        {
+            var lstResults = new List<BaseEntity>();
+
+            foreach (var row in lstRows)
+            {
+                var transaction = BuildObjectWithOwner(row);
+                lstResults.Add(transaction);
+            }
+
+            return lstResults;
+        }
+
+        public BaseEntity BuildObjectWithOwner(Dictionary<string, object> row)
+        {
+
+
+            var nft = new NFTC
+            {
+                Id = GetStringValue(row, DB_COL_Id),
+                NftName = GetStringValue(row, DB_COL_NFTName),
+                Price = GetDecimalValue(row, DB_COL_Price),
+                CreationDate = GetDateValue(row, DB_COL_CreationDate),
+                IdCollection = GetIntValue(row, DB_COL_IdCollection),
+                IdCreator = GetStringValue(row, DB_COL_IdCreator),
+                IdOwner = GetStringValue(row, DB_COL_IdOwner),
+                Image = GetStringValue(row, DB_COL_Image),
+                OwnerName = GetStringValue(row, DB_COL_OwnerName)
             };
 
             return nft;

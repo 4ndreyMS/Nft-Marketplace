@@ -18,5 +18,6 @@ namespace DTO_POJOS
         public string Image { get; set; }
         public string SaleState { get; set; }
         public string CategoryName { get; set; }
+        public string OwnerName { get; set; }
     }
 }

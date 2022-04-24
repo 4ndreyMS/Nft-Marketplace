@@ -18,6 +18,8 @@
     <meta name="keywords" content="" />
     <meta content="Pichforest" name="author" />
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <link rel="shortcut icon" href="../../Content/images/HeadIcon.png">
 
     <!-- Bootstrap css -->
@@ -45,10 +47,16 @@
     <script src="~/Scripts/sweetalert2.js"></script>
     <script src="~/Scripts/Views/Logout.js"></script>
     <script src="~/Scripts/Views/ControlActions.js"></script>
+    <link href="~/css/style.css" rel="stylesheet" />
+    <script src="~/Scripts/Views/Login.js"></script>
+    <script src="~/Scripts/Views/NavBar.js"></script>
 
 </head>
 
-<body data-bs-spy="scroll" data-bs-target="#navbar-navlist" data-bs-offset="71">
+
+
+
+<body data-bs-spy="scroll" data-bs-target="#navbar-navlist" data-bs-offset="71" onload="NavBar()">
     @RenderBody()
     <!-- light-dark mode button -->
     <a href="javascript: void(0);" id="mode" class="mode-btn text-white rounded-end">
@@ -76,6 +84,7 @@
 
                     </li>
 
+
                     <li class="nav-item">
                         @Html.ActionLink("Marketplace", "Marketplace", "Marketplace", new { @class = "nav-link" })
                     </li>
@@ -99,6 +108,24 @@
                         @Html.ActionLink("Login", "Login", "Login", new { @class = "nav-link" })
 
                     </li>
+
+
+                    <li class="nav-item manager-links">
+                        @Html.ActionLink("Manager", "Manager", "Dashboard", new { @class = "nav-link" })
+                    </li>
+
+                    <li class="nav-item dropdown dropdown-hover content-creator">
+                        @Html.ActionLink("Create", "CreateCollection", "CreateCollection", new { @class = "nav-link dropdown-toggle" })
+                        <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="homedrop">
+                            <li class="nav-item">
+                                @Html.ActionLink("Create Collection", "CreateCollection", "Create Collection", new { @class = "nav-link" })
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Register NFT", "RegisterNFT", "Register NFT", new { @class = "nav-link" })
+                            </li>
+                        </ul>
+                     </li>
+
 
 
                     <li class="nav-item dropdown dropdown-hover">
