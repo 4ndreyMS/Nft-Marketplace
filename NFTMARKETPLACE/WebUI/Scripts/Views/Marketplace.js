@@ -43,11 +43,9 @@
                                         </div>
                                         <hr>
                                         <div class="d-flex mt-3 align-items-center">
-                                            <div class="history">
-                                                <i class="mdi mdi-restart f-20 align-middle"></i>View History
-                                            </div>
+                                         
                                             <div class="bid-button ms-auto">
-                                                <button class="btn btn-sm btn-primary rounded-pill">Bid</button>
+                                                <button class="btn btn-sm btn-primary rounded-pill addToCart">Add to cart</button>
                                             </div>
                                         </div>
                                     </div>
@@ -57,7 +55,12 @@
                 })
             })
     }
-}
+
+
+
+    let carts = document.querySelectorAll(".addToCart")
+
+)}
 
 $(document).ready(function () {
     var tblLoad = new ManagerNFTCard();
