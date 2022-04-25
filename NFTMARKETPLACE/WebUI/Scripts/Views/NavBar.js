@@ -14,7 +14,6 @@
     
     */
 
-
     const contentCreatorFunction = () => {
         for (var i = 0; i < contentCreator.length; i += 1) {
             contentCreator[i].style.display = 'none';

@@ -60,7 +60,7 @@
 
     let carts = document.querySelectorAll(".addToCart")
 
-)}
+}
 
 $(document).ready(function () {
     var tblLoad = new ManagerNFTCard();
