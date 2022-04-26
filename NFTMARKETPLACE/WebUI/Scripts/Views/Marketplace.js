@@ -54,9 +54,9 @@
                                 </div>
                             </div>
     `
-                })
+                    })
             })
-    }
+        }
 }
 
 $(document).ready(function () {

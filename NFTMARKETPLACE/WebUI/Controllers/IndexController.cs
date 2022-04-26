@@ -15,7 +15,10 @@ namespace WebUI.Controllers
             return View();
         }
 
-     
+        public ActionResult NFTSaleManager()
+        {
+            return View();
+        }
 
         public ActionResult Contact()
         {

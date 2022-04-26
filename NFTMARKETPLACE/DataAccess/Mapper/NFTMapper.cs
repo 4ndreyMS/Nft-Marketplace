@@ -87,6 +87,16 @@ namespace DataAccess.Mapper
             return operation;
         }
 
+        internal SqlOperation GetRetrieveAllNFTInProperty(BaseEntity entity)
+        {
+            var operation = new SqlOperation { ProcedureName = "RET_ALL_NFT_PROPERTY" };
+
+            var c = (NFT)entity;
+            operation.AddVarcharParam(DB_COL_IdOwner, c.IdOwner);
+            operation.AddVarcharParam(DB_COL_SaleState, c.SaleState);
+            return operation;
+        }
+
         public SqlOperation GetDeleteStatement(BaseEntity entity)
         {
             var operation = new SqlOperation { ProcedureName = "DEL_NFT_PR" };

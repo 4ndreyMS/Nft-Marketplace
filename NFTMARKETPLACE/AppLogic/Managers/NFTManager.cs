@@ -95,5 +95,10 @@ namespace AppLogic.Managers
         {
             return nftCF.RetrieveAllNFTWithOwner<NFTC>();
         }
+
+        public object RetrieveAllNFTInProperty(NFT nft)
+        {
+            return nftCF.RetrieveAllNFTInProperty<NFT>(nft);
+        }
     }
 }
