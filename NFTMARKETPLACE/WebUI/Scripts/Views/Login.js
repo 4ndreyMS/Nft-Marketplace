@@ -44,6 +44,8 @@ function Login() {
                     UserPass.Cedula = response.Cedula;
                     userRequest.Status = response.Status;
                     sessionStorage.setItem("UserCompany", response.IdOrganization);
+                    sessionStorage.setItem("UserPhone", response.Phone);
+
                     validMail = true;
 
                 } else {
@@ -58,17 +60,10 @@ function Login() {
 
                         if (response === 1) {
                             sessionStorage.setItem("UserCedula", UserPass.Cedula);
+
                             RoleUser.UserId = UserPass.Cedula;
                             validation = true;
-                            //Swal.fire({
-                            //    title: 'Succesfull Login!',
-                            //    width: 600,
-                            //    padding: '3em',
-                            //    color: '#000',
-                            //    background: '#fff',
-                            //    confirmButtonColor: "#DD6B55"
 
-                            //})
 
                         } else {
                             validation = false;

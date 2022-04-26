@@ -67,6 +67,7 @@
     <Compile Include="UserR.cs" />
     <Compile Include="UserRole.cs" />
     <Compile Include="User_Company.cs" />
+    <Compile Include="Validation.cs" />
     <Compile Include="Wallet.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -78,6 +78,7 @@
     <Compile Include="Managers\OtpManager.cs" />
     <Compile Include="Managers\PricesManager.cs" />
     <Compile Include="Managers\SendMailManager.cs" />
+    <Compile Include="Managers\SendValidationsManager.cs" />
     <Compile Include="Managers\SmsManager.cs" />
     <Compile Include="Managers\TransactionManager.cs" />
     <Compile Include="Managers\UserManager.cs" />

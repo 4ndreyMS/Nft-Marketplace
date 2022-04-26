@@ -1,10 +1,12 @@
 ﻿function ShoppingCart() {
 
     //todo: estos valores deben de ser cambiados para la creacion del nft
-    const totalAmount = 10;
+    const totalAmount = 3;
 
-        const ctrlActions = new ControlActions();
+    const ctrlActions = new ControlActions();
     const service = "Wallet";
+    const serviceCompany = "Company";
+    const serviceValidation = "SendValidations";
 
     const companyId = sessionStorage.getItem("UserCompany");
     const frmPin = ctrlActions.GetDataForm("frmPayProceed");
@@ -30,7 +32,26 @@
 
                     //virifica que la cuenta tenga fondos suficientes
                     if (walletResponse.Amount >= totalAmount) {
-                        console.log("puede comprar");
+
+                        var element = document.getElementById("otpShopping");
+                        element.style.display = "block";
+
+                        var Company = {id: walletResponse.CompanyId}
+                        ctrlActions.PostToAPI(serviceCompany + "/retriveCompanyInfo", Company, function (response) {
+
+                            var validationObj = {
+                                EmailTo: response.email,
+                                PhoneTo: sessionStorage.getItem("UserPhone"),
+                                Title: "Validate your transaction",
+                                Msj: "Hi, verify your transaction with this security code"
+                            }
+                            ctrlActions.PostToAPI(serviceValidation + "/SendDymanicValidation", validationObj, function(response) {
+                                console.log(response);
+                            })
+
+
+                        })
+
 
                     } else {
                         frmId.reset();
