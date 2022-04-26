@@ -13,5 +13,6 @@ namespace DTO_POJOS
         public string email { get; set; }
         public string status    { get; set; }
         public DateTime creationDate { get; set; }
+        public int walletPin { get; set; }
     }
 }

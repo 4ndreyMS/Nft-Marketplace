@@ -42,7 +42,7 @@ namespace AppLogic.Managers
             {
                 CompanyFactory.Create(_Company);
                 var retCreate = RetriveCompany(_Company);
-                wManager.CreateWallet(new Wallet(){CompanyId = retCreate.id});
+                wManager.CreateWallet(new Wallet(){CompanyId = retCreate.id, WalletPin = _Company.walletPin});
             }
             else
             {

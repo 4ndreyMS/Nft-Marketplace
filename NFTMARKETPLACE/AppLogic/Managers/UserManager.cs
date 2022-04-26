@@ -130,11 +130,13 @@ namespace AppLogic.Managers
 
                 try
                 {   //se crea con los valores del usuario
+                    var pin = _user.Company.walletPin;
                     _user.Company = new Company()
                     {
                         email = _user.Email,
                         name = _user.Name,
-                        status = "Inactive"
+                        status = "Inactive",
+                        walletPin = pin
                     };
                     //se crea la compania y devuelve el id que crea
                     var retCompanyId = companyManager.CreateCompany(_user.Company);
