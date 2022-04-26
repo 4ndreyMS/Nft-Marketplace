@@ -43,9 +43,10 @@
     <link rel="stylesheet" href="../../css/style.min.css" type="text/css" />
 
     <script src="~/Scripts/Views/Marketplace.js"></script>
-    
-    
-    
+
+
+    <script src="~/Scripts/Views/ShoppingCart.js"></script>
+
 
 </head>
 
@@ -89,7 +90,7 @@
                     <div class="card">
                         <div class="card-body">
                             <form id="frmPayProceed" class="col-lg-5">
-                                @Html.CtrlInput("txtWalletId", "text", "Your wallet pin", "Enter your pin", "walletPin")
+                                @Html.CtrlInput("txtWalletId", "password", "Your wallet pin", "Enter your pin", "walletPin")
                             </form>
                             @Html.CtrlButton("ShoppingCart", "StatusButton", "Proceed to Pay", "PayProceed", "warning btn-block btn-lg")
 
