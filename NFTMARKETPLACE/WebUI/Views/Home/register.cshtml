@@ -111,6 +111,7 @@
                             @Html.CtrlInput("txtEmail", "text", "Email :", "example@gmail.com", "email")
 
                             @Html.CtrlInput("txtPassword", "password", "Password: ", "*******", "password")
+                            @Html.CtrlInput("txtWalletId", "number", "Wallet Pin: ", "0000", "walletId")
 
 
                             <div class="Name" style="display:none" id="OtpVal">
@@ -118,8 +119,8 @@
                                     <form id="frmOtp" style="margin-right:5px ">
                                         @Html.CtrlInput("frmOtp", "text", "Validation code :", "22442", "Otp")
                                     </form>
-                                    <br/>
-                                    <br/>
+                                    <br />
+                                    <br />
                                     @Html.CtrlButton("Register", "btnSubmitOpt", "Validate", onClickFunction: "ValidateOpt")
                                 </div>
                             </div>

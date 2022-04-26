@@ -30,6 +30,7 @@ namespace AppLogic.Managers
             obj.CoinName = COINNAME;
             obj.Identifier = GenHexaId();
             obj.Amount = 0.0;
+            obj.WalletPin = _wallet.WalletPin;
             wFactory.Create(obj);
 
         }

@@ -11,7 +11,8 @@ namespace DataAccess.Mapper
         Identifier,
         CoinName,
         Amount,
-        CompanyId
+        CompanyId,
+        WalletPin
     }
     public class WalletMapper : EntityMapper,IObjectMapper, ISqlStaments
     {
@@ -27,6 +28,7 @@ namespace DataAccess.Mapper
             slqOperation.AddVarcharParam(RowNames.CoinName.ToString(), obj.CoinName);
             slqOperation.AddDoubleParam(RowNames.Amount.ToString(), obj.Amount);
             slqOperation.AddVarcharParam(RowNames.CompanyId.ToString(), obj.CompanyId);
+            slqOperation.AddSmallIntParam(RowNames.WalletPin.ToString(),obj.WalletPin);
             return slqOperation;
         }
 
@@ -110,7 +112,8 @@ namespace DataAccess.Mapper
                 Identifier = GetStringValue(row, RowNames.Identifier.ToString()),
                 CompanyId = GetStringValue(row, RowNames.CompanyId.ToString()),
                 Amount = GetDoubleValue(row,RowNames.Amount.ToString()),
-                CoinName = GetStringValue(row, RowNames.CoinName.ToString())
+                CoinName = GetStringValue(row, RowNames.CoinName.ToString()),
+                WalletPin = GetIntValue(row, RowNames.WalletPin.ToString())
             };
 
             return wallet;

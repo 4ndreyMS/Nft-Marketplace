@@ -7,6 +7,7 @@
         public double Amount { get; set; }
         public string CompanyId { get; set; }
         public string UserId { get; set; }
+        public int WalletPin { get; set; }
 
 
     }
