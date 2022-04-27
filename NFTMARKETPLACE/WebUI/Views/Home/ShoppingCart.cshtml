@@ -90,14 +90,14 @@
                                         <form id="frmOtp" style="margin-right:5px ">
                                             @Html.CtrlInput("frmOtp", "text", "Validation code :", "22442", "Otp")
                                         </form>
-                                        @Html.CtrlButton("Register", "btnSubmitOpt", "Validate", onClickFunction: "ValidateOpt")
+                                        @Html.CtrlButton("ShoppingCart", "btnSubmitOpt", "Validate", onClickFunction: "AfterValidation")
                                     </div>
                                 </div>
 
                             </form>
                             <br />
 
-                            @Html.CtrlButton("ShoppingCart", "StatusButton", "Proceed to Pay", "PayProceed", "warning btn-block btn-lg")
+                            @Html.CtrlButton("ShoppingCart", "transValid", "Proceed to Pay", "PayProceed", "warning btn-block btn-lg")
 
                             @*<button type="button" class="btn btn-warning btn-block btn-lg">Proceed to Pay</button>*@
                         </div>

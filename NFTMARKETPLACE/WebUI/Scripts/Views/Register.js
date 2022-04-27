@@ -188,7 +188,7 @@
                 title: 'Error!',
                 text: 'Incorrect code!',
                 icon: 'error',
-                confirmButtonText: 'Cool',
+                confirmButtonText: 'Try Again!',
                 confirmButtonColor: "#DD6B55",
             })
         }

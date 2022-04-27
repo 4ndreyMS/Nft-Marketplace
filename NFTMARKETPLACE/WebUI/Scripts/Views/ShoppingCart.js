@@ -1,7 +1,7 @@
 ﻿function ShoppingCart() {
 
     //todo: estos valores deben de ser cambiados para la creacion del nft
-    const totalAmount = 3;
+    let totalAmount = 3;
 
     const ctrlActions = new ControlActions();
     const service = "Wallet";
@@ -14,9 +14,10 @@
 
     let walletInfo = { CompanyId: companyId };
     let walletResponse = {};
-
+    let validationObj = {}
 
     this.PayProceed = function () {
+        let optResponse = 0;
 
         //verifica que no hayan campos vacíos
         if (frmPin.walletPin != "") {
@@ -26,7 +27,7 @@
             //realiza peticion al wallet segun el codigo de la compania
             ctrlActions.PostToAPI(service + "/WalletInfoByCompnay", walletInfo, function (response) {
                 walletResponse = response;
-
+                localStorage.setItem('WalletIdentifier',walletResponse.Identifier);
                 //verifica que el pin sea igual que viene del wallet
                 if (walletResponse.WalletPin === parseInt(frmPin.walletPin)) {
 
@@ -38,17 +39,19 @@
 
                         var Company = {id: walletResponse.CompanyId}
                         ctrlActions.PostToAPI(serviceCompany + "/retriveCompanyInfo", Company, function (response) {
-
-                            var validationObj = {
+                            
+                            validationObj = {
                                 EmailTo: response.email,
                                 PhoneTo: sessionStorage.getItem("UserPhone"),
                                 Title: "Validate your transaction",
                                 Msj: "Hi, verify your transaction with this security code"
                             }
-                            ctrlActions.PostToAPI(serviceValidation + "/SendDymanicValidation", validationObj, function(response) {
-                                console.log(response);
-                            })
 
+                            ctrlActions.PostToAPI(serviceValidation + "/SendDymanicValidation", validationObj, function (response) {
+                                localStorage.setItem('OptTrans', parseInt(response));
+                                //si es correcto entonces acá es cuando se realiza el rebajo del monto y el intercambio de nft
+
+                            })
 
                         })
 
@@ -87,11 +90,31 @@
                 confirmButtonColor: "#DD6B55",
             })
         }
+    }
+
+    this.AfterValidation = function () {
+
+        if (localStorage.getItem('OptTrans') === frmPin.Otp) {
+            frmId.reset();
+
+            var restWallet = { Identifier: localStorage.getItem('WalletIdentifier'), Amount: totalAmount }
+
+            //se realiza el rebajo del monto total de los nft al wallet que está realizando la compra
+            ctrlActions.PostToAPI(service + "/restAmount", restWallet, function (response) {})
 
 
-
+        } else {
+            Swal.fire({
+                title: 'Error!',
+                text: 'Incorrect code!',
+                icon: 'error',
+                confirmButtonText: 'Try Again!',
+                confirmButtonColor: "#DD6B55",
+            })
+        }
 
     }
+
 
 
 
