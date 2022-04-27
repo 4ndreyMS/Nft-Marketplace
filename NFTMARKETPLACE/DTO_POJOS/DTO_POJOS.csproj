@@ -51,6 +51,7 @@
     <Compile Include="Collection_Category.cs" />
     <Compile Include="Company.cs" />
     <Compile Include="EnumC.cs" />
+    <Compile Include="InfoNFT.cs" />
     <Compile Include="NFT.cs" />
     <Compile Include="NFTC.cs" />
     <Compile Include="NFTCollection.cs" />

@@ -21,6 +21,9 @@ namespace DataAccess.Mapper
         private const string DB_COL_SaleState = "SaleState";
         private const string DB_COL_CATEGORYNAME = "CategoryName";
         private const string DB_COL_OwnerName = "OwnerName";
+        private const string DB_COL_CollectionName = "CollectionName";
+        private const string DB_COL_CompanyName = "Name";
+        private const string DB_COL_UserImage = "UserPic";
 
 
         public SqlOperation GetCreateStatement(BaseEntity entity)
@@ -87,13 +90,22 @@ namespace DataAccess.Mapper
             return operation;
         }
 
-        internal SqlOperation GetRetrieveAllNFTInProperty(BaseEntity entity)
+        public SqlOperation GetRetrieveAllNFTInProperty(BaseEntity entity)
         {
             var operation = new SqlOperation { ProcedureName = "RET_ALL_NFT_PROPERTY" };
 
             var c = (NFT)entity;
             operation.AddVarcharParam(DB_COL_IdOwner, c.IdOwner);
             operation.AddVarcharParam(DB_COL_SaleState, c.SaleState);
+            return operation;
+        }
+
+        public SqlOperation GetRetrieveAllNFTINFO(BaseEntity entity)
+        {
+            var operation = new SqlOperation { ProcedureName = "RET_ALL_NFT_INFORMATION" };
+
+            var c = (NFT)entity;
+            operation.AddVarcharParam(DB_COL_Id, c.Id);          
             return operation;
         }
 
@@ -204,6 +216,36 @@ namespace DataAccess.Mapper
                 IdOwner = GetStringValue(row, DB_COL_IdOwner),
                 Image = GetStringValue(row, DB_COL_Image),
                 OwnerName = GetStringValue(row, DB_COL_OwnerName)
+            };
+
+            return nft;
+        }
+
+        public List<BaseEntity> BuildObjectsINFO(List<Dictionary<string, object>> lstRows)
+        {
+            var lstResults = new List<BaseEntity>();
+
+            foreach (var row in lstRows)
+            {
+                var transaction = BuildObjectINFO(row);
+                lstResults.Add(transaction);
+            }
+
+            return lstResults;
+        }
+
+        public BaseEntity BuildObjectINFO(Dictionary<string, object> row)
+        {
+            var nft = new InfoNFT
+            {
+                Id = GetStringValue(row, DB_COL_Id),
+                NftName = GetStringValue(row, DB_COL_NFTName),
+                Price = GetDecimalValue(row, DB_COL_Price),
+                CreationDate = GetDateValue(row, DB_COL_CreationDate),
+                CollectionName = GetStringValue(row, DB_COL_CollectionName),
+                CreatorName = GetStringValue(row, DB_COL_CompanyName),
+                CreatorImage = GetStringValue(row, DB_COL_UserImage),
+                Image = GetStringValue(row, DB_COL_Image)
             };
 
             return nft;

@@ -119,5 +119,18 @@ namespace WebAPI.Controllers
                 TransacctionDate = DateTime.Now.ToString()
             };
         }
+
+        [HttpPost]
+        public APIResponse RetrieveAllNFTINFO(NFT nft)
+        {
+            var nm = new NFTManager();
+            return new APIResponse()
+            {
+                Data = nm.RetrieveAllNFTINFO(nft),
+                Message = "All NFT in the data base",
+                Status = "Ok",
+                TransacctionDate = DateTime.Now.ToString()
+            };
+        }
     }
 }

@@ -74,7 +74,7 @@
                         <div class="col-lg-4 mt-4">
                                     <div class="tab-box p-4 border-0">                                    
                                         <div class="card-image mt-2 position-relative">
-                                            <img src="${card.Image}" alt="" class="img-fluid">
+                                            <a href="NFTSaleManager" onclick="SaveNFT('${card.Id}')"><img src="${card.Image}" alt="" class="img-fluid"></a>
                                         </div>
                                         <div class="body-content mt-3">
                                             <h6 class="fw-bold">${card.NftName}</h6>
@@ -98,14 +98,12 @@
             })
 
         });
-
-
     }
-
-
 }
 
-
+var SaveNFT = function (NFT) {
+    sessionStorage.setItem("NFTSelected", NFT)
+}
 
 $(document).ready(function () {
 
@@ -115,5 +113,4 @@ $(document).ready(function () {
         load.LoadInfo();
         load.LoadNFTs();
     }
-
 });
