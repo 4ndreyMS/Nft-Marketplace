@@ -19,7 +19,7 @@
 
 
                     nftSection.innerHTML += `
-                             <div class="col-lg-3 mt-4" >
+                             <div class="col-lg-3 mt-4 nftCard">
                                 <div class="tab-content p-4 border-0">
                                     <div class="header d-flex align-items-center justify-content-start">
                                         <div class="avatar-xs">
@@ -52,14 +52,111 @@
                                 </div>
                             </div>
     `
-                })
+
+
+          
             })
+
+
+            let carts = document.querySelectorAll(".addToCart")
+          
+
+            for (let i = 0; i < carts.length; i++) {
+                    carts[i].addEventListener('click', () => {
+                        cartNumbers(response[i])
+                        totalCosts(response[i])
+                    })
+                }
+
+            function onLoadCardNumbers() {
+                let productNumbers = sessionStorage.getItem('NftName');
+
+                if (productNumbers) {
+                  
+                    document.querySelector('.cart span').textContent = productNumbers 
+                }
+
+            }
+
+            function cartNumbers(product) {
+
+                
+                    let productNumbers = sessionStorage.getItem('NftName');
+                    productNumbers = parseInt(productNumbers)
+
+
+                    if (productNumbers) {
+                        sessionStorage.setItem('NftName', productNumbers + 1)
+                        document.querySelector('.cart span').textContent = productNumbers + 1
+                    } else {
+                        sessionStorage.setItem('NftName', 1)
+                        document.querySelector('.cart span').textContent = 1
+
+                    }
+
+                setItems(product)
+                   
+            }
+
+
+            function setItems(product) {
+
+
+                let cartItems = sessionStorage.getItem("productsInCart")
+                cartItems = JSON.parse(cartItems)
+
+                if (cartItems != null) {
+
+                    if (cartItems[product.NftName] == undefined) {
+                        cartItems = {
+                            ...cartItems,
+                            [product.NftName]: product
+
+                        }
+                    }
+
+                    cartItems[product.NftName].inCart += 1
+
+
+
+
+                } else {
+                    product.inCart = 1
+                    cartItems = {
+                        [product.NftName]: product
+                    }
+
+                }
+
+
+             
+                sessionStorage.setItem("productsInCart", JSON.stringify(cartItems))
+
+            }
+
+
+            function totalCosts(product) {
+
+                let cartCost = sessionStorage.getItem("totalCost")
+
+                if (cartCost != null) {
+                    cartCost = parseInt(cartCost)
+                    sessionStorage.setItem("totalCost", cartCost + product.Price)
+
+                } else {
+                    sessionStorage.setItem("totalCost", product.Price)
+
+                }
+            }
+
+            onLoadCardNumbers()
+            
+        })
+
     }
 
 
-
-    let carts = document.querySelectorAll(".addToCart")
-
+   
 }
 
 $(document).ready(function () {

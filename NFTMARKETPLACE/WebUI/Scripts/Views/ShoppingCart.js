@@ -115,10 +115,50 @@
 
     }
 
+  
+
+ 
+}
+
+   function displayCart() {
+       let cartItems = sessionStorage.getItem("productsInCart")
+       
+                cartItems = JSON.parse(cartItems)
+
+                let nftContainer = document.querySelector(".card-body.nftContainer")
+              
+                if (cartItems && nftContainer) {
+                    nftContainer.innerHTML = "";
+                    Object.values(cartItems).map(nft => {
+                        nftContainer.innerHTML += `
+                            <div class="row d-flex justify-content-between align-items-center nftContainerCard">
+                                <div class="col-md-2 col-lg-2 col-xl-2">
+                                    <img src=" ${nft.Image}"
+                                         class="img-fluid rounded-3" alt="">
+                                </div>
+                                <div class="col-md-3 col-lg-3 col-xl-3">
+                                    <p class="lead fw-normal mb-2"> ${nft.NftName}</p>
+                                  
+                                </div>
+                                <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                    <h5 class="mb-0"> ${nft.Price} CFC</h5>
+                                </div>
+
+                                <button class="col-md-1 col-lg-1 col-xl-1 text-end deleteButton">
+                                       
+                                </button>
+                            </div>
+`
+                    }
+
+                    )
+          }
+    }
 
 
-
-
+$(document).ready(function () {
+    displayCart()
+});
 
 
 }
