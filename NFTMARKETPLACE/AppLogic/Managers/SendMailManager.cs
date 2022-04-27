@@ -34,5 +34,32 @@ namespace AppLogic.Managers
             Console.WriteLine(response.StatusCode);
 
         }
+
+        public static async Task SendDynamicMail(Validation _validation)
+        {
+            sendG.Token = _validation.Otp;
+            sendG.ApiKey = "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";
+            sendG.MailFrom = "atorress@ucenfotec.ac.cr";
+            sendG.MailTo = _validation.EmailTo;
+            sendG.Group = "NetQuality Group";
+            sendG.EmailTitle = _validation.Title;
+            sendG.MailContent = "Hello, A security code has been sent";
+            sendG.HtmlContent = _validation.Msj+" ";
+
+            var client = new SendGridClient(sendG.ApiKey);
+            var from = new EmailAddress(sendG.MailFrom, sendG.Group);
+            var subject = sendG.EmailTitle;
+            var to = new EmailAddress(sendG.MailTo, sendG.Group);
+            var plainTextContent = sendG.MailContent;
+            var htmlContent = "<strong>" + sendG.HtmlContent + sendG.Token + "</strong>";
+
+            //Con el MailHelper se construye el correo
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+
+            var response = await client.SendEmailAsync(msg);
+            Console.WriteLine(response.StatusCode);
+
+        }
+
     }
 }

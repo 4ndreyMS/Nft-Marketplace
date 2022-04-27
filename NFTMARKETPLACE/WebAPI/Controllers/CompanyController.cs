@@ -51,6 +51,20 @@ namespace WebAPI.Controllers
             return response;
         }
 
+        [HttpPost]
+        public APIResponse retriveCompanyInfo(Company _company)
+        {
+            APIResponse response = new APIResponse()
+            {
+                Data = cManager.RetriveCompany(_company),
+                Status = "Ok",
+                Message = "User created",
+                TransacctionDate = DateTime.Now.ToString()
+            };
+            return response;
+        }
+
+
         [HttpGet]
         public APIResponse RetriveAll()
         {

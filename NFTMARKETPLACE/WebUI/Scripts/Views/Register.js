@@ -24,7 +24,12 @@
         let fEmail = document.getElementById('txtEmail');
         let fPassword = document.getElementById('txtPassword');
         let btnImage = localStorage.getItem('UserPhoto');
+        let fWalletPin = document.getElementById('txtWalletId');
 
+
+        let company = {
+            walletPin: frmUser.walletId
+        }
         let UserCust = {
             Name: frmUser.name,
             Cedula: frmUser.cedula,
@@ -33,7 +38,8 @@
             NickName: frmUser.nickname,
             Phone: frmUser.phone,
             Email: frmUser.email,
-            UserPic: btnImage
+            UserPic: btnImage,
+            Company: company
         }
 
         if (UserCust.Name === "") {
@@ -78,9 +84,15 @@
             fEmail.classList.remove('fillAllBlanks');
         }
 
+        if (UserCust.Company.walletPin.length === 0) {
+            fWalletPin.classList.add('fillAllBlanks');
+        } else {
+            fWalletPin.classList.remove('fillAllBlanks');
+        }
 
         if (UserCust.Name === "" || UserCust.Cedula === "" || UserCust.Password === "" ||
-            UserCust.SureName === "" || UserCust.NickName === "" || UserCust.Phone === "" || UserCust.Email === "" || btnImage === null) {
+            UserCust.SureName === "" || UserCust.NickName === "" || UserCust.Phone === "" || UserCust.Email === "" || btnImage === null
+            || UserCust.Company.walletPin.length === 0) {
 
             Swal.fire({
                 title: 'Error!',

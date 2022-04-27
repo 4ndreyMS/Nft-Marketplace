@@ -3,6 +3,7 @@
     const ctrlActions = new ControlActions();
     const walletService = "Wallet";
     const frmValue = ctrlActions.GetDataForm("frmAmount");
+    const frmId = document.getElementById("frmAmount");
     const cfcPerDolar = 66.0;
 
     this.ConvertDolarToCFC = function(val) {
@@ -41,9 +42,8 @@
 
 
                         if (result != null) {
-                            ctrlActions.PostToAPI(walletService + "/addAmount", wallet, function (response) {
-
-                            })
+                            ctrlActions.PostToAPI(walletService + "/addAmount", wallet, function (response) { })
+                            frmId.reset();
                         }
 
                     })
@@ -85,7 +85,5 @@ $(window).on("load", function () {
         window.location.href = "Login";
         return false;
     }
-    var buyCFC = new BuyCFC();
-    buyCFC.BuyCoins();
     return true;
 });

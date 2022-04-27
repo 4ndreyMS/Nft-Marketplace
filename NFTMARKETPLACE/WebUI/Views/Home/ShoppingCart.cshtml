@@ -1,0 +1,103 @@
+﻿@using WebUI.Models.Helpers
+
+
+
+<!--Navbar Start-->
+@{
+    Layout = "~/Views/Shared/NavBar.cshtml";
+
+}
+
+@{
+    ViewBag.Title = "ShopingCart";
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Net Marketplace</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content=" " />
+    <meta name="keywords" content="" />
+    <meta content="Pichforest" name="author" />
+
+    <link rel="shortcut icon" href="../../Content/images/HeadIcon.png">
+
+
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" href="../../css/bootstrap.min.css" type="text/css" id="bootstrap-style" />
+
+    <!-- Material Icon Css -->
+    <link rel="stylesheet" href="../../css/materialdesignicons.min.css" type="text/css" />
+
+    <!-- Unicon Css -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/../../css/line.css" />
+
+    <!-- Swiper Css -->
+    <link rel="stylesheet" href="../../css/tiny-slider.css" type="text/css" />
+
+    <!-- Custom Css -->
+    <link rel="stylesheet" href="../../css/style.min.css" type="text/css" />
+
+
+    <script src="~/Scripts/Views/ShoppingCart.js"></script>
+
+
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="71">
+    <section class="h-100" style="background-color: white";">
+        <div class="container h-100 py-5">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-10">
+                    <br />
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h3 class="fw-normal mb-0 text-black">Shopping Cart</h3>
+                    </div>
+
+                    <div class="card rounded-3 mb-4" >
+                        <div class="card-body nftContainer p-4 ">
+
+
+
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <form id="frmPayProceed" class="col-lg-5">
+                                @Html.CtrlInput("txtWalletId", "password", "Your wallet pin", "Enter your pin", "walletPin")
+
+                                <div class="Name  justify-content-center" id="otpShopping" style="display:none">
+                                    <div style="display: flex; flex-wrap: nowrap; align-items: flex-end; flex-direction: row; align-content: flex-start; justify-content: space-between;">
+                                        <form id="frmOtp" style="margin-right:5px ">
+                                            @Html.CtrlInput("frmOtp", "text", "Validation code :", "22442", "Otp")
+                                        </form>
+                                        @Html.CtrlButton("Register", "btnSubmitOpt", "Validate", onClickFunction: "ValidateOpt")
+                                    </div>
+                                </div>
+
+                            </form>
+                            <br />
+
+                            @Html.CtrlButton("ShoppingCart", "StatusButton", "Proceed to Pay", "PayProceed", "primary btn-block btn-lg")
+
+                            @*<button type="button" class="btn btn-warning btn-block btn-lg">Proceed to Pay</button>*@
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+</body>
+
+
+
+</html>

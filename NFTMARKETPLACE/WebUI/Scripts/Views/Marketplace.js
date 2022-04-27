@@ -81,7 +81,6 @@
             function cartNumbers(product) {
 
                 
-                console.log("This is a product", product)
                     let productNumbers = sessionStorage.getItem('NftName');
                     productNumbers = parseInt(productNumbers)
 
@@ -151,8 +150,9 @@
             }
 
             onLoadCardNumbers()
+            
+        })
 
-            })
     }
 
 

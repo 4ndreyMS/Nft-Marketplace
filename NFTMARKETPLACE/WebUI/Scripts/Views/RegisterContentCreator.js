@@ -8,17 +8,9 @@
     const service = 'User';
     const serviceCompany = 'Company';
 
-    //todo: validar que el valor que me devuelva no sea 0
     this.CreateContentUser = function () {
 
         let frmUserContent = ctrlActions.GetDataForm("frmUserContent");
-
-        let company = {
-            name: frmUserContent.companyName,
-            email: frmUserContent.companyEmail
-        }
-
-
 
         let fName = document.getElementById('txtNameContent');
         let fCedula = document.getElementById('txtCedulaContent');
@@ -30,6 +22,13 @@
         let fCompnayName = document.getElementById('txtCompanyName');
         let fCNameEmail = document.getElementById('txtEmailCompany');
         let btnImage = localStorage.getItem('UserPhoto');
+        let fWalletPin = document.getElementById('txtWalletIdCompany');
+
+        let company = {
+            name: frmUserContent.companyName,
+            email: frmUserContent.companyEmail,
+            walletPin: frmUserContent.WalletPin
+        }
 
         let UserContent = {
             Name: frmUserContent.name,
@@ -97,12 +96,17 @@
             fCNameEmail.classList.remove('fillAllBlanks');
         }
 
+        if (company.walletPin.length === 0) {
+            fWalletPin.classList.add('fillAllBlanks');
+        } else {
+            fWalletPin.classList.remove('fillAllBlanks');
+        }
 
 
 
         if (UserContent.Name === "" || UserContent.Cedula === "" || UserContent.Password === "" ||
             UserContent.SureName === "" || UserContent.NickName === "" || UserContent.Phone === "" || UserContent.Email === "" || company.name === "" ||
-            company.email === "" || btnImage === null) {
+            company.email === "" || btnImage === null || company.walletPin.length === 0 ) {
 
             Swal.fire({
                 title: 'Error!',

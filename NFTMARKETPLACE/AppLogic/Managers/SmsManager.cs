@@ -49,5 +49,24 @@ namespace AppLogic.Managers
 
         }
 
+        public static void SendDymanicSms(Validation _validation)
+        {
+            Sms sms = new Sms();
+            sms.Token = _validation.Otp;
+            sms.AccountSid = "AC2dcb13dbd71118d1a6d60bc59ac27228";
+            sms.AuthToken = "dfdd6bfa5331bb7bd4da0aaa3456a405";
+            sms.Phone = "+506" + _validation.PhoneTo;
+            sms.Message = _validation.Msj+" ";
+            sms.ServicePath = "MG4990c8952ad39c6007998cb19ae1dc71";
+            TwilioClient.Init(sms.AccountSid, sms.AuthToken);
+
+            var messageOptions = new CreateMessageOptions(new PhoneNumber(sms.Phone));
+            messageOptions.MessagingServiceSid = sms.ServicePath;
+            messageOptions.Body = sms.Message + sms.Token;
+
+            var message = MessageResource.Create(messageOptions);
+
+        }
+
     }
 }
