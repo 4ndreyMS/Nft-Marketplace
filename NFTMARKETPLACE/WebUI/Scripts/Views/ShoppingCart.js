@@ -160,5 +160,3 @@ $(document).ready(function () {
     displayCart()
 });
 
-
-}
