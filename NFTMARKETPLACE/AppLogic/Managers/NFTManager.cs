@@ -55,6 +55,11 @@ namespace AppLogic.Managers
             nftCF.Update(nft);
         }
 
+        public void UpdateWhenBuyNft(NFT nft)
+        {
+            nftCF.UpdateWhenBuyNft(nft);
+        }
+
         public NFT RetrieveNFT(NFT nft)
         {
             NFT result = new NFT();

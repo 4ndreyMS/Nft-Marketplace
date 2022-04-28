@@ -87,6 +87,20 @@ namespace DataAccess.Mapper
             return operation;
         }
 
+
+        public SqlOperation UpdateWhenBuyNft(BaseEntity entity)
+        {
+            var operation = new SqlOperation { ProcedureName = "UPD_WHEN_BUY_NFT_PR" };
+
+            var c = (NFT)entity;
+            operation.AddVarcharParam(DB_COL_Id, c.Id);
+            operation.AddDecimalParam(DB_COL_Price, c.Price);
+            operation.AddIntParam(DB_COL_IdCollection, c.IdCollection);
+            operation.AddVarcharParam(DB_COL_NFTName, c.IdOwner);
+            operation.AddVarcharParam(DB_COL_SaleState, c.SaleState);
+            return operation;
+        }
+
         public SqlOperation GetDeleteStatement(BaseEntity entity)
         {
             var operation = new SqlOperation { ProcedureName = "DEL_NFT_PR" };

@@ -164,7 +164,7 @@ namespace WebAPI.Controllers
         }
 
 
-        [HttpGet]
+        [HttpPost]
         public APIResponse example()
         {
             APIResponse response = new APIResponse()

@@ -1,7 +1,9 @@
-﻿function ShoppingCart() {
+﻿let totalAmount = 0.0;
+let itemsOnCart = sessionStorage.getItem("productsInCart")
 
-    //todo: estos valores deben de ser cambiados para la creacion del nft
-    let totalAmount = 3;
+function ShoppingCart() {
+    
+    
 
     const ctrlActions = new ControlActions();
     const service = "Wallet";
@@ -94,14 +96,32 @@
 
     this.AfterValidation = function () {
 
+        //valida que el otp sea igual al que se le envia
         if (localStorage.getItem('OptTrans') === frmPin.Otp) {
             frmId.reset();
 
-            var restWallet = { Identifier: localStorage.getItem('WalletIdentifier'), Amount: totalAmount }
+
+            let moveMoneyWallet = { Identifier: localStorage.getItem('WalletIdentifier'), Amount: totalAmount, IdOwner:""}
 
             //se realiza el rebajo del monto total de los nft al wallet que está realizando la compra
-            ctrlActions.PostToAPI(service + "/restAmount", restWallet, function (response) {})
+            ctrlActions.PostToAPI(service + "/restAmount", moveMoneyWallet, function (response) { })
 
+            //se itera por la cantidad de nfts que haya en el carrito
+            Object.values(itemsOnCart).forEach((element) => {
+
+                var wallet = { CompanyId: element.IdOwner }
+
+                //se obtiene la identificacion del id de la compania
+                ctrlActions.PostToAPI(service + "/WalletInfoByCompnay", wallet, function (response) {
+
+                    moveMoneyWallet = { Identifier: response.Identifier, Amount: element.Price }
+                    //se realiza el aumento del precio en cada una de las cuentas
+                    ctrlActions.PostToAPI(service + "/addAmount", moveMoneyWallet, function (response) { })
+
+
+                })
+
+            });
 
         } else {
             Swal.fire({
@@ -120,7 +140,8 @@
  
 }
 
-   function displayCart() {
+
+function displayCart() {
        let cartItems = sessionStorage.getItem("productsInCart")
        
                 cartItems = JSON.parse(cartItems)
@@ -155,8 +176,17 @@
           }
     }
 
+function totalAmout() {
+    itemsOnCart = JSON.parse(itemsOnCart);
+
+    Object.values(itemsOnCart).forEach((element) => {
+        totalAmount += element.Price;
+    });
+    document.getElementById("totalAmount").innerHTML += totalAmount + " CFC";
+}
 
 $(document).ready(function () {
-    displayCart()
+    displayCart();
+    totalAmout();
 });
 
