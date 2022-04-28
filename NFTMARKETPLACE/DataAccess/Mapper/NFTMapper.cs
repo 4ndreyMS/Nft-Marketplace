@@ -80,7 +80,7 @@ namespace DataAccess.Mapper
             operation.AddDateTimeParam(DB_COL_CreationDate, c.CreationDate);
             operation.AddIntParam(DB_COL_IdCollection, c.IdCollection);
             operation.AddVarcharParam(DB_COL_IdCreator, c.IdCreator);
-            operation.AddVarcharParam(DB_COL_NFTName, c.IdOwner);
+            operation.AddVarcharParam(DB_COL_IdOwner, c.IdOwner);
             operation.AddVarcharParam(DB_COL_Image, c.Image);
             operation.AddVarcharParam(DB_COL_SaleState, c.SaleState);
 
@@ -96,7 +96,7 @@ namespace DataAccess.Mapper
             operation.AddVarcharParam(DB_COL_Id, c.Id);
             operation.AddDecimalParam(DB_COL_Price, c.Price);
             operation.AddIntParam(DB_COL_IdCollection, c.IdCollection);
-            operation.AddVarcharParam(DB_COL_NFTName, c.IdOwner);
+            operation.AddVarcharParam(DB_COL_IdOwner, c.IdOwner);
             operation.AddVarcharParam(DB_COL_SaleState, c.SaleState);
             return operation;
         }
