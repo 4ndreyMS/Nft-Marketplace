@@ -95,7 +95,6 @@ namespace DataAccess.Mapper
             var c = (NFT)entity;
             operation.AddVarcharParam(DB_COL_Id, c.Id);
             operation.AddDecimalParam(DB_COL_Price, c.Price);
-            operation.AddIntParam(DB_COL_IdCollection, c.IdCollection);
             operation.AddVarcharParam(DB_COL_IdOwner, c.IdOwner);
             operation.AddVarcharParam(DB_COL_SaleState, c.SaleState);
             return operation;

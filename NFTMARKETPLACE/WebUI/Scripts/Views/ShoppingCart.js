@@ -117,12 +117,14 @@ function ShoppingCart() {
 
                     moveMoneyWallet = { Identifier: response.Identifier, Amount: element.Price }
                     //se realiza el aumento del precio en cada una de las cuentas
-                    ctrlActions.PostToAPI(service + "/addAmount", moveMoneyWallet, function (response) { })
+                    const addAmount = ctrlActions.PostToAPI(service + "/addAmount", moveMoneyWallet, function(response) {
+
+                    })
 
                     //se realiza el cambio de duenio
                     var updNft = { Id: element.Id, Price: element.Price, IdCollection: null, IdOwner: sessionStorage.getItem("UserCompany"), SaleState: "InPropiety"}
-                    ctrlActions.PostToAPI(serviceNFT + "/UpdateWhenBuyNft", updNft, function (response) { })
-
+                    const updOwner = ctrlActions.PostToAPI(serviceNFT + "/UpdateWhenBuyNft", updNft, function (response) { })
+                    addAmount().then(r => { updOwner() });
                 })
 
             });
