@@ -1,7 +1,10 @@
-﻿function ShoppingCart() {
+﻿let totalAmount = 0.0;
+let itemsOnCart = sessionStorage.getItem("productsInCart")
+const serviceNFT = "NFT";
 
-    //todo: estos valores deben de ser cambiados para la creacion del nft
-    const totalAmount = 3;
+function ShoppingCart() {
+    
+    
 
     const ctrlActions = new ControlActions();
     const service = "Wallet";
@@ -14,9 +17,10 @@
 
     let walletInfo = { CompanyId: companyId };
     let walletResponse = {};
-
+    let validationObj = {}
 
     this.PayProceed = function () {
+        let optResponse = 0;
 
         //verifica que no hayan campos vacíos
         if (frmPin.walletPin != "") {
@@ -26,7 +30,7 @@
             //realiza peticion al wallet segun el codigo de la compania
             ctrlActions.PostToAPI(service + "/WalletInfoByCompnay", walletInfo, function (response) {
                 walletResponse = response;
-
+                localStorage.setItem('WalletIdentifier',walletResponse.Identifier);
                 //verifica que el pin sea igual que viene del wallet
                 if (walletResponse.WalletPin === parseInt(frmPin.walletPin)) {
 
@@ -38,17 +42,19 @@
 
                         var Company = {id: walletResponse.CompanyId}
                         ctrlActions.PostToAPI(serviceCompany + "/retriveCompanyInfo", Company, function (response) {
-
-                            var validationObj = {
+                            
+                            validationObj = {
                                 EmailTo: response.email,
                                 PhoneTo: sessionStorage.getItem("UserPhone"),
                                 Title: "Validate your transaction",
                                 Msj: "Hi, verify your transaction with this security code"
                             }
-                            ctrlActions.PostToAPI(serviceValidation + "/SendDymanicValidation", validationObj, function(response) {
-                                console.log(response);
-                            })
 
+                            ctrlActions.PostToAPI(serviceValidation + "/SendDymanicValidation", validationObj, function (response) {
+                                localStorage.setItem('OptTrans', parseInt(response));
+                                //si es correcto entonces acá es cuando se realiza el rebajo del monto y el intercambio de nft
+
+                            })
 
                         })
 
@@ -87,9 +93,51 @@
                 confirmButtonColor: "#DD6B55",
             })
         }
+    }
+
+    this.AfterValidation = function () {
+
+        //valida que el otp sea igual al que se le envia
+        if (localStorage.getItem('OptTrans') === frmPin.Otp) {
+            frmId.reset();
 
 
+            let moveMoneyWallet = { Identifier: localStorage.getItem('WalletIdentifier'), Amount: totalAmount, IdOwner:""}
 
+            //se realiza el rebajo del monto total de los nft al wallet que está realizando la compra
+            ctrlActions.PostToAPI(service + "/restAmount", moveMoneyWallet, function (response) { })
+
+            //se itera por la cantidad de nfts que haya en el carrito
+            Object.values(itemsOnCart).forEach((element) => {
+
+                var wallet = { CompanyId: element.IdOwner }
+
+                //se obtiene la identificacion del id de la compania
+                ctrlActions.PostToAPI(service + "/WalletInfoByCompnay", wallet, function (response) {
+
+                    moveMoneyWallet = { Identifier: response.Identifier, Amount: element.Price }
+                    //se realiza el aumento del precio en cada una de las cuentas
+                    const addAmount = ctrlActions.PostToAPI(service + "/addAmount", moveMoneyWallet, function(response) {
+
+                    })
+
+                    //se realiza el cambio de duenio
+                    var updNft = { Id: element.Id, Price: element.Price, IdCollection: null, IdOwner: sessionStorage.getItem("UserCompany"), SaleState: "InPropiety"}
+                    const updOwner = ctrlActions.PostToAPI(serviceNFT + "/UpdateWhenBuyNft", updNft, function (response) { })
+                    addAmount().then(r => { updOwner() });
+                })
+
+            });
+
+        } else {
+            Swal.fire({
+                title: 'Error!',
+                text: 'Incorrect code!',
+                icon: 'error',
+                confirmButtonText: 'Try Again!',
+                confirmButtonColor: "#DD6B55",
+            })
+        }
 
     }
 
@@ -98,7 +146,8 @@
  
 }
 
-   function displayCart() {
+
+function displayCart() {
        let cartItems = sessionStorage.getItem("productsInCart")
        
                 cartItems = JSON.parse(cartItems)
@@ -133,7 +182,17 @@
           }
     }
 
+function totalAmout() {
+    itemsOnCart = JSON.parse(itemsOnCart);
+
+    Object.values(itemsOnCart).forEach((element) => {
+        totalAmount += element.Price;
+    });
+    document.getElementById("totalAmount").innerHTML += totalAmount + " CFC";
+}
 
 $(document).ready(function () {
-    displayCart()
+    displayCart();
+    totalAmout();
 });
+

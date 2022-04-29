@@ -80,10 +80,23 @@ namespace DataAccess.Mapper
             operation.AddDateTimeParam(DB_COL_CreationDate, c.CreationDate);
             operation.AddIntParam(DB_COL_IdCollection, c.IdCollection);
             operation.AddVarcharParam(DB_COL_IdCreator, c.IdCreator);
-            operation.AddVarcharParam(DB_COL_NFTName, c.IdOwner);
+            operation.AddVarcharParam(DB_COL_IdOwner, c.IdOwner);
             operation.AddVarcharParam(DB_COL_Image, c.Image);
             operation.AddVarcharParam(DB_COL_SaleState, c.SaleState);
 
+            return operation;
+        }
+
+
+        public SqlOperation UpdateWhenBuyNft(BaseEntity entity)
+        {
+            var operation = new SqlOperation { ProcedureName = "UPD_WHEN_BUY_NFT_PR" };
+
+            var c = (NFT)entity;
+            operation.AddVarcharParam(DB_COL_Id, c.Id);
+            operation.AddDecimalParam(DB_COL_Price, c.Price);
+            operation.AddVarcharParam(DB_COL_IdOwner, c.IdOwner);
+            operation.AddVarcharParam(DB_COL_SaleState, c.SaleState);
             return operation;
         }
 
