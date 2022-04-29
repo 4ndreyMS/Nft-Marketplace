@@ -22,10 +22,8 @@
                              <div class="col-lg-3 mt-4 nftCard">
                                 <div class="tab-content p-4 border-0">
                                     <div class="header d-flex align-items-center justify-content-start">
-                                        <div class="avatar-xs">
-                                            <img src="" alt="" class="img-fluid rounded-circle">
-                                        </div>
-                                        <h6 class="mb-0 ms-2 fw-semibold text-muted f-14">${card.OwnerName}</h6>
+                                        
+                                        <h6 class="mb-0 ms-2 fw-semibold text-muted f-14">By: ${card.OwnerName}</h6>
                                     </div>
                                     <div class="card-image mt-3">
                                         <img src="${card.Image}" alt="" class="img-fluid">

@@ -102,7 +102,7 @@
        let cartItems = sessionStorage.getItem("productsInCart")
        
                 cartItems = JSON.parse(cartItems)
-
+                   console.log(cartItems)
                 let nftContainer = document.querySelector(".card-body.nftContainer")
               
                 if (cartItems && nftContainer) {
