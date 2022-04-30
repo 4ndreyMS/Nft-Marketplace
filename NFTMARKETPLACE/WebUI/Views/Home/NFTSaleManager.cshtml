@@ -82,8 +82,12 @@
                 </ul>
                 <div class="tab-content mt-5" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-games" role="tabpanel" aria-labelledby="pills-games-tab">
-                        @*Venta*@
-                        <p>Prueba 1</p>
+                        <form id="saleForm" style="margin-right: 15px;">
+                            @Html.CtrlInput("txtPriceAmount", "text", "Price amount:", "Enter the price", "Amount")
+                        </form>
+                        <div class="submit-button mt-4">
+                            @Html.CtrlButton("NFTSaleManager", "btnSale", "Put on sale", "PutOnSale", "primary w - 100")
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="pills-art" role="tabpanel" aria-labelledby="pills-art-tab">
                         @*Subasta*@

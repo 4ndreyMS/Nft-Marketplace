@@ -48,8 +48,6 @@ namespace AppLogic.Managers
             return String.Concat(Array.ConvertAll(byteArray, x => x.ToString("X2")));
         }
 
-
-
         public void UpdateNFT(NFT nft)
         {
             nftCF.Update(nft);
@@ -104,6 +102,11 @@ namespace AppLogic.Managers
         public object RetrieveAllNFTINFO(NFT nft)
         {
             return nftCF.RetrieveAllNFTINFO<InfoNFT>(nft);
+        }
+
+        public void PutOnSale(NFT nft)
+        {
+            nftCF.PutOnSale(nft);
         }
     }
 }

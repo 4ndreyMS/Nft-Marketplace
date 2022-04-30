@@ -108,6 +108,12 @@ namespace DataAccess.Crud
             return lstNFTs;
         }
 
+        public void PutOnSale(BaseEntity entity)
+        {
+            var nft = (NFT)entity;
+            dao.ExecuteProcedure(mapper.PutOnSale(nft));
+        }
+
         public object RetrieveAllNFTINFO<T>(BaseEntity nft)
         {
             var lstNFTs = new List<T>();

@@ -15,7 +15,7 @@
 
     this.Information = function () {
 
-        let NFT = { Id: sessionStorage.getItem('NFTSelected')}
+        var NFT = { Id: sessionStorage.getItem('NFTSelected')}
 
         ctrlActions.PostToAPI(serviceNFT + "/RetrieveAllNFTINFO", NFT, function (response) {
 
@@ -88,6 +88,28 @@
             })
 
         });
+    }
+
+    this.PutOnSale = function () {
+        var ctrlActions = new ControlActions();
+        var saleInfo = ctrlActions.GetDataForm("saleForm");
+        var NFT = { Id: sessionStorage.getItem('NFTSelected'), Price: saleInfo.Amount, SaleState: "OnSale" }
+
+        if (saleInfo.Amount == "") {
+
+            Swal.fire({
+                title: 'Error!',
+                text: 'Please insert a price',
+                icon: 'error',
+                confirmButtonText: 'Cool',
+                confirmButtonColor: "#DD6B55",
+            })
+
+        } else {
+            var ctrlActions = new ControlActions();
+            ctrlActions.PostToAPI("NFT" + "/PutOnSale", NFT, function (response) { });
+            window.location.href = "profile";
+        }
     }
 
 }

@@ -132,5 +132,11 @@ namespace WebAPI.Controllers
                 TransacctionDate = DateTime.Now.ToString()
             };
         }
+
+        [HttpPost]
+        public void PutOnSale(NFT nft)
+        {
+            nftM.PutOnSale(nft);
+        }
     }
 }

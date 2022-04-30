@@ -90,6 +90,18 @@ namespace DataAccess.Mapper
             return operation;
         }
 
+        internal SqlOperation PutOnSale(BaseEntity entity)
+        {
+            var operation = new SqlOperation { ProcedureName = "NFT_PUT_ON_SALE" };
+
+            var c = (NFT)entity;
+            operation.AddVarcharParam(DB_COL_Id, c.Id);
+            operation.AddDecimalParam(DB_COL_Price, c.Price);
+            operation.AddVarcharParam(DB_COL_SaleState, c.SaleState);
+
+            return operation;
+        }
+
         public SqlOperation GetRetrieveAllNFTInProperty(BaseEntity entity)
         {
             var operation = new SqlOperation { ProcedureName = "RET_ALL_NFT_PROPERTY" };
