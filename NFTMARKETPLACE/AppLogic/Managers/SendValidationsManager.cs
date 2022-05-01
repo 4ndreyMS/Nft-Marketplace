@@ -11,6 +11,8 @@ namespace AppLogic.Managers
     {
         private OtpManager otpManager;
 
+        private QrGeneratorManager qrManager;
+
         public SendValidationsManager()
         {
             otpManager = new OtpManager();
@@ -22,6 +24,22 @@ namespace AppLogic.Managers
             var sendMail = SendMailManager.SendDynamicMail(obj);
             SmsManager.SendDymanicSms(obj);
             return obj.Otp;
+        }
+
+        public string sendQrNFT(Validation obj)
+        {
+            qrManager = new QrGeneratorManager();
+
+            var sendMail = SendMailManager.SendDynamicQR(obj);
+            return "QR send";
+        }
+
+
+        public string GenQR(string obj)
+        {
+            qrManager = new QrGeneratorManager();
+            qrManager.CreateQR(obj);
+            return "Qr created";
         }
 
     }

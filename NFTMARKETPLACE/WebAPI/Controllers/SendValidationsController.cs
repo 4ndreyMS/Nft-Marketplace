@@ -28,5 +28,16 @@ namespace WebAPI.Controllers
                 Data = validationManger.sendBothValidations(_validation)
             };
         }
+
+        [HttpPost]
+        public APIResponse SendQR(Validation _validation)
+        {
+            return new APIResponse()
+            {
+                Data = validationManger.sendQrNFT(_validation)
+            };
+        }
+
+           
     }
 }

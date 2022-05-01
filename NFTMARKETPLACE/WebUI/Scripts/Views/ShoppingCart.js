@@ -5,10 +5,9 @@ const ctrlActions = new ControlActions();
 let jsonCart = JSON.parse(itemsOnCart);
 const companyId = sessionStorage.getItem("UserCompany");
 let validCompanyNft = true;
+let CompanyUserEmail = "";
 
 function ShoppingCart() {
-
-
 
     const service = "Wallet";
     const serviceCompany = "Company";
@@ -21,7 +20,7 @@ function ShoppingCart() {
     let validationObj = {}
 
     this.PayProceed = function () {
-
+        
         if (!sessionStorage.getItem('UserCedula') || !sessionStorage.getItem('UserCompany')) {
             window.location.href = "Login";
             return false;
@@ -51,7 +50,7 @@ function ShoppingCart() {
 
                                     var Company = { id: walletResponse.CompanyId }
                                     ctrlActions.PostToAPI(serviceCompany + "/retriveCompanyInfo", Company, function (response) {
-
+                                        CompanyUserEmail = response.email;
                                         validationObj = {
                                             EmailTo: response.email,
                                             PhoneTo: sessionStorage.getItem("UserPhone"),
@@ -133,56 +132,59 @@ function ShoppingCart() {
             let moveMoneyWallet = { Identifier: localStorage.getItem('WalletIdentifier'), Amount: totalAmount, IdOwner: "" }
 
             //se realiza el rebajo del monto total de los nft al wallet que está realizando la compra
-            ctrlActions.PostToAPI(service + "/restAmount",
-                moveMoneyWallet,
-                function (response) {
+            ctrlActions.PostToAPI(service + "/restAmount", moveMoneyWallet, function (response) {
 
-                    Object.values(itemsOnCart).forEach((element) => {
+            
+                Object.values(itemsOnCart).forEach((element) => {
 
-                        var wallet = { CompanyId: element.IdOwner }
+                    var wallet = { CompanyId: element.IdOwner }
 
-                        //se obtiene la identificacion del id de la compania
-                        ctrlActions.PostToAPI(service + "/WalletInfoByCompnay",
-                            wallet,
-                            function (response) {
+                    //se obtiene la identificacion del id de la compania
+                    ctrlActions.PostToAPI(service + "/WalletInfoByCompnay", wallet, function (response) {
 
-                                moveMoneyWallet = { Identifier: response.Identifier, Amount: element.Price }
-                                //se realiza el aumento del precio en cada una de las cuentas
-                                ctrlActions.PostToAPI(service + "/addAmount",
-                                    moveMoneyWallet,
-                                    function (response) {
+                            moveMoneyWallet = { Identifier: response.Identifier, Amount: element.Price }
+                            //se realiza el aumento del precio en cada una de las cuentas
+                        ctrlActions.PostToAPI(service + "/addAmount", moveMoneyWallet, function (response) {
+                            
+                            var updNft = {
+                                Id: element.Id,
+                                Price: element.Price,
+                                IdCollection: null,
+                                IdOwner: sessionStorage.getItem("UserCompany"),
+                                SaleState: "InPropiety"
+                            }
 
-                                        var updNft = {
-                                            Id: element.Id,
-                                            Price: element.Price,
-                                            IdCollection: null,
-                                            IdOwner: sessionStorage.getItem("UserCompany"),
-                                            SaleState: "InPropiety"
-                                        }
-                                        ctrlActions.PostToAPI(serviceNFT + "/UpdateWhenBuyNft",
-                                            updNft,
-                                            function (response) {
+                            ctrlActions.PostToAPI(serviceNFT + "/UpdateWhenBuyNft", updNft, function (response) {
 
-                                                sessionStorage.removeItem('productsInCart');
-                                                sessionStorage.removeItem('NftName');
-                                                Swal.fire({
-                                                    title: 'Success!',
-                                                    text: 'You have bought ' + ccAmount + ' CFC.',
-                                                    width: 600,
-                                                    padding: '3em',
-                                                    color: '#000',
-                                                    background: '#fff',
-                                                    confirmButtonColor: "#DD6B55",
-                                                    icon: 'success'
-                                                }).then(function () {
-                                                    location.reload();
-                                                });
-                                        });
+                                validationObj = {
+                                    EmailTo: CompanyUserEmail,
+                                    Title: "Your NFT purchase verification",
+                                    Msj: "Thanks for your purchase!",
+                                    NFTAsset: element.Image
+                                }
+
+                                ctrlActions.PostToAPI(serviceValidation + "/SendQR", validationObj, function(response) {
+                                    sessionStorage.removeItem('productsInCart');
+                                    sessionStorage.removeItem('NftName');
+
+                                    Swal.fire({
+                                        title: 'Success!',
+                                        text: 'You have bought a new product',
+                                        width: 600,
+                                        padding: '3em',
+                                        color: '#000',
+                                        background: '#fff',
+                                        confirmButtonColor: "#DD6B55",
+                                        icon: 'success'
+                                    }).then(function () {
+                                        location.reload();
                                     });
+                                });
                             });
+                        });
                     });
-
                 });
+            });
 
             //se itera por la cantidad de nfts que haya en el carrito
         } else {
@@ -195,6 +197,35 @@ function ShoppingCart() {
             });
         }
     }
+}
+
+
+function sendQR() {
+
+    let validationObj = {
+        EmailTo: "melendezzsequeira@gmail.com",
+        Title: "Your NFT purchase verification",
+        Msj: "Thanks for your purchase!",
+        NFTAsset: "https://res.cloudinary.com/andreshts/image/upload/v1651025585/img-7_bxz2q9.png"
+    }
+
+    ctrlActions.PostToAPI("SendValidations" + "/SendQR", validationObj, function (response) {
+        sessionStorage.removeItem('productsInCart');
+        sessionStorage.removeItem('NftName');
+
+        Swal.fire({
+            title: 'Success!',
+            text: 'You have bought a new product',
+            width: 600,
+            padding: '3em',
+            color: '#000',
+            background: '#fff',
+            confirmButtonColor: "#DD6B55",
+            icon: 'success'
+        }).then(function () {
+            location.reload();
+        });
+    });
 }
 
 function containItems() {
