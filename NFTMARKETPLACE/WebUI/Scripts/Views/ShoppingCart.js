@@ -143,21 +143,22 @@ function ShoppingCart() {
 
   
 
+
  
 }
 
 
 function displayCart() {
-       let cartItems = sessionStorage.getItem("productsInCart")
-       
-                cartItems = JSON.parse(cartItems)
-                   console.log(cartItems)
-                let nftContainer = document.querySelector(".card-body.nftContainer")
-              
-                if (cartItems && nftContainer) {
-                    nftContainer.innerHTML = "";
-                    Object.values(cartItems).map(nft => {
-                        nftContainer.innerHTML += `
+
+    let cartItems = sessionStorage.getItem("productsInCart")
+    cartItems = JSON.parse(cartItems)
+
+    let nftContainer = document.querySelector(".card-body.nftContainer")
+
+    if (cartItems && nftContainer) {
+        nftContainer.innerHTML = "";
+        Object.values(cartItems).map(nft => {
+            nftContainer.innerHTML += `
                             <div class="row d-flex justify-content-between align-items-center nftContainerCard">
                                 <div class="col-md-2 col-lg-2 col-xl-2">
                                     <img src=" ${nft.Image}"
@@ -171,20 +172,66 @@ function displayCart() {
                                     <h5 class="mb-0"> ${nft.Price} CFC</h5>
                                 </div>
 
-                                <button class="col-md-1 col-lg-1 col-xl-1 text-end deleteButton">
-                                       
+                                <button class="col-md-1 col-lg-1 col-xl-1 text-end deleteButton" id="${nft.Id}" >
                                 </button>
                             </div>
 `
-                    }
 
-                    )
-          }
+
+        }
+              
+           
+
+        )
+       
+
+
+           
+       
     }
+
+  
+
+    let carts = document.querySelectorAll(".deleteButton")
+    let items = Object.values(cartItems)
+
+    for (let i = 0; i < carts.length; i++) {
+        carts[i].addEventListener('click', () => {
+            let btnId = event.target.id
+            for (i = 0; i < items.length; i++) {
+                if (items[i].Id == btnId) {
+                    items.splice(i, 1);
+                }
+            }
+            sessionStorage.productsInCart = JSON.stringify(items);
+            window.location.reload();
+        })
+    }
+}
+
+function cartNumbers(product) {
+
+    console.log("The product clicked is: ", product)
+    let productNumbers = sessionStorage.getItem('NftName');
+    productNumbers = parseInt(productNumbers)
+
+
+    if (productNumbers) {
+        sessionStorage.setItem('NftName', productNumbers + 1)
+        document.querySelector('.cart span').textContent = productNumbers + 1
+    } else {
+        sessionStorage.setItem('NftName', 1)
+        document.querySelector('.cart span').textContent = 1
+
+    }
+
+}
+
+
+
 
 function totalAmout() {
     itemsOnCart = JSON.parse(itemsOnCart);
-
     Object.values(itemsOnCart).forEach((element) => {
         totalAmount += element.Price;
     });
@@ -193,6 +240,7 @@ function totalAmout() {
 
 $(document).ready(function () {
     displayCart();
+    cartNumbers()
     totalAmout();
 });
 
