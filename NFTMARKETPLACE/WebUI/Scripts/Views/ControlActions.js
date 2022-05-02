@@ -88,7 +88,7 @@ function ControlActions() {
     this.PostToAPI = function (service, data, callBackFunction) {
         var jqxhr = $.post(this.GetUrlApiService(service), data, function (response) {
             var ctrlActions = new ControlActions();
-            ctrlActions.ShowMessage('I', response.Message);
+            //ctrlActions.ShowMessage('I', response.Message);
 
             if (callBackFunction) {
                 callBackFunction(response.Data);

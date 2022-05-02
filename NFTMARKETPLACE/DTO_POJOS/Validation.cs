@@ -14,6 +14,7 @@ namespace DTO_POJOS
         public string Title { get; set; }
         public string Msj { get; set; }
         public int Otp { get; set; }
+        public string NFTAsset { get; set; }
 
     }
 }

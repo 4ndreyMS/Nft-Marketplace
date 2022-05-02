@@ -43,9 +43,14 @@ namespace WebAPI.Controllers
 
 
         [HttpPost]
-        public void UpdateWhenBuyNft(NFT nft)
+        public APIResponse UpdateWhenBuyNft(NFT nft)
         {
             nftM.UpdateWhenBuyNft(nft);
+
+            return new APIResponse()
+            {
+                Data = "Nft info updated"
+            };
         }
 
         [HttpGet]
