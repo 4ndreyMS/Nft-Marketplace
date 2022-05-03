@@ -21,10 +21,10 @@ namespace DataAccess.Crud
         {
             dao.ExecuteProcedure(mapper.GetDeleteStatement(entity));
         }
-        public List<T> retrieveNotifUserByCompany<T>(BaseEntity notifications)
+        public List<T> retrieveNotifUserByCompany<T>(BaseEntity entity)
         {
             var lstNotif = new List<T>(); //inicializa la lista que va a devolver
-            var lstResult = dao.ExecuteQueryProcedure(mapper.GetRetriveAllStatement());
+            var lstResult = dao.ExecuteQueryProcedure(mapper.GetRetriveAllByReciver(entity));
             var dic = new Dictionary<string, object>();
             if (lstResult.Count > 0)
             {
