@@ -91,9 +91,6 @@ namespace WebAPI.Controllers
                 TransacctionDate = DateTime.Now.ToString()
             };
         }
-        
-
-
 
         [HttpPost]
         public APIResponse RetrieveAllNFTWithOwner()
@@ -120,6 +117,38 @@ namespace WebAPI.Controllers
                 Status = "Ok",
                 TransacctionDate = DateTime.Now.ToString()
             };
+        }
+
+        [HttpPost]
+        public APIResponse RetrieveAllNFTInProperty(NFT nft)
+        {
+            var nm = new NFTManager();
+            return new APIResponse()
+            {
+                Data = nm.RetrieveAllNFTInProperty(nft),
+                Message = "All NFT in the data base",
+                Status = "Ok",
+                TransacctionDate = DateTime.Now.ToString()
+            };
+        }
+
+        [HttpPost]
+        public APIResponse RetrieveAllNFTINFO(NFT nft)
+        {
+            var nm = new NFTManager();
+            return new APIResponse()
+            {
+                Data = nm.RetrieveAllNFTINFO(nft),
+                Message = "All NFT in the data base",
+                Status = "Ok",
+                TransacctionDate = DateTime.Now.ToString()
+            };
+        }
+
+        [HttpPost]
+        public void PutOnSale(NFT nft)
+        {
+            nftM.PutOnSale(nft);
         }
     }
 }

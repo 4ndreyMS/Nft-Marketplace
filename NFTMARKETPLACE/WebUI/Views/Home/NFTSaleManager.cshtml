@@ -1,0 +1,200 @@
+﻿@using WebUI.Models.Helpers
+<script src="~/Scripts/Views/NFTSaleManager.js"></script>
+@{
+    ViewBag.Title = "NFTSaleManager";
+}
+
+@{
+    Layout = "~/Views/Shared/NavBar.cshtml";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>NETMARKETPLACE - By NetQuality</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content=" " />
+    <meta name="keywords" content="" />
+    <meta content="Pichforest" name="author" />
+
+    <link rel="shortcut icon" href="../../Content/images/HeadIcon.png">
+
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" href="../../css/bootstrap.min.css" type="text/css" id="bootstrap-style" />
+
+    <!-- Material Icon Css -->
+    <link rel="stylesheet" href="../../css/materialdesignicons.min.css" type="text/css" />
+
+    <!-- Unicon Css -->
+    @*   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+    *@
+
+    <!-- Swiper Css -->
+    <link rel="stylesheet" href="../../css/tiny-slider.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/swiper.min.css" type="text/css" />
+
+    <!-- Custom Css -->
+    <link rel="stylesheet" href="../../css/style.min.css" type="text/css" />
+
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navbar-navlist" data-bs-offset="71">
+
+    <!-- light-dark mode button -->
+    <a href="javascript: void(0);" id="mode" class="mode-btn text-white rounded-end">
+        <i class="uil uil-brightness mode-dark mx-auto"></i>
+        <i class="uil uil-moon bx-spin mode-light"></i>
+    </a>
+
+    <!--Navbar Start-->
+
+    <!-- Navbar End -->
+    <!-- start section -->
+    <section class="ranking section bg-light">
+
+        <section class="item-detail section bg-light">
+            <!-- start container -->
+            <div class="container" id="NFTInformation">
+                
+            </div>
+            <!-- end container -->
+        </section>
+
+        <!-- MENU DE COMPRAS -->
+        <div class="row align-items-center mt-5">
+            <div class="col-lg-12">
+                <ul class="nav nav-pills align-items-center mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active f-20" id="pills-games-tab" data-bs-toggle="pill" data-bs-target="#pills-games" type="button" role="tab" aria-controls="pills-games" aria-selected="true">
+                            <i class="mdi mdi-cash-multiple f-24 align-middle"></i>
+                            Sale
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link f-20" id="pills-art-tab" data-bs-toggle="pill" data-bs-target="#pills-art" type="button" role="tab" aria-controls="pills-art" aria-selected="false"><i class="mdi mdi-trending-up f-24 align-middle"></i> Auction</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link f-20" id="pills-tranding-tab" data-bs-toggle="pill" data-bs-target="#pills-tranding" type="button" role="tab" aria-controls="pills-tranding" aria-selected="false">
+                            <i class="mdi mdi-gavel f-24 align-middle"></i>
+                            Offers
+                        </button>
+                    </li>
+                </ul>
+                <div class="tab-content mt-5" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-games" role="tabpanel" aria-labelledby="pills-games-tab">
+                        <form id="saleForm" style="margin-right: 15px;">
+                            @Html.CtrlInput("txtPriceAmount", "text", "Price amount:", "Enter the price", "Amount")
+                        </form>
+                        <div class="submit-button mt-4">
+                            @Html.CtrlButton("NFTSaleManager", "btnSale", "Put on sale", "PutOnSale", "primary w - 100")
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-art" role="tabpanel" aria-labelledby="pills-art-tab">
+                        @*Subasta*@
+                        <p>Prueba 2</p>
+                    </div>
+                    <div class="tab-pane fade" id="pills-tranding" role="tabpanel" aria-labelledby="pills-tranding-tab">
+                        @*Oferta*@
+                        <p>Prueba 3</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- end container -->
+    </section>
+
+    <!-- start footer -->
+    <section class="footer">
+        <div class="container">
+            <div class="top-footer">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="footer-info mt-4">
+                            <!-- <img src="../../Content/images/inner-image/logo-dark.png" alt="" height="22"> -->
+                            <a class="logo f-30 text-dark fw-bold" href="index.html">
+                                <img src="../../Content/images/NETQUALITY.png" class="logo-dark" alt="" height="40">
+                                <img src="../../Content/images/NETQUALITY.png" class="logo-light" alt="" height="40">
+                            </a>
+                            <p class="f-18 mt-2 text-muted">
+                                Business opportunities Are Like <br> Buses, There's Always Another <br> One Coming...
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5">
+                        <div class="row">
+
+                            <div class="col-lg-6">
+                                <div class="mt-4">
+                                    <h5 class="f-18 fw-bold">Policies</h5>
+                                    <ul class="list-unstyled footer-link mt-3">
+                                        <li><a href="">Security & Provciy</a></li>
+                                        <li><a href="">Marketplace</a></li>
+                                        <li><a href="">Term & Condition</a></li>
+                                        <li><a href="">Collection</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="mt-4">
+                                    <h5 class="f-18 fw-bold">Company</h5>
+                                    <ul class="list-unstyled footer-link mt-3">
+                                        <li><a href="index.html">Home</a></li>
+                                        <li><a href="activity.html">Pages</a></li>
+                                        <li><a href="blog.html">Blog</a></li>
+                                        <li><a href="contact.html">Contact</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="mt-4 pl-0 pl-lg-4">
+                            <h5 class="f-18 fw-bold">Follow Us</h5>
+                            <ul class="list-inline social-icons-list pt-3">
+                                <li class="list-inline-item">
+                                    <a href="#"><i class="mdi mdi-facebook"></i></a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#"><i class="mdi mdi-twitter"></i></a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#"><i class="mdi mdi-linkedin"></i></a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#"><i class="mdi mdi-google-plus"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <hr>
+
+
+        </div>
+    </section>
+    <!-- end footer -->
+    <!--Bootstrap Js-->
+    <script src="../../Scripts/bootstrap.bundle.min.js"></script>
+
+    <!-- Slider Js -->
+    <script src="../../Scripts/tiny-slider.js"></script>
+    <script src="../../Scripts/swiper.min.js"></script>
+
+    <!-- counter -->
+    <script src="../../Scripts/counter.init.js"></script>
+
+    <!-- App Js -->
+    <script src="../../Scripts/app.js"></script>
+
+
+</body>
+
+</html>

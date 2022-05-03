@@ -482,6 +482,7 @@
     <Content Include="Scripts\Views\ManagerUserTable.js" />
     <Content Include="Scripts\Views\Marketplace.js" />
     <Content Include="Scripts\Views\NavBar.js" />
+    <Content Include="Scripts\Views\NFTSaleManager.js" />
     <Content Include="Scripts\Views\Profile.js" />
     <Content Include="Scripts\Views\Register.js" />
     <Content Include="Scripts\Views\RegisterContentCreator.js" />
@@ -557,6 +558,7 @@
     <Content Include="Views\Shared\NavBar.cshtml" />
     <Content Include="Views\Shared\NavBarHome.cshtml" />
     <Content Include="Views\Home\BuyCFC.cshtml" />
+    <Content Include="Views\Home\NFTSaleManager.cshtml" />
     <Content Include="Views\Home\ShoppingCart.cshtml" />
   </ItemGroup>
   <ItemGroup>

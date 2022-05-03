@@ -91,6 +91,45 @@ namespace DataAccess.Crud
             return lstNFTs;
         }
 
+        public object RetrieveAllNFTInProperty<T>(BaseEntity nft)
+        {
+            var lstNFTs = new List<T>();
+
+            var lstResult = dao.ExecuteQueryProcedure(mapper.GetRetrieveAllNFTInProperty(nft));
+            var dic = new Dictionary<string, object>();
+            if (lstResult.Count > 0)
+            {
+                var objs = mapper.BuildObjects(lstResult);
+                foreach (var c in objs)
+                {
+                    lstNFTs.Add((T)Convert.ChangeType(c, typeof(T)));
+                }
+            }
+            return lstNFTs;
+        }
+
+        public void PutOnSale(BaseEntity entity)
+        {
+            var nft = (NFT)entity;
+            dao.ExecuteProcedure(mapper.PutOnSale(nft));
+        }
+
+        public object RetrieveAllNFTINFO<T>(BaseEntity nft)
+        {
+            var lstNFTs = new List<T>();
+
+            var lstResult = dao.ExecuteQueryProcedure(mapper.GetRetrieveAllNFTINFO(nft));
+            var dic = new Dictionary<string, object>();
+            if (lstResult.Count > 0)
+            {
+                var objs = mapper.BuildObjectsINFO(lstResult);
+                foreach (var c in objs)
+                {
+                    lstNFTs.Add((T)Convert.ChangeType(c, typeof(T)));
+                }
+            }
+            return lstNFTs;
+        }
 
         public List<T> RetrieveAllNFTCategory<T>(string category)
         {
