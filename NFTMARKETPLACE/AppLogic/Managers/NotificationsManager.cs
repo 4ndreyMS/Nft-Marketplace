@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using DataAccess.Crud;
 using DTO_POJOS;
 namespace AppLogic.Managers
@@ -14,6 +15,7 @@ namespace AppLogic.Managers
 
         public void createNotif(Notifications _notifications)
         {
+            _notifications.SentDate = DateTime.Now;
             notiFactory.Create(_notifications);
         }
 

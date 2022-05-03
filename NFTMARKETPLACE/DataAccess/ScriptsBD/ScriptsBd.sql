@@ -562,3 +562,31 @@ SenderId NVARCHAR(100) NOT NULL,
 CONSTRAINT FK_ReceiverId_Notif FOREIGN KEY (ReceiverId) REFERENCES Company(Id),
 CONSTRAINT FK_SenderId_Notif FOREIGN KEY (SenderId) REFERENCES Company(Id)
 )
+GO
+--create
+CREATE PROCEDURE CRE_NOTIF_PR
+	@P_Msj NVARCHAR(150),
+	@P_SentDate DATETIME,
+	@P_ReceiverId NVARCHAR(100),
+	@P_SenderId NVARCHAR(100)
+AS
+	INSERT INTO Notifications(Msj, SentDate, ReceiverId, SenderId)
+	VALUES(@P_Msj,@P_SentDate,@P_ReceiverId,@P_SenderId)
+GO
+--delete
+CREATE PROCEDURE DEL_NOTIF_RECIVER_PR
+	@P_ReceiverId NVARCHAR(100),
+	@P_Id SMALLINT
+AS
+	DELETE FROM Notifications
+	WHERE ReceiverId = @P_ReceiverId AND Id = @P_Id
+
+--Retrieve all nofif receiver
+CREATE PROCEDURE RET_ALL_NOTIF_RECIVER_PR
+	@P_ReceiverId NVARCHAR(100)
+AS
+	SELECT *
+	FROM Notifications
+	WHERE ReceiverId = @P_ReceiverId
+
+

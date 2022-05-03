@@ -17,7 +17,7 @@ namespace DataAccess.Mapper
             SenderId
         }
 
-        private SqlOperation slqOperation;
+        private SqlOperation sqlOperation;
 
         public List<BaseEntity> BuildObjects(List<Dictionary<string, object>> lstRows)
         {
@@ -49,31 +49,58 @@ namespace DataAccess.Mapper
                 SenderId= GetStringValue(row, RowNames.SenderId.ToString()),
                 SentDate = GetDateValue(row,RowNames.SentDate.ToString())
             };
-
             return notification;
         }
 
         public SqlOperation GetCreateStatement(BaseEntity entity)
         {
-            throw new System.NotImplementedException();
+            sqlOperation = new SqlOperation()
+            {
+                ProcedureName = "CRE_NOTIF_PR"
+            };
+            var notif = (Notifications)entity;
+            sqlOperation.AddVarcharParam(RowNames.Msj.ToString(), notif.Msj);
+            sqlOperation.AddVarcharParam(RowNames.ReceiverId.ToString(), notif.ReceiverId);
+            sqlOperation.AddVarcharParam(RowNames.SenderId.ToString(), notif.SenderId);
+            sqlOperation.AddDateTimeParam(RowNames.SentDate.ToString(), notif.SentDate);
+            return sqlOperation;
         }
 
+        public SqlOperation GetRetriveAllByReciver(BaseEntity entity)
+        {
+            var notif = (Notifications)entity;
+            var operation = new SqlOperation { ProcedureName = "RET_ALL_NOTIF_RECIVER_PR" };
+            operation.AddVarcharParam(RowNames.ReceiverId.ToString(), notif.ReceiverId);
+            return operation;
+        }
+
+        public SqlOperation GetDeleteStatement(BaseEntity entity)
+        {
+            sqlOperation = new SqlOperation()
+            {
+                ProcedureName = "DEL_NOTIF_RECIVER_PR"
+            };
+
+            var notif = (Notifications)entity;
+            sqlOperation.AddVarcharParam(RowNames.ReceiverId.ToString(), notif.ReceiverId);
+            sqlOperation.AddSmallIntParam(RowNames.Id.ToString(), notif.Id);
+            return sqlOperation;
+        }
+
+        //not in use
         public SqlOperation GetRetriveStatement(BaseEntity entity)
         {
             throw new System.NotImplementedException();
         }
 
+        //not in use
         public SqlOperation GetRetriveAllStatement()
         {
-            throw new System.NotImplementedException();
+            return null;
         }
 
+        //not in used
         public SqlOperation GetUpdateStatement(BaseEntity entity)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public SqlOperation GetDeleteStatement(BaseEntity entity)
         {
             throw new System.NotImplementedException();
         }

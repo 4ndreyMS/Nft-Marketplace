@@ -11,6 +11,13 @@ namespace DataAccess.Crud
         private NotificationsMapper mapper;
         private SqlOperation sqlOperation;
 
+        public NotificationsCrudFactory()
+        {
+            mapper = new NotificationsMapper();
+            sqlOperation = new SqlOperation();
+            dao = SqlDao.GetInstance();
+        }
+
 
         public override void Create(BaseEntity entity)
         {
