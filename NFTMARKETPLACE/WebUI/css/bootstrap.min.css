@@ -11653,3 +11653,49 @@ textarea.form-control-lg {
 .fillAllBlanks {
     border: 2px solid #F27474;
 }
+
+
+.nftContainerCard {
+    padding: 20px 0 20px 0px;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    border: 0.1rem solid rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    margin: 10px 0 10px 0;
+}
+
+
+.deleteButton {
+    position: absolute;
+    border: none;
+    background-color: white;
+    width: 32px;
+    height: 32px;
+    opacity: 0.3;
+}
+
+.deleteButton:hover {
+    opacity: 1;
+}
+
+.deleteButton:before, .deleteButton:after {
+        position: absolute;
+        left: 5px;
+        content: '';
+        height: 23px;
+        width: 2px;
+        color: black;
+        background-color: #333;
+    }
+
+.deleteButton:before{
+    transform: rotate(45deg)
+}
+
+.deleteButton:after {
+    transform: rotate(-45deg)
+}
+
+
+body {
+    background-color: white !important;
+}

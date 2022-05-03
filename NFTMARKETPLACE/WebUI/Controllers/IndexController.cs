@@ -10,6 +10,7 @@ namespace WebUI.Controllers
     public class HomeController : Controller
     {
         static HttpClient client = new HttpClient();
+
         public ActionResult Index()
         {
             return View();
@@ -29,6 +30,7 @@ namespace WebUI.Controllers
         {
             return View();
         }
+
         public ActionResult Login()
         {
             return View();
@@ -43,14 +45,17 @@ namespace WebUI.Controllers
         {
             return View();
         }
+
         public ActionResult Wallet()
         {
             return View();
         }
+
         public ActionResult Profile()
         {
             return View();
         }
+
         public ActionResult EditProfile()
         {
             return View();
@@ -70,21 +75,31 @@ namespace WebUI.Controllers
         {
             return View();
         }
+
         public ActionResult Manager()
         {
             return View();
         }
+
         public ActionResult RegisterNFT()
         {
             return View();
         }
+
         public ActionResult CreateCollection()
         {
             return View();
         }
+
         public ActionResult BuyCFC()
         {
             return View();
+        }
+
+        public ActionResult ShoppingCart()
+        {
+            return View();
+
         }
     }
 }

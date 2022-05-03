@@ -18,6 +18,9 @@
     <meta name="keywords" content="" />
     <meta content="Pichforest" name="author" />
 
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <link rel="shortcut icon" href="../../Content/images/HeadIcon.png">
@@ -80,40 +83,22 @@
                 <ul class="navbar-nav mx-auto navbar-center">
                     <li class="nav-item dropdown dropdown-hover">
                         @Html.ActionLink("Home", "Index", "Home", new { @class = "nav-link" })
-
-
                     </li>
-
-
                     <li class="nav-item">
                         @Html.ActionLink("Marketplace", "Marketplace", "Marketplace", new { @class = "nav-link" })
                     </li>
-
                     <li class="nav-item">
-
                         @Html.ActionLink("Collection", "Collection", "Collection", new { @class = "nav-link" })
-
                     </li>
-
-
                     <li class="nav-item">
-
                         @Html.ActionLink("NFT'S", "ItemDetails", "NFT", new { @class = "nav-link" })
-
-
                     </li>
-
-
                     <li class="nav-item">
                         @Html.ActionLink("Login", "Login", "Login", new { @class = "nav-link" })
-
                     </li>
-
-
                     <li class="nav-item manager-links">
                         @Html.ActionLink("Manager", "Manager", "Dashboard", new { @class = "nav-link" })
                     </li>
-
                     <li class="nav-item dropdown dropdown-hover content-creator">
                         @Html.ActionLink("Create", "CreateCollection", "CreateCollection", new { @class = "nav-link dropdown-toggle" })
                         <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="homedrop">
@@ -124,7 +109,7 @@
                                 @Html.ActionLink("Register NFT", "RegisterNFT", "Register NFT", new { @class = "nav-link" })
                             </li>
                         </ul>
-                     </li>
+                    </li>
 
 
 
@@ -164,10 +149,20 @@
                     </li>
 
 
-                    <li class="nav-item">
-                        @Html.ActionLink("Contact", "Contact", "Contact", new { @class = "nav-link" })
+                    <li class="nav-item px-3 text-uppercase mb-0 position-relative d-lg-flex align-items-center cart">
+                        <div id="cart" class="d-none">
 
+                        </div>
+                        <a href="Shoppingcart" class="cart position-relative d-inline-flex" aria-label="View your shopping cart">
+                            <i class="fas fa fa-shopping-cart fa-lg cartColor"></i>
+                            <span class="cart-basket d-flex align-items-center justify-content-center" id="cartNum">
+                                0
+                            </span>
+                        </a>
                     </li>
+
+                    @*@Html.ActionLink("Contact", "Contact", "Contact", new {@class = "nav-link"})*@
+
                     <!--end dropdown-->
                 </ul>
                 <!--end navbar-nav-->

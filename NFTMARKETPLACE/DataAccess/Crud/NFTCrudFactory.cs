@@ -154,6 +154,13 @@ namespace DataAccess.Crud
             dao.ExecuteProcedure(mapper.GetUpdateStatement(nft));
         }
 
+        public void UpdateWhenBuyNft(BaseEntity entity)
+        {
+            var nft = (NFT)entity;
+            dao.ExecuteProcedure(mapper.UpdateWhenBuyNft(nft));
+        }
+
+
         public override void Delete(BaseEntity entity)
         {
             var nft = (NFT)entity;

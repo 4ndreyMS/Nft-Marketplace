@@ -517,7 +517,17 @@ AS
 RETURN 0
 GO
 
-
+--UPDATE NFT WHEN BUY IT
+CREATE PROCEDURE UPD_WHEN_BUY_NFT_PR
+	@P_Id nvarchar(100),
+	@P_Price decimal(10,3),
+	@P_IdCollection smallint,
+	@P_Owner nvarchar(100),
+	@P_SaleState nvarchar(50)
+AS
+	update [dbo].[NFT]
+	set Price = @P_Price, IdCollection = @P_IdCollection, IdOwner = @P_Owner, SaleState = @P_SaleState
+	where Id = @P_Id
 
 
 --table collection

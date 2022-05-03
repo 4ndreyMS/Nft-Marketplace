@@ -19,13 +19,11 @@
 
 
                     nftSection.innerHTML += `
-                             <div class="col-lg-3 mt-4" >
+                             <div class="col-lg-3 mt-4 nftCard">
                                 <div class="tab-content p-4 border-0">
                                     <div class="header d-flex align-items-center justify-content-start">
-                                        <div class="avatar-xs">
-                                            <img src="" alt="" class="img-fluid rounded-circle">
-                                        </div>
-                                        <h6 class="mb-0 ms-2 fw-semibold text-muted f-14">${card.OwnerName}</h6>
+                                        
+                                        <h6 class="mb-0 ms-2 fw-semibold text-muted f-14">By: ${card.OwnerName}</h6>
                                     </div>
                                     <div class="card-image mt-3">
                                         <img src="${card.Image}" alt="" class="img-fluid">
@@ -43,20 +41,119 @@
                                         </div>
                                         <hr>
                                         <div class="d-flex mt-3 align-items-center">
-                                            <div class="history">
-                                                <i class="mdi mdi-restart f-20 align-middle"></i>View History
-                                            </div>
+                                         
                                             <div class="bid-button ms-auto">
-                                                <button class="btn btn-sm btn-primary rounded-pill">Bid</button>
+                                                <button class="btn btn-sm btn-primary rounded-pill addToCart">Add to cart</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
     `
-                    })
+
+
+          
             })
-        }
+
+
+            let carts = document.querySelectorAll(".addToCart")
+          
+
+            for (let i = 0; i < carts.length; i++) {
+                    carts[i].addEventListener('click', () => {
+                        cartNumbers(response[i])
+                        totalCosts(response[i])
+                    })
+                }
+
+            function onLoadCardNumbers() {
+                let productNumbers = sessionStorage.getItem('NftName');
+
+                if (productNumbers) {
+                  
+                    document.querySelector('.cart span').textContent = productNumbers 
+                }
+
+            }
+
+           function cartNumbers(product) {
+
+                console.log("The product clicked is: ", product)
+                    let productNumbers = sessionStorage.getItem('NftName');
+                    productNumbers = parseInt(productNumbers)
+
+
+                    if (productNumbers) {
+                        sessionStorage.setItem('NftName', productNumbers + 1)
+                        document.querySelector('.cart span').textContent = productNumbers + 1
+                    } else {
+                        sessionStorage.setItem('NftName', 1)
+                        document.querySelector('.cart span').textContent = 1
+
+                    }
+
+                setItems(product)
+            }
+
+
+            function setItems(product) {
+
+
+                let cartItems = sessionStorage.getItem("productsInCart")
+                cartItems = JSON.parse(cartItems)
+
+                if (cartItems != null) {
+
+                    if (cartItems[product.NftName] == undefined) {
+                        cartItems = {
+                            ...cartItems,
+                            [product.NftName]: product
+
+                        }
+                    }
+
+                    cartItems[product.NftName].inCart += 1
+
+
+
+
+                } else {
+                    product.inCart = 1
+                    cartItems = {
+                        [product.NftName]: product
+                    }
+
+                }
+
+
+             
+                sessionStorage.setItem("productsInCart", JSON.stringify(cartItems))
+
+            }
+
+
+            function totalCosts(product) {
+
+                let cartCost = sessionStorage.getItem("totalCost")
+
+                if (cartCost != null) {
+                    cartCost = parseInt(cartCost)
+                    sessionStorage.setItem("totalCost", cartCost + product.Price)
+
+                } else {
+                    sessionStorage.setItem("totalCost", product.Price)
+
+                }
+            }
+
+            onLoadCardNumbers()
+            
+        })
+
+    }
+
+
+   
 }
 
 $(document).ready(function () {

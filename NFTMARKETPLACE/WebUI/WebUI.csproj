@@ -326,6 +326,7 @@
     <Content Include="Content\images\nyan-cat.gif" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\sweetalert2.css" />
+    <Content Include="css\fakefontawesome.css" />
     <Content Include="fonts\boxicons.svg" />
     <Content Include="fonts\materialdesignicons-webfont.svg" />
     <Content Include="fonts\mobirise.svg" />
@@ -471,6 +472,7 @@
     <Content Include="Scripts\Views\ControlActions.js" />
     <Content Include="Scripts\Views\CreateCollection.js" />
     <Content Include="Scripts\Views\CreateNft.js" />
+    <Content Include="Scripts\Views\ShoppingCart.js" />
     <Content Include="Scripts\Views\Login.js" />
     <Content Include="Scripts\Views\Logout.js" />
     <Content Include="Scripts\Views\ManagerCategoryTable.js" />
@@ -557,6 +559,7 @@
     <Content Include="Views\Shared\NavBarHome.cshtml" />
     <Content Include="Views\Home\BuyCFC.cshtml" />
     <Content Include="Views\Home\NFTSaleManager.cshtml" />
+    <Content Include="Views\Home\ShoppingCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
