@@ -75,6 +75,7 @@
     <Compile Include="Managers\LogginManager.cs" />
     <Compile Include="Managers\NFTManager.cs" />
     <Compile Include="Managers\NFT_CategoryManager.cs" />
+    <Compile Include="Managers\NotificationsManager.cs" />
     <Compile Include="Managers\OtpManager.cs" />
     <Compile Include="Managers\PricesManager.cs" />
     <Compile Include="Managers\SendMailManager.cs" />

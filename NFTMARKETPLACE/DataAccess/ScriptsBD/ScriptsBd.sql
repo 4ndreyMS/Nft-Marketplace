@@ -217,22 +217,20 @@ ALTER TABLE [User]
 	[Status] NVARCHAR(30) NULL;
 GO
 
-CREATE PROCEDURE CRE_USER_PR
+ALTER PROCEDURE [dbo].[CRE_USER_PR]
 @P_Cedula NVARCHAR(100),
-@P_Name NVARCHAR(50),
-@P_Surnames NVARCHAR(100),
-@P_Email NVARCHAR(100),
+@P_Name NVARCHAR(100),
+@P_Email NVARCHAR(75),
+@P_Status NVARCHAR(50),
 @P_Phone NVARCHAR(30),
-@P_Nickname NVARCHAR(50), 
-@P_IdOrganizarion NVARCHAR(100),
-@P_Status NVARCHAR(30),
-@P_Otp INT
+@P_Nickname NVARCHAR(50),
+@P_SureNames NVARCHAR(100),
+@P_Otp NVARCHAR(100),
+@P_IdOrganization NVARCHAR(100),
+@P_UserPic NVARCHAR(150)
 AS
-
-CREATE PROCEDURE RET_ALL_USER
-AS
-	SELECT IdentificationCard as Cedula,Name,Status,SureNames,Email,Phone,Otp,IdOrganization,Nickname
-	FROM [USER]
+INSERT INTO [User] (IdentificationCard, Name, Email, Status, Phone, Nickname, SureNames, Otp, IdOrganization, UserPic )
+VALUES (@P_Cedula, @P_Name, @P_Email, @P_Status, @P_Phone, @P_Nickname, @P_SureNames, @P_Otp, @P_IdOrganization,@P_UserPic )
 
 GO
 
@@ -386,13 +384,6 @@ Type NVARCHAR(30) NOT NULL,
 Msj NVARCHAR(150) NOT NULL
 )
 
---table company_notification
-CREATE TABLE Company_Nofitication(
-CompanyId NVARCHAR(100) NOT NULL,
-NotifId SMALLINT NOT NULL,
-PRIMARY KEY(CompanyId,NotifId)
-)
-
 --table reports
 CREATE TABLE Reports(
 Id SMALLINT NOT NULL identity(1,1) PRIMARY KEY,
@@ -417,14 +408,20 @@ CREATE TABLE [dbo].[TBL_NFT](
 	)
 GO
 --Insert NFT
-CREATE PROCEDURE CRE_NFT_PR
-	@P_Id INT,
-	@P_Name NVARCHAR(50),
-	@P_Amount DECIMAL(10,3),
-	@P_CreationDate DATETIME
-AS
-	INSERT INTO TBL_NFT(Id, Name, Amount, CreationDate)
-	VALUES(@P_Id, @P_Name, @P_Amount, @P_CreationDate)
+ALTER procedure [dbo].[CRE_NFT_PR] 
+	@P_Id nvarchar(100),
+	@P_NftName nvarchar(100),
+	@P_Price decimal(10,3),
+	@P_CreationDate datetime,
+	@P_IdCollection smallint,
+	@P_IdCreator nvarchar(100),
+	@P_IdOwner nvarchar(100),
+	@P_Image nvarchar(250),
+	@P_SaleState nvarchar(100)
+
+	as
+	insert into [dbo].[NFT] (Id, NftName, Price, CreationDate, IdCollection, IdCreator, IdOwner, Image, SaleState) 
+	values (@P_Id, @P_NftName, @P_Price, @P_CreationDate, @P_IdCollection, @P_IdCreator, @P_IdOwner, @P_Image, @P_SaleState);
 GO
 --Delete NFT
 CREATE PROCEDURE DEL_NFT_PR
@@ -458,6 +455,19 @@ AS
 		   FROM TBL_NFT;
 RETURN 0
 GO
+
+CREATE PROCEDURE RET_ALL_NFT_WITH_OWNER_PR
+AS
+	SELECT N.Id, N.NftName, N.Price, N.CreationDate, N.IdCollection, N.IdCreator, N.IdOwner, N.Image, C.CategoryName, U.Name as OwnerName
+	FROM NFT as N
+	INNER JOIN NFT_Category as NC on 
+	N.Id = NC.NFTId
+	INNER JOIN Category as C on
+	C.Id = NC.CategoryId
+	INNER JOIN [Company] as U on N.IdOwner = U.Id
+RETURN 0;
+RETURN 0;
+
 --RESPONSABLE: Alison Yeung
 --FECHA: 6/Abril/22
 --TABLA NFT Image
@@ -507,6 +517,9 @@ AS
 RETURN 0
 GO
 
+
+
+
 --table collection
 CREATE TABLE Collection(
 Id SMALLINT NOT NULL identity(1,1) PRIMARY KEY,
@@ -529,3 +542,13 @@ IdCategory SMALLINT NOT NULL,
 PRIMARY KEY(IdCollection, IdCategory)
 )
 
+--tbl notifications
+CREATE TABLE Notifications(
+Id SMALLINT NOT NULL identity(1,1) PRIMARY KEY,
+Msj NVARCHAR(150) NOT NULL,
+SentDate DATETIME NOT NULL,
+ReceiverId NVARCHAR(100) NOT NULL,
+SenderId NVARCHAR(100) NOT NULL,
+CONSTRAINT FK_ReceiverId_Notif FOREIGN KEY (ReceiverId) REFERENCES Company(Id),
+CONSTRAINT FK_SenderId_Notif FOREIGN KEY (SenderId) REFERENCES Company(Id)
+)

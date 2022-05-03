@@ -180,6 +180,7 @@
     <Compile Include="Controllers\LogginController.cs" />
     <Compile Include="Controllers\NFTController.cs" />
     <Compile Include="Controllers\NFT_CategoryController.cs" />
+    <Compile Include="Controllers\NotificationsController.cs" />
     <Compile Include="Controllers\OtpController.cs" />
     <Compile Include="Controllers\PasswordController.cs" />
     <Compile Include="Controllers\PricesController.cs" />
