@@ -40,6 +40,12 @@
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PayPalCheckoutSdk">
+      <HintPath>C:\Users\XPC\Downloads\Checkout-NET-SDK-develop\PayPalCheckoutSdk\bin\Debug\netstandard2.0\PayPalCheckoutSdk.dll</HintPath>
+    </Reference>
+    <Reference Include="PayPalHttp-Dotnet">
+      <HintPath>C:\Users\XPC\Downloads\Checkout-NET-SDK-develop\packages\PayPalHttp-Dotnet.1.0.0\lib\netstandard2.0\PayPalHttp-Dotnet.dll</HintPath>
+    </Reference>
     <Reference Include="SendGrid, Version=9.27.0.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
       <HintPath>..\packages\SendGrid.9.27.0\lib\net452\SendGrid.dll</HintPath>
     </Reference>
