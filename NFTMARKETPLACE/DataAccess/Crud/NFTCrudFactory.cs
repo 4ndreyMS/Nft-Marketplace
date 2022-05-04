@@ -166,6 +166,23 @@ namespace DataAccess.Crud
             var nft = (NFT)entity;
             dao.ExecuteProcedure(mapper.GetDeleteStatement(nft));
         }
+
+        public List<T> RetrieveNftBySaleState<T>(BaseEntity entity)
+        {
+            var lstNFTs = new List<T>();
+
+            var lstResult = dao.ExecuteQueryProcedure(mapper.getRetrieveNftBySaleState(entity));
+            var dic = new Dictionary<string, object>();
+            if (lstResult.Count > 0)
+            {
+                var objs = mapper.BuildObjectsWithOwner(lstResult);
+                foreach (var c in objs)
+                {
+                    lstNFTs.Add((T)Convert.ChangeType(c, typeof(T)));
+                }
+            }
+            return lstNFTs;
+        }
     }
 }
 

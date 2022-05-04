@@ -2,27 +2,30 @@
 
 
  
-    const card = "nav-card"
 
     const nftSection = document.getElementById("row-cards")
     this.service = 'NFT';
     const cntrlAction = new ControlActions();
+    let nft = { SaleState: "OnSale" }
 
  
-
+    //inicio de la funcion
     this.RetrieveAllNfts = () => {
-        cntrlAction.PostToAPI(this.service + "/RetrieveAllNFTWithOwner", card, function (response) {
 
-            
+        //devuelve toda la informacion de los nft
+        cntrlAction.PostToAPI(this.service + "/RetrieveNftBySaleState", nft, function (response) {
 
+            //itera segun los nft que hayan en la bd
             response.forEach((card) => {
 
-
-                    nftSection.innerHTML += `
+                //si el estado del nft esta en venta imprime
+                nftSection.innerHTML += `
                              <div class="col-lg-3 mt-4 nftCard">
                                 <div class="tab-content p-4 border-0">
                                     <div class="header d-flex align-items-center justify-content-start">
-                                        
+                                        <div class="avatar-xs">
+                                            <img src="${card.UserPic}" alt="" class="img-fluid rounded-circle">
+                                        </div>
                                         <h6 class="mb-0 ms-2 fw-semibold text-muted f-14">By: ${card.OwnerName}</h6>
                                     </div>
                                     <div class="card-image mt-3">
@@ -48,12 +51,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-    `
-
-
-          
-            })
+                            </div>`
+                })
 
 
             let carts = document.querySelectorAll(".addToCart")

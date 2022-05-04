@@ -407,6 +407,18 @@ CREATE TABLE [dbo].[TBL_NFT](
 	CONSTRAINT FK_IdCreator_NFT FOREIGN KEY (IdCreator) REFERENCES [User](Cedula)
 	)
 GO
+--retsale by nft
+CREATE PROCEDURE RET_NFT_SALESTATE_PR
+@P_SaleState NVARCHAR(50)
+AS
+	SELECT N.Id, N.NftName, N.Price, N.CreationDate, N.IdCollection, N.IdCreator, N.IdOwner, N.Image, N.SaleState, C.CategoryName, U.Name as OwnerName, US.UserPic
+	FROM NFT as N
+	INNER JOIN NFT_Category as NC on N.Id = NC.NFTId
+	INNER JOIN Category as C on C.Id = NC.CategoryId
+	INNER JOIN [Company] as U on N.IdOwner = U.Id
+	INNER JOIN [User] as US on US.IdOrganization = U.Id
+	WHERE SaleState = @P_SaleState
+RETURN 0;
 --Insert NFT
 ALTER procedure [dbo].[CRE_NFT_PR] 
 	@P_Id nvarchar(100),

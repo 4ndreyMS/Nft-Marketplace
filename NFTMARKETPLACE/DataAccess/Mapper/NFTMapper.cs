@@ -240,7 +240,9 @@ namespace DataAccess.Mapper
                 IdCreator = GetStringValue(row, DB_COL_IdCreator),
                 IdOwner = GetStringValue(row, DB_COL_IdOwner),
                 Image = GetStringValue(row, DB_COL_Image),
-                OwnerName = GetStringValue(row, DB_COL_OwnerName)
+                OwnerName = GetStringValue(row, DB_COL_OwnerName),
+                SaleState = GetStringValue(row, DB_COL_SaleState),
+                UserPic = GetStringValue(row, DB_COL_UserImage)
             };
 
             return nft;
@@ -274,6 +276,16 @@ namespace DataAccess.Mapper
             };
 
             return nft;
+        }
+
+        public SqlOperation getRetrieveNftBySaleState(BaseEntity entity)
+        {
+            var operation = new SqlOperation { ProcedureName = "RET_NFT_SALESTATE_PR" };
+
+            var c = (NFT)entity;
+            operation.AddVarcharParam(DB_COL_SaleState,c.SaleState);
+
+            return operation;
         }
     }
 }
