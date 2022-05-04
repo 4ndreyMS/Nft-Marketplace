@@ -105,6 +105,18 @@ namespace WebAPI.Controllers
             };
         }
 
+        [HttpPost]
+        public APIResponse RetrieveNftBySaleState(NFT _nft)
+        {
+            var nm = new NFTManager();
+            return new APIResponse()
+            {
+                Data = nm.RetrieveNftBySaleState(_nft),
+                Message = "All NFT in the data base",
+                Status = "Ok",
+                TransacctionDate = DateTime.Now.ToString()
+            };
+        }
 
         [HttpGet]
         public APIResponse RetrieveAllNFTCategory(string nft)
