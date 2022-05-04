@@ -4,6 +4,7 @@
     const walletService = "Wallet";
     const frmValue = ctrlActions.GetDataForm("frmAmount");
     const cfcPerDolar = 66.0;
+    const userCompany = sessionStorage.getItem('UserCompany');
 
     this.ConvertDolarToCFC = function (val) {
 
@@ -16,7 +17,7 @@
 
         let ccAmount = this.ConvertDolarToCFC(frmValue.DolarAmount);
         let wallet = {
-            CompanyId: sessionStorage.getItem('UserCompany'),
+            CompanyId: userCompany,
             Amount: 0.0,
             Identifier: ""
         }

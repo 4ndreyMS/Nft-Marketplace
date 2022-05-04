@@ -486,6 +486,7 @@
     <Content Include="Scripts\Views\ManagerUserTable.js" />
     <Content Include="Scripts\Views\Marketplace.js" />
     <Content Include="Scripts\Views\NavBar.js" />
+    <Content Include="Scripts\Views\paypal.js" />
     <Content Include="Scripts\Views\Profile.js" />
     <Content Include="Scripts\Views\Register.js" />
     <Content Include="Scripts\Views\RegisterContentCreator.js" />
