@@ -2,6 +2,7 @@
 
     const serviceNFT = "NFT";
     const ctrlActions = new ControlActions();
+    let price;
 
     this.validateLogin = function () {
 
@@ -84,7 +85,7 @@
                     </div>
                 </div>
                     `
-
+                price = card.Price;
             })
 
         });
@@ -110,6 +111,13 @@
             ctrlActions.PostToAPI("NFT" + "/PutOnSale", NFT, function (response) { });
             window.location.href = "profile";
         }
+    }
+
+    this.PutInOffer = function () {
+        var ctrlActions = new ControlActions();
+        var NFT = { Id: sessionStorage.getItem('NFTSelected'), price, SaleState: "InOffer" }
+        ctrlActions.PostToAPI("NFT" + "/PutOnSale", NFT, function (response) { });
+        window.location.href = "profile";
     }
 
 }
