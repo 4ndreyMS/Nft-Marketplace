@@ -101,5 +101,9 @@ namespace WebUI.Controllers
             return View();
 
         }
+        public ActionResult Activity()
+        {
+            return View();
+        }
     }
 }

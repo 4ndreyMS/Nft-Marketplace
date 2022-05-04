@@ -467,6 +467,7 @@
     <Content Include="Scripts\todolist.js" />
     <Content Include="Scripts\tooltips.js" />
     <Content Include="Scripts\typeahead.js" />
+    <Content Include="Scripts\Views\Activity.js" />
     <Content Include="Scripts\Views\BuyCFC.js" />
     <Content Include="Scripts\Views\CloudinaryManager.js" />
     <Content Include="Scripts\Views\ControlActions.js" />
@@ -560,6 +561,7 @@
     <Content Include="Views\Home\BuyCFC.cshtml" />
     <Content Include="Views\Home\NFTSaleManager.cshtml" />
     <Content Include="Views\Home\ShoppingCart.cshtml" />
+    <Content Include="Views\Home\Activity.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
