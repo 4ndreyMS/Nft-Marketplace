@@ -109,6 +109,11 @@ namespace AppLogic.Managers
             return nftCF.RetrieveAllNFTINFO<InfoNFT>(nft);
         }
 
+        public List<NFTC> RetrieveNftBySaleState(NFT _nft)
+        {
+            return nftCF.RetrieveNftBySaleState<NFTC>(_nft);
+        }
+
         public void PutOnSale(NFT nft)
         {
             nftCF.PutOnSale(nft);
