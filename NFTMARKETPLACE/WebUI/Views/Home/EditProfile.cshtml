@@ -35,6 +35,8 @@
 
     <script src="~/Scripts/Views/EditProfile.js"></script>
 
+    <script src="~/Scripts/Views/CloudinaryManager.js"></script>
+
 </head>
 
 <body data-bs-spy="scroll" data-bs-target="#navbar-navlist" data-bs-offset="71">
@@ -92,18 +94,18 @@
                             <div class="profile-item">
                                 <div class="avatar">
                                     @*<img src="../../Content/images/inner-image/img-1.png" alt="" class="img-fluid rounded-circle avatar-xl">*@
-                                    <img id="UserUpd" alt="" class="img-fluid rounded-circle avatar-xl">
+                                    <img id="UserUpd" src="" alt="" class="img-fluid rounded-circle avatar-xl">
 
                                 </div>
                                 <p class=" mb-0 my-3 fw-bold">Profile Photo </p>
 
                                 @*<p class="mt-2">Your introduction and credits are two of the most important elements of your StarNow profile.</p>*@
-                                @Html.CtrlButton("CloudinaryManager", "btnUserPhotoUpd", "Update Photo", onClickFunction: "uploadUserCreatorPhoto")
+                                @Html.CtrlButton("CloudinaryManager", "btnUserPhotoUpd", "Update Photo", onClickFunction: "updatedUserPhoto")
 
                             </div>
-                            <br/>
+                            <br />
 
-                            @Html.CtrlInput("txtNameUpd", "Text", "Name :", "Ej: Chinchilla", "name")
+                            @Html.CtrlInput("txtNameUpd", "Text", "Name :", "Ej: Josue", "name")
 
                             @Html.CtrlInput("txtInputUpd", "Text", "Surenames :", "Ej: Chinchilla", "sureName")
 
@@ -111,8 +113,11 @@
 
                             @Html.CtrlInput("txtPhoneUpd", "number", "Phone :", "+506 8823-1920", "phone")
 
+                            @Html.CtrlInput("txtWalletIdUpd", "number", "Wallet Pin: ", "0000", "WalletPin")
+
+
                         </div>
-                        <div class="col-lg-5" id="updOnlyContentCretor">
+                        <div class="col-lg-5" id="updOnlyContentCretor" style="display:none">
 
                             <div class="profile-item" style="height: 255px; margin-right: 0 "></div>
 
@@ -121,9 +126,6 @@
 
                             @Html.CtrlInput("txtCompanyUpd", "Text", "Company Name :", "Ej: NetOrg", "companyName")
 
-                            @Html.CtrlInput("txtEmailUpd", "text", "Company Email :", "example@gmail.com", "companyEmail")
-
-                            @Html.CtrlInput("txtWalletIdUpd", "number", "Wallet Pin: ", "0000", "WalletPin")
 
 
                         </div>
@@ -181,7 +183,7 @@
                                         <li><a href="blog.html">Blog</a></li>
                                         <li><a href="contact.html">Contact</a></li>
                                     </ul>
-                                </div>
+                                    </div>
                             </div>
                         </div>
                     </div>
@@ -215,7 +217,9 @@
         </div>
     </section>
     <!-- end footer -->
-    <!--Bootstrap Js-->
+<!--Bootstrap Js--> 
+    <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+
     <script src="../../Scripts/bootstrap.bundle.min.js"></script>
 
     <!-- Slider Js -->
