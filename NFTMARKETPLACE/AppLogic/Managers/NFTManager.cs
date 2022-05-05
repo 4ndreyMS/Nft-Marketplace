@@ -118,5 +118,10 @@ namespace AppLogic.Managers
         {
             nftCF.PutOnSale(nft);
         }
+
+        public void UpdateNftCollection(NFT _nft)
+        {
+            nftCF.UpdateNftCollection(_nft);
+        }
     }
 }

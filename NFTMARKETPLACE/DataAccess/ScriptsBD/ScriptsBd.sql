@@ -416,6 +416,16 @@ CREATE TABLE [dbo].[TBL_NFT](
 	CONSTRAINT FK_IdCreator_NFT FOREIGN KEY (IdCreator) REFERENCES [User](Cedula)
 	)
 GO
+
+--upd collection nft
+CREATE PROCEDURE UPD_NFT_COLLECTION_PR
+	@P_Id NVARCHAR(100),
+	@P_IdCollection SMALLINT
+AS
+	UPDATE NFT
+	SET IdCollection = @P_IdCollection
+	WHERE Id = @P_Id
+
 --retsale by nft
 CREATE PROCEDURE RET_NFT_SALESTATE_PR
 @P_SaleState NVARCHAR(50)

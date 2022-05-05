@@ -12,6 +12,7 @@ function EditProfile() {
     this.UpdProfile = function () {
         let btnImage = localStorage.getItem('UserPhoto');
         let retForm = ctrlActions.GetDataForm("frmUpdInfo");
+        let formId = document.getElementById("frmUpdInfo");
         let User = {
             Cedula: sessionStorage.getItem("UserCedula"),
             Name: "",
@@ -26,7 +27,9 @@ function EditProfile() {
             }
         }
 
-        if (retForm.name === "" && retForm.sureName === "" && retForm.nickname === "" && retForm.phone === "" && retForm.WalletPin === "" && btnImage === null ) {
+        if (retForm.name === "" && retForm.sureName === "" && retForm.nickname === ""
+            && retForm.phone === "" && retForm.WalletPin === "" && btnImage === null) {
+
             Swal.fire({
                 title: 'You have to fill at least one blank',
                 text: '',
@@ -76,24 +79,22 @@ function EditProfile() {
                 }
                 console.log(User);
 
-                ctrlActions.PostToAPI(serviceUser + "/updateUserInfo", Company, function (response) {
-                    if (retForm.companyName === "" || retForm.companyName === " ") {
-                        User.Company.name = response.name;
-                    } else {
-                        User.Company.name = retForm.companyName
-                    }
-                    console.log(User);
-
-
-
-                })
-
-            })
+                ctrlActions.PostToAPI(serviceUser + "/updateUserInfo", User, function(response) {
+                    formId.reset();
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'You have update your profile info',
+                        width: 600,
+                        padding: '3em',
+                        color: '#000',
+                        background: '#fff',
+                        confirmButtonColor: "#DD6B55",
+                        icon: 'success'
+                    })
+                });
+            });
         }
-        
-
     }
-
 }
 
 function loadUserInfo() {
@@ -118,6 +119,7 @@ $(window).on("load", function () {
         window.location.href = "Login";
         return false;
     } else {
+        sessionStorage.removeItem("UserPhoto");
         showFrm();
         loadUserInfo();
     }
