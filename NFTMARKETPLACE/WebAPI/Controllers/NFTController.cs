@@ -162,5 +162,18 @@ namespace WebAPI.Controllers
         {
             nftM.PutOnSale(nft);
         }
+
+        [HttpPost]
+        public APIResponse UpdateNftCollection(NFT nft)
+        {
+            nftM.UpdateNftCollection(nft);
+            return new APIResponse()
+            {
+                Data = "NFT collection Updated",
+                Message = "NFT collection Updated",
+                Status = "Ok",
+                TransacctionDate = DateTime.Now.ToString()
+            };
+        }
     }
 }

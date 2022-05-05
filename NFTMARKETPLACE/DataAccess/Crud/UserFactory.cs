@@ -130,8 +130,10 @@ namespace DataAccess.Crud
             dao.ExecuteProcedure(sqlOperation);
         }
 
-        
 
-
+        public void updateUserInfo(User user)
+        {
+            dao.ExecuteProcedure(mapper.GetUpdateUserInfo(user));
+        }
     }
 }

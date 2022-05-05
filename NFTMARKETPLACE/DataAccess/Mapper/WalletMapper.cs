@@ -119,6 +119,17 @@ namespace DataAccess.Mapper
             return wallet;
         }
 
-        
+
+        public SqlOperation UpdateWalletPin(BaseEntity entity)
+        {
+            slqOperation = new SqlOperation()
+            {
+                ProcedureName = "UPD_WALLET_PIN_PR"
+            };
+            var obj = (Wallet)entity;
+            slqOperation.AddDoubleParam(RowNames.WalletPin.ToString(), obj.WalletPin);
+            slqOperation.AddVarcharParam(RowNames.CompanyId.ToString(), obj.CompanyId);
+            return slqOperation;
+        }
     }
 }

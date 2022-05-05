@@ -245,5 +245,22 @@ namespace DataAccess.Mapper
             sqlOperation.AddVarcharParam(RowNames.Cedula.ToString(), user.Cedula);
             return sqlOperation;      
         }
+
+        public SqlOperation GetUpdateUserInfo(User user)
+        {
+            sqlOperation = new SqlOperation()
+
+            {
+                ProcedureName = "UPD_INFO_USER_PR"
+            };
+
+            sqlOperation.AddVarcharParam(RowNames.Name.ToString(), user.Name);
+            sqlOperation.AddVarcharParam(RowNames.Nickname.ToString(), user.Nickname);
+            sqlOperation.AddVarcharParam(RowNames.Phone.ToString(), user.Phone);
+            sqlOperation.AddVarcharParam(RowNames.SureNames.ToString(), user.SureName);
+            sqlOperation.AddVarcharParam(RowNames.UserPic.ToString(), user.UserPic);
+            sqlOperation.AddVarcharParam(RowNames.Cedula.ToString(), user.Cedula);
+            return sqlOperation;
+        }
     }
 }

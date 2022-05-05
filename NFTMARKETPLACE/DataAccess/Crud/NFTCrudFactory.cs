@@ -183,6 +183,11 @@ namespace DataAccess.Crud
             }
             return lstNFTs;
         }
+
+        public void UpdateNftCollection(BaseEntity entity)
+        {
+            dao.ExecuteProcedure(mapper.UpdateNftCollection(entity));
+        }
     }
 }
 

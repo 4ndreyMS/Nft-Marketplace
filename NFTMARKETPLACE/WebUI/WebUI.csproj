@@ -473,6 +473,7 @@
     <Content Include="Scripts\Views\ControlActions.js" />
     <Content Include="Scripts\Views\CreateCollection.js" />
     <Content Include="Scripts\Views\CreateNft.js" />
+    <Content Include="Scripts\Views\EditProfile.js" />
     <Content Include="Scripts\Views\ShoppingCart.js" />
     <Content Include="Scripts\Views\Login.js" />
     <Content Include="Scripts\Views\Logout.js" />

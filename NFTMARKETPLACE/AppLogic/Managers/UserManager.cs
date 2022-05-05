@@ -18,7 +18,7 @@ namespace AppLogic.Managers
         private OtpManager _otp;
         private ActionLogManager ActionManager;
         private UserPasswordManager userPassword;
-        
+        private WalletManager walletManager;
         private SendMailManager sendMail;
         //private UserRole user;
 
@@ -234,9 +234,6 @@ namespace AppLogic.Managers
             return new User() { IdOrganization = "0", Status = "false" };
         }
 
-
-
-
         //Deletes
         public void DeleteUser(User _user)
         {
@@ -368,5 +365,18 @@ namespace AppLogic.Managers
         }
 
 
+        public void UpdateUserInfo(User _user)
+        {
+            companyManager = new CompanyManager();
+            walletManager = new WalletManager();
+
+            if (_user.Company.walletPin!=0)
+            {
+                walletManager.updateWalletPin(new Wallet() {WalletPin = _user.Company.walletPin, CompanyId = _user.Company.id});
+
+            }
+            companyManager.UpdateName(_user.Company);
+            UserFactory.updateUserInfo(_user);
+        }
     }
 }
