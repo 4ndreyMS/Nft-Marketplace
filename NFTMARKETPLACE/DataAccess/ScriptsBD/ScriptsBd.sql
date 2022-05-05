@@ -571,34 +571,33 @@ Msj NVARCHAR(150) NOT NULL,
 SentDate DATETIME NOT NULL,
 ReceiverId NVARCHAR(100) NOT NULL,
 SenderId NVARCHAR(100) NOT NULL,
+NftId NVARCHAR(100),
 CONSTRAINT FK_ReceiverId_Notif FOREIGN KEY (ReceiverId) REFERENCES Company(Id),
-CONSTRAINT FK_SenderId_Notif FOREIGN KEY (SenderId) REFERENCES Company(Id)
+CONSTRAINT FK_SenderId_Notif FOREIGN KEY (SenderId) REFERENCES Company(Id),
+CONSTRAINT FK_NftId_Notif FOREIGN KEY (NftId) REFERENCES NFT(Id)
 )
-GO
---create
-CREATE PROCEDURE CRE_NOTIF_PR
-	@P_Msj NVARCHAR(150),
-	@P_SentDate DATETIME,
-	@P_ReceiverId NVARCHAR(100),
-	@P_SenderId NVARCHAR(100)
-AS
-	INSERT INTO Notifications(Msj, SentDate, ReceiverId, SenderId)
-	VALUES(@P_Msj,@P_SentDate,@P_ReceiverId,@P_SenderId)
-GO
---delete
-CREATE PROCEDURE DEL_NOTIF_RECIVER_PR
-	@P_ReceiverId NVARCHAR(100),
-	@P_Id SMALLINT
-AS
-	DELETE FROM Notifications
-	WHERE ReceiverId = @P_ReceiverId AND Id = @P_Id
 
---Retrieve all nofif receiver
-CREATE PROCEDURE RET_ALL_NOTIF_RECIVER_PR
+
+--create notif
+ALTER PROCEDURE [dbo].[CRE_NOTIF_PR]
+@P_Msj NVARCHAR(150),
+@P_SentDate DATETIME,
+@P_ReceiverId NVARCHAR(100),
+@P_SenderId NVARCHAR(100),
+@P_NftId NVARCHAR(100)
+AS
+INSERT INTO Notifications(Msj, SentDate, ReceiverId, SenderId,NftId)
+VALUES(@P_Msj,@P_SentDate,@P_ReceiverId,@P_SenderId,@P_NftId)
+
+
+--ret all
+ALTER PROCEDURE [dbo].[RET_ALL_NOTIF_RECIVER_PR]
 	@P_ReceiverId NVARCHAR(100)
 AS
-	SELECT *
-	FROM Notifications
+	SELECT N.*, CO.Name as SenderName, NF.Image as NftImage
+	FROM Notifications AS N
+	INNER JOIN Company as CO on N.SenderId= CO.Id
+	INNER JOIN NFT as NF on N.NftId = NF.Id
 	WHERE ReceiverId = @P_ReceiverId
 
 
