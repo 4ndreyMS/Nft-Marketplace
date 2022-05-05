@@ -368,5 +368,12 @@ namespace AppLogic.Managers
         }
 
 
+        public void UpdateUserInfo(User _user)
+        {
+            companyManager = new CompanyManager();
+
+            companyManager.UpdateName(_user.Company);
+            UserFactory.updateUserInfo(_user);
+        }
     }
 }

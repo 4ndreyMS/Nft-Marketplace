@@ -13,12 +13,14 @@ function EditProfile() {
         let btnImage = localStorage.getItem('UserPhoto');
         let retForm = ctrlActions.GetDataForm("frmUpdInfo");
         let User = {
+            Cedula: sessionStorage.getItem("UserCedula"),
             Name: "",
             SureName: "",
             Phone: "",
             Nickname: "",
             UserPic: "",
             Company: {
+                id: sessionStorage.getItem("UserCompany"),
                 name: "",
                 walletPin :0
             }
@@ -73,6 +75,18 @@ function EditProfile() {
                     User.Company.name = retForm.companyName
                 }
                 console.log(User);
+
+                ctrlActions.PostToAPI(serviceUser + "/updateUserInfo", Company, function (response) {
+                    if (retForm.companyName === "" || retForm.companyName === " ") {
+                        User.Company.name = response.name;
+                    } else {
+                        User.Company.name = retForm.companyName
+                    }
+                    console.log(User);
+
+
+
+                })
 
             })
         }

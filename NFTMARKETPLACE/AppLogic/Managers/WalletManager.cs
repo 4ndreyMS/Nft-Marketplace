@@ -69,5 +69,9 @@ namespace AppLogic.Managers
             return wFactory.Retrieve<Wallet>(new Wallet(){CompanyId = retUSer.IdOrganization});
         }
 
+        public void updateWalletPin(Wallet _wallet)
+        {
+            wFactory.UpdateWalletPin(_wallet);
+        }
     }
 }

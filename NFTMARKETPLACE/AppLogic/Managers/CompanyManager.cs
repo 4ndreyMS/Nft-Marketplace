@@ -88,5 +88,11 @@ namespace AppLogic.Managers
         {
             return CompanyFactory.RetrieveAll<Company>();
         }
+
+        public void UpdateName(Company _company)
+        {
+            CompanyFactory.UpdateName(_company);
+
+        }
     }
 }

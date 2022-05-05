@@ -554,3 +554,33 @@ IdCategory SMALLINT NOT NULL,
 PRIMARY KEY(IdCollection, IdCategory)
 )
 
+--Update profile
+CREATE PROCEDURE UPD_INFO_USER_PR
+	@P_Cedula NVARCHAR(100),
+	@P_Name NVARCHAR(50),
+	@P_SureNames NVARCHAR(100),
+	@P_Phone NVARCHAR(30),
+	@P_Nickname NVARCHAR(50),
+	@P_UserPic NVARCHAR(150)
+AS
+	UPDATE [User]
+	SET [Name] = @P_Name , SureNames= @P_SureNames,Phone= @P_Phone, Nickname= @P_Nickname, UserPic=@P_UserPic
+	WHERE IdentificationCard = @P_Cedula
+
+GO
+--upd company name
+CREATE PROCEDURE UPD_NAME_COMPANY_PR
+	@P_Id NVARCHAR(100),
+	@P_Name NVARCHAR(100)
+AS
+	UPDATE Company
+	SET [Name] = @P_Name
+	WHERE Id = @P_Id
+GO
+CREATE PROCEDURE UPD_WALLET_PIN_PR
+	@P_WalletPin NVARCHAR(100),
+	@P_CompanyId NVARCHAR(100)
+AS
+	UPDATE Wallet
+	SET WalletPin = @P_WalletPin
+	WHERE CompanyId = @P_CompanyId

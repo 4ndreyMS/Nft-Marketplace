@@ -104,5 +104,10 @@ namespace DataAccess.Crud
             var sqlOperation = mapper.GetUpdateStatusStatement(entity);
             dao.ExecuteProcedure(sqlOperation);
         }
+
+        public void UpdateName(Company company)
+        {
+            dao.ExecuteProcedure(mapper.GetUpdateNameStatement(company));
+        }
     }
 }
