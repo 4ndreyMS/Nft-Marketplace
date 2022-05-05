@@ -191,7 +191,7 @@
                                                 <input type="number" class="form-control" id="${card.Id}">
                                             </div>
                                             <div class="bid-button ms-auto">
-                                                <button class="btn btn-sm btn-primary rounded-pill" onclick="MakeAnOffer('${card.Id}')">Offer</button>
+                                                <button class="btn btn-sm btn-primary rounded-pill" onclick="MakeAnOffer('${card.Id}', '${card.IdOwner}')">Offer</button>
                                             </div>
                                         </div>
                                     </div>
@@ -202,9 +202,32 @@
     }
 }
 
-function MakeAnOffer(Id) {
+function MakeAnOffer(Id, IdOwner) {
+    let cntrlAction = new ControlActions();
     var price = document.getElementById(Id).value;
-    
+    if (sessionStorage.getItem('UserCedula') === null) {
+        window.location.href = "Login";
+    } else {
+        if ((sessionStorage.getItem('UserCompany') == IdOwner)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'You can not offer for your own NFT.',
+            })
+        } else {
+            if (price == "") {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'You miss something',
+                    text: 'Please insert an amount to make the offer',
+                })
+            } else {
+                let Offer = { NFT: Id, BidderID: sessionStorage.getItem('UserCompany'), OwnerID: IdOwner, Amount: price}
+                cntrlAction.PostToAPI("Offer" + "/CreateOffer", Offer, function (response) { })
+                window.getElementById(Id).value = "";
+            }
+        }
+    }
 }
 
 $(document).ready(function () {
