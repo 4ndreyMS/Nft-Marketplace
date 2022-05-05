@@ -151,11 +151,64 @@
 
     }
 
+    this.RetrieveAllNftsInOffer = () => {
 
-   
+        let NFTO = { SaleState: "InOffer" }
+
+        //devuelve toda la informacion de los nft
+        cntrlAction.PostToAPI(this.service + "/RetrieveNftBySaleState", NFTO, function (response) {
+
+            //itera segun los nft que hayan en la bd
+            response.forEach((card) => {
+
+                //si el estado del nft esta en venta imprime
+                NFTInOffer.innerHTML += `
+                             <div class="col-lg-3 mt-4 nftCard">
+                                <div class="tab-content p-4 border-0">
+                                    <div class="header d-flex align-items-center justify-content-start">
+                                        <div class="avatar-xs">
+                                            <img src="${card.UserPic}" alt="" class="img-fluid rounded-circle">
+                                        </div>
+                                        <h6 class="mb-0 ms-2 fw-semibold text-muted f-14">By: ${card.OwnerName}</h6>
+                                    </div>
+                                    <div class="card-image mt-3">
+                                        <img src="${card.Image}" alt="" class="img-fluid">
+                                    </div>
+                                    <div class="body-content mt-3">
+                                        <h6 class="fw-bold">  ${card.NftName}</h6>
+                                        <div class="d-flex">
+                                            <p class="text-muted">1 in stock</p>
+                                            <p class="ms-auto text-muted">
+                                                Price : <span class="text-success">
+                                                   ${card.Price}
+                                                    CFC
+                                                </span>
+                                            </p>
+                                        </div>
+                                        <hr>
+                                        <div class="d-flex mt-3 align-items-center">                                         
+                                            <div class="bid-button ms-auto">
+                                                <input type="number" class="form-control" id="${card.Id}">
+                                            </div>
+                                            <div class="bid-button ms-auto">
+                                                <button class="btn btn-sm btn-primary rounded-pill" onclick="MakeAnOffer('${card.Id}')">Offer</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>`
+            })                                        
+        })
+    }
+}
+
+function MakeAnOffer(Id) {
+    var price = document.getElementById(Id).value;
+    
 }
 
 $(document).ready(function () {
     var tblLoad = new ManagerNFTCard();
     tblLoad.RetrieveAllNfts();
+    tblLoad.RetrieveAllNftsInOffer();
 });

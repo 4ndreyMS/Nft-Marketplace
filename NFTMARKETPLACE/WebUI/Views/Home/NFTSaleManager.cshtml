@@ -83,7 +83,7 @@
                 <div class="tab-content mt-5" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-games" role="tabpanel" aria-labelledby="pills-games-tab">
                         <form id="saleForm" style="margin-right: 15px;">
-                            @Html.CtrlInput("txtPriceAmount", "text", "Price amount:", "Enter the price", "Amount")
+                            @Html.CtrlInput("txtPriceAmount", "number", "Price amount:", "Enter the price", "Amount")
                         </form>
                         <div class="submit-button mt-4">
                             @Html.CtrlButton("NFTSaleManager", "btnSale", "Put on sale", "PutOnSale", "primary w - 100")
