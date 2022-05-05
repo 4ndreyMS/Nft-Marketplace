@@ -119,7 +119,7 @@ $(window).on("load", function () {
         window.location.href = "Login";
         return false;
     } else {
-        sessionStorage.removeItem("UserPhoto");
+        localStorage.removeItem("UserPhoto");
         showFrm();
         loadUserInfo();
     }
