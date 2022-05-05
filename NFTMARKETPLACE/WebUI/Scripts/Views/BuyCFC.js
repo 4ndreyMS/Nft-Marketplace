@@ -1,102 +1,117 @@
-﻿function BuyCFC() {
+﻿const cfcPerDolar = 66.0;
+const ctrlActions = new ControlActions();
+const walletService = "Wallet";
+let frmValue = 0.0
+const userCompany = sessionStorage.getItem('UserCompany');
 
-    const ctrlActions = new ControlActions();
-    const walletService = "Wallet";
-    const frmValue = ctrlActions.GetDataForm("frmAmount");
-    const cfcPerDolar = 66.0;
-    const userCompany = sessionStorage.getItem('UserCompany');
+function ConvertDolarToCFC(val) {
+    var op = val / cfcPerDolar;
+    op = op.toFixed(3);
+    return op;
+}
 
-    this.ConvertDolarToCFC = function (val) {
-
-        var op = val / cfcPerDolar;
-        op = op.toFixed(3);
-        return op;
-    }
-
-    this.BuyCoins = function () {
-
-        let ccAmount = this.ConvertDolarToCFC(frmValue.DolarAmount);
-        let wallet = {
-            CompanyId: userCompany,
-            Amount: 0.0,
-            Identifier: ""
+function BuyCFC() {
+    let validAmount = true;
+    paypal.Buttons({
+        createOrder: function (data, actions) {
+            frmValue = parseFloat(document.getElementById("txtBuyCFC").value);
+            document.getElementById("frmAmount").reset();
+            if (frmValue > 0) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: frmValue /*`${val}`*/
+                        }
+                    }]
+                });
+            }
+            validAmount = false;
+            return null;
+        },
+        onApprove: function (data, actions) {
+            return actions.order.capture().then(function (details) {
+                console.log(details);
+                valor = details.purchase_units[0].amount.value;
+                parseFloat(valor);
+                BuyCoins();
+            });
         }
 
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You want to buy " + ccAmount + " CFC!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-
-                if (ccAmount > 0) {
-                    ctrlActions.PostToAPI(walletService + "/WalletInfoByCompnay", wallet, function (response) {
-
-                        let result = response;
-                        wallet.Identifier = response.Identifier;
-                        wallet.Amount = ccAmount;
+    }).render('#paypal-payment');
 
 
-                        if (result != null) {
-                            ctrlActions.PostToAPI(walletService + "/addAmount", wallet, function (response) {
+}
 
-                            })
-                        }
+function BuyCoins () {
 
-                    })
+    let ccAmount = ConvertDolarToCFC(frmValue);
+    let wallet = {
+        CompanyId: userCompany,
+        Amount: 0.0,
+        Identifier: ""
+    }
+    if (ccAmount > 0) {
+        ctrlActions.PostToAPI(walletService + "/WalletInfoByCompnay", wallet, function (response) {
 
-                    Swal.fire({
-                        title: 'Success!',
-                        text: 'You have bought ' + ccAmount + ' CFC.',
-                        width: 600,
-                        padding: '3em',
-                        color: '#000',
-                        background: '#fff',
-                        confirmButtonColor: "#DD6B55",
-                        icon: 'success'
-                    })
+            let result = response;
+            wallet.Identifier = response.Identifier;
+            wallet.Amount = ccAmount;
 
 
-                } else {
+            if (result != null) {
+                ctrlActions.PostToAPI(walletService + "/addAmount", wallet, function (response) {
 
-                    Swal.fire({
-                        title: 'Error!',
-                        text: 'Enter a valid amount',
-                        width: 600,
-                        padding: '3em',
-                        color: '#000',
-                        background: '#fff',
-                        confirmButtonColor: "#DD6B55",
-                        icon: 'error'
-                    })
-                }
+                })
             }
+
         })
 
+        Swal.fire({
+            title: 'Success!',
+            text: 'You have bought ' + ccAmount + ' CFC.',
+            width: 600,
+            padding: '3em',
+            color: '#000',
+            background: '#fff',
+            confirmButtonColor: "#DD6B55",
+            icon: 'success'
+        })
+
+
+    } else {
+
+        Swal.fire({
+            title: 'Error!',
+            text: 'Enter a valid amount',
+            width: 600,
+            padding: '3em',
+            color: '#000',
+            background: '#fff',
+            confirmButtonColor: "#DD6B55",
+            icon: 'error'
+        })
     }
 
-    paypal.Buttons({
+}
 
+function name(parameters) {
+    paypal.Buttons({
         // Set up the transaction
         createOrder: function (data, actions) {
             return actions.order.create({
                 purchase_units: [{
                     amount: {
-                        value: ccAmount
+                        value: ConvertDolarToCFC(frmValue.DolarAmount)
                     }
                 }]
             });
         },
-
         // Finalize the transaction
         onApprove: function (data, actions) {
             return actions.order.capture().then(function (orderData) {
                 // Successful capture! For demo purposes:
                 console.log(orderData);
+
                 var transaction = orderData.purchase_units[0].amount.value;
                 parseFloat(transaction);
                 alert('Transaction ' + transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
@@ -116,21 +131,14 @@
                     }).then((result) => {
                     });
                 });
-                // Replace the above to show a success message within this page, e.g.
-                // const element = document.getElementById('paypal-button-container');
-                // element.innerHTML = '';
-                // element.innerHTML = '<h3>Thank you for your payment!</h3>';
-                // Or go to another URL:  actions.redirect('thank_you.html');
+                BuyCoins();
             });
 
         }
 
 
-    }).render('#paypal-button-container');
-
-
+    }).render('#paypal-payment');
 }
-
 
 $(window).on("load", function () {
 
@@ -138,7 +146,7 @@ $(window).on("load", function () {
         window.location.href = "Login";
         return false;
     }
-    var buyCFC = new BuyCFC();
-    buyCFC.BuyCoins();
+    BuyCFC();
     return true;
 });
+
