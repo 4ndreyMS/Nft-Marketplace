@@ -58,6 +58,7 @@
     <Compile Include="NFT_Category.cs" />
     <Compile Include="Notifications.cs" />
     <Compile Include="ObjectDumper.cs" />
+    <Compile Include="Offer.cs" />
     <Compile Include="Otp.cs" />
     <Compile Include="Prices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

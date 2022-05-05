@@ -86,6 +86,7 @@
     <Compile Include="Managers\LogginManager.cs" />
     <Compile Include="Managers\NFTManager.cs" />
     <Compile Include="Managers\NFT_CategoryManager.cs" />
+    <Compile Include="Managers\OfferManager.cs" />
     <Compile Include="Managers\NotificationsManager.cs" />
     <Compile Include="Managers\OtpManager.cs" />
     <Compile Include="Managers\PricesManager.cs" />
@@ -101,10 +102,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
-      <Project>{e962ddc6-0905-468a-9db4-556d951f274a}</Project>
-      <Name>DataAccess</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DTO_POJOS\DTO_POJOS.csproj">
       <Project>{3b195d1e-610e-4f56-8ca2-df153b097283}</Project>
       <Name>DTO_POJOS</Name>
