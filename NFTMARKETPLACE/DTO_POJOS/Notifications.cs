@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Remoting.Channels;
 
 namespace DTO_POJOS
 {
@@ -9,6 +10,9 @@ namespace DTO_POJOS
         public DateTime SentDate { get; set; }
         public string ReceiverId { get; set; }
         public string SenderId { get; set; }
+        public string SenderName { get; set; }
+
+        public NFTC Nft { get; set; }
 
     }
 }

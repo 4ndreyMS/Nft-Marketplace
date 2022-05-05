@@ -14,7 +14,10 @@ namespace DataAccess.Mapper
             Msj,
             SentDate,
             ReceiverId,
-            SenderId
+            SenderId,
+            NftId,
+            SenderName,
+            NftImage
         }
 
         private SqlOperation sqlOperation;
@@ -41,13 +44,20 @@ namespace DataAccess.Mapper
 
         public BaseEntity BuildObject(Dictionary<string, object> row)
         {
+            
             var notification = new Notifications()
             {
                 Id = GetIntValue(row,RowNames.Id.ToString()),
                 Msj = GetStringValue(row, RowNames.Msj.ToString()),
                 ReceiverId= GetStringValue(row, RowNames.ReceiverId.ToString()),
                 SenderId= GetStringValue(row, RowNames.SenderId.ToString()),
-                SentDate = GetDateValue(row,RowNames.SentDate.ToString())
+                SentDate = GetDateValue(row,RowNames.SentDate.ToString()),
+                SenderName = GetStringValue(row, RowNames.SenderName.ToString()),
+                Nft = new NFTC()
+                {
+                    Id = GetStringValue(row, RowNames.NftId.ToString()),
+                    Image = GetStringValue(row, RowNames.NftImage.ToString())
+                }
             };
             return notification;
         }
@@ -63,6 +73,7 @@ namespace DataAccess.Mapper
             sqlOperation.AddVarcharParam(RowNames.ReceiverId.ToString(), notif.ReceiverId);
             sqlOperation.AddVarcharParam(RowNames.SenderId.ToString(), notif.SenderId);
             sqlOperation.AddDateTimeParam(RowNames.SentDate.ToString(), notif.SentDate);
+            sqlOperation.AddVarcharParam(RowNames.NftId.ToString(), notif.Nft.Id);
             return sqlOperation;
         }
 
