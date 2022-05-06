@@ -207,5 +207,6 @@ $(document).ready(function () {
     if (load.validateLogin()) {
         load.LoadInfo();
         load.LoadNFTs();
+        load.LoadEveryNFTOnSale();
     }
 });

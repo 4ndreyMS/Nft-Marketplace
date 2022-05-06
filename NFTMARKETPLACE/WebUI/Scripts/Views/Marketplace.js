@@ -77,7 +77,7 @@
 
            function cartNumbers(product) {
 
-                console.log("The product clicked is: ", product)
+               
                     let productNumbers = sessionStorage.getItem('NftName');
                     productNumbers = parseInt(productNumbers)
 
