@@ -302,11 +302,20 @@ function ShoppingCart() {
                 for (i = 0; i < items.length; i++) {
                     if (items[i].Id == btnId) {
                         items.splice(i, 1);
+                      
                     }
                 }
+
+            
                 sessionStorage.productsInCart = JSON.stringify(items);
-                window.location.reload();
+               
+                window.location.reload()
+                let productNumbers = sessionStorage.getItem('NftName');
+                productNumbers = parseInt(productNumbers)
+                sessionStorage.setItem('NftName', productNumbers - 1)
+                document.querySelector('.cart span').textContent = productNumbers
             })
+         
         }
 
 
@@ -321,11 +330,10 @@ function ShoppingCart() {
 
 
         if (productNumbers) {
-            sessionStorage.setItem('NftName', productNumbers + 1)
-            document.querySelector('.cart span').textContent = productNumbers + 1
+            sessionStorage.setItem('NftName', productNumbers)
+            document.querySelector('.cart span').textContent = productNumbers
         } else {
-            sessionStorage.setItem('NftName', 1)
-            document.querySelector('.cart span').textContent = 1
+            sessionStorage.setItem('NftName')
 
         }
 
@@ -342,7 +350,8 @@ function ShoppingCart() {
         Object.values(itemsOnCart).forEach((element) => {
             totalAmount += element.Price;
         });
-        document.getElementById("totalAmount").innerHTML += totalAmount + " CFC";
+        const inDollars = totalAmount * 66
+        document.getElementById("totalAmount").innerHTML += totalAmount + " CFC or $" + inDollars + " Dollars" ;
     }
 
 

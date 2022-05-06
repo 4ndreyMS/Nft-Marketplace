@@ -3843,3 +3843,25 @@ ul li a.cart .cart-basket {
 .cartColor {
     color: #183b56;
 }
+
+.options-card {
+    width: 50%
+   
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.offer {
+    display: flex;
+    justify-content: center;
+}
+
+
+.offers {
+    padding-top: 0 !important;
+}

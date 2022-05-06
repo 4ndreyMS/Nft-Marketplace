@@ -54,6 +54,7 @@
     <Compile Include="Crud\NFTCrudFactory.cs" />
     <Compile Include="Crud\NFT_CategoryCrudFactory.cs" />
     <Compile Include="Crud\OfferCrudFactory.cs" />
+    <Compile Include="Crud\NotificationsCrudFactory.cs" />
     <Compile Include="Crud\OtpCrudFactory.cs" />
     <Compile Include="Crud\PricesCrudFactory.cs" />
     <Compile Include="Crud\TransactionCrudFactory.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Mapper\NFTMapper.cs" />
     <Compile Include="Mapper\NFT_CategoryMapper.cs" />
     <Compile Include="Mapper\OfferMapper.cs" />
+    <Compile Include="Mapper\NotificationsMapper.cs" />
     <Compile Include="Mapper\OtpMapper.cs" />
     <Compile Include="Mapper\PricesMapper.cs" />
     <Compile Include="Mapper\TransactionMapper.cs" />

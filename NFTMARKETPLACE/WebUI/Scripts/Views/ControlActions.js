@@ -46,6 +46,34 @@ function ControlActions() {
 
     }
 
+    this.FillTableWithString = function (service, offer ,tableId, refresh) {
+
+        if (!refresh) {
+            columns = this.GetTableColumsDataName(tableId).split(',');
+            var arrayColumnsData = [];
+
+
+            $.each(columns, function (index, value) {
+                var obj = {};
+                obj.data = value;
+                arrayColumnsData.push(obj);
+            });
+            //Esto es la inicializacion de la tabla de data tables segun la documentacion de 
+            // datatables.net, carga la data usando un request async al API
+            $('#' + tableId).DataTable({
+                "processing": true,
+                "ajax": {
+                    "url": this.GetUrlApiService(service) + '?owner=' + offer,
+                    dataSrc: 'Data'
+                },
+                "columns": arrayColumnsData
+            });
+        } else {
+            //RECARGA LA TABLA
+            $('#' + tableId).DataTable().ajax.reload();
+        }
+    }
+
     this.GetSelectedRow = function () {
         var data = sessionStorage.getItem(tableId + '_selected');
 

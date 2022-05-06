@@ -1,8 +1,5 @@
 ﻿function ManagerNFTCard() {
 
-
- 
-
     const nftSection = document.getElementById("row-cards")
     this.service = 'NFT';
     const cntrlAction = new ControlActions();
@@ -77,7 +74,7 @@
 
            function cartNumbers(product) {
 
-                console.log("The product clicked is: ", product)
+               
                     let productNumbers = sessionStorage.getItem('NftName');
                     productNumbers = parseInt(productNumbers)
 
@@ -187,10 +184,10 @@
                                         </div>
                                         <hr>
                                         <div class="d-flex mt-3 align-items-center">                                         
-                                            <div class="bid-button ms-auto">
+                                            <div class="bid-button ms-auto" style="width: 60%;">
                                                 <input type="number" class="form-control" id="${card.Id}">
                                             </div>
-                                            <div class="bid-button ms-auto">
+                                            <div class="bid-button ms-auto" >
                                                 <button class="btn btn-sm btn-primary rounded-pill" onclick="MakeAnOffer('${card.Id}', '${card.IdOwner}')">Offer</button>
                                             </div>
                                         </div>
@@ -222,9 +219,27 @@ function MakeAnOffer(Id, IdOwner) {
                     text: 'Please insert an amount to make the offer',
                 })
             } else {
-                let Offer = { NFT: Id, BidderID: sessionStorage.getItem('UserCompany'), OwnerID: IdOwner, Amount: price}
-                cntrlAction.PostToAPI("Offer" + "/CreateOffer", Offer, function (response) { })
-                window.getElementById(Id).value = "";
+                const companyId = sessionStorage.getItem("UserCompany");
+                let walletInfo = { CompanyId: companyId };
+                cntrlAction.PostToAPI("Wallet" + "/WalletInfoByCompnay", walletInfo, function (response) {
+                    var walletResponse = response;
+                    if (walletResponse.Amount >= price) {
+                        let Offer = { NFT: Id, BidderID: sessionStorage.getItem('UserCompany'), OwnerID: IdOwner, Amount: price }
+                        cntrlAction.PostToAPI("Offer" + "/CreateOffer", Offer, function (response) { })
+                        document.getElementById(Id).value = "";
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Offer completed',
+                            text: 'Your offer was made successfully',
+                        })
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'You have not enough CenfoCoins to make this offer.',
+                        })
+                    }
+                })
             }
         }
     }
