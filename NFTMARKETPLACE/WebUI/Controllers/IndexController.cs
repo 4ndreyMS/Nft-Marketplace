@@ -101,5 +101,13 @@ namespace WebUI.Controllers
             return View();
 
         }
+
+        public ActionResult OffersTable()
+        {
+            return View();
+
+        }
+
+
     }
 }

@@ -473,6 +473,7 @@
     <Content Include="Scripts\Views\CreateCollection.js" />
     <Content Include="Scripts\Views\CreateNft.js" />
     <Content Include="Scripts\Views\EditProfile.js" />
+    <Content Include="Scripts\Views\ManagerOffersTable.js" />
     <Content Include="Scripts\Views\ShoppingCart.js" />
     <Content Include="Scripts\Views\Login.js" />
     <Content Include="Scripts\Views\Logout.js" />
@@ -561,6 +562,7 @@
     <Content Include="Views\Home\BuyCFC.cshtml" />
     <Content Include="Views\Home\NFTSaleManager.cshtml" />
     <Content Include="Views\Home\ShoppingCart.cshtml" />
+    <Content Include="Views\Home\OffersTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
