@@ -46,6 +46,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PayPalCheckoutSdk">
+      <HintPath>C:\Users\XPC\Downloads\Checkout-NET-SDK-develop\PayPalCheckoutSdk\bin\Debug\netstandard2.0\PayPalCheckoutSdk.dll</HintPath>
+    </Reference>
+    <Reference Include="PayPalHttp-Dotnet">
+      <HintPath>C:\Users\XPC\Downloads\Checkout-NET-SDK-develop\packages\PayPalHttp-Dotnet.1.0.0\lib\netstandard2.0\PayPalHttp-Dotnet.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -485,6 +491,7 @@
     <Content Include="Scripts\Views\Marketplace.js" />
     <Content Include="Scripts\Views\NavBar.js" />
     <Content Include="Scripts\Views\NFTSaleManager.js" />
+    <Content Include="Scripts\Views\paypal.js" />
     <Content Include="Scripts\Views\Profile.js" />
     <Content Include="Scripts\Views\Register.js" />
     <Content Include="Scripts\Views\RegisterContentCreator.js" />
