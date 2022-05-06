@@ -17,7 +17,8 @@ namespace DataAccess.Mapper
             SenderId,
             NftId,
             SenderName,
-            NftImage
+            NftImage,
+            NftName
         }
 
         private SqlOperation sqlOperation;
@@ -56,7 +57,8 @@ namespace DataAccess.Mapper
                 Nft = new NFTC()
                 {
                     Id = GetStringValue(row, RowNames.NftId.ToString()),
-                    Image = GetStringValue(row, RowNames.NftImage.ToString())
+                    Image = GetStringValue(row, RowNames.NftImage.ToString()),
+                    NftName = GetStringValue(row, RowNames.NftName.ToString())
                 }
             };
             return notification;

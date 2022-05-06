@@ -641,12 +641,14 @@ AS
 	WHERE ReceiverId = @P_ReceiverId
 
 --ret notif offer
+
 CREATE PROCEDURE RET_NOTIF_FROM_OFFER_PR
 	@P_ReceiverId NVARCHAR(100)
 AS
-	SELECT o.Id, o.NFT AS NftId, o.BidderID as SenderId, o.OwnerID as ReceiverId ,o.CreationDate as SentDate, o.OwnerID as Msj,CO.Name as SenderName, NF.Image as NftImage
+	SELECT o.Id, o.NFT AS NftId, o.BidderID as SenderId, o.OwnerID as ReceiverId ,o.CreationDate as SentDate, o.OwnerID as Msj,CO.Name as SenderName, NF.Image as NftImage, NF.NftName as NftName
 	FROM Offer AS O
 	INNER JOIN Company as CO on O.BidderID = CO.Id
 	INNER JOIN NFT as NF on O.NFT = NF.Id
 	WHERE OwnerID = @P_ReceiverId
+
 
