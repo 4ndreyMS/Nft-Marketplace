@@ -1,8 +1,5 @@
 ﻿function ManagerNFTCard() {
 
-
- 
-
     const nftSection = document.getElementById("row-cards")
     this.service = 'NFT';
     const cntrlAction = new ControlActions();
@@ -222,9 +219,27 @@ function MakeAnOffer(Id, IdOwner) {
                     text: 'Please insert an amount to make the offer',
                 })
             } else {
-                let Offer = { NFT: Id, BidderID: sessionStorage.getItem('UserCompany'), OwnerID: IdOwner, Amount: price}
-                cntrlAction.PostToAPI("Offer" + "/CreateOffer", Offer, function (response) { })
-                window.getElementById(Id).value = "";
+                const companyId = sessionStorage.getItem("UserCompany");
+                let walletInfo = { CompanyId: companyId };
+                cntrlAction.PostToAPI("Wallet" + "/WalletInfoByCompnay", walletInfo, function (response) {
+                    var walletResponse = response;
+                    if (walletResponse.Amount >= price) {
+                        let Offer = { NFT: Id, BidderID: sessionStorage.getItem('UserCompany'), OwnerID: IdOwner, Amount: price }
+                        cntrlAction.PostToAPI("Offer" + "/CreateOffer", Offer, function (response) { })
+                        document.getElementById(Id).value = "";
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Offer completed',
+                            text: 'Your offer was made successfully',
+                        })
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'You have not enough CenfoCoins to make this offer.',
+                        })
+                    }
+                })
             }
         }
     }
