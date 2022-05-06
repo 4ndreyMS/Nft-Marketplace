@@ -12,13 +12,13 @@ namespace DataAccess.Mapper
             public enum RowNames
         {
             Id,
-            Owner,
-            Buyer,
+            IdOwner,
+            IdBuyer,
             Amount,
             Nft,
             EndDate,
+            CreationDate,
             Image,
-            IdOwner,
             NftName
         }
 
@@ -49,13 +49,13 @@ namespace DataAccess.Mapper
             var auction = new Auction()
             {
                 Id = GetIntValue(row, RowNames.Id.ToString()),
-                Buyer = GetStringValue(row, RowNames.Buyer.ToString()),
-                Owner = GetStringValue(row, RowNames.Owner.ToString()),
+                IdBuyer = GetStringValue(row, RowNames.IdBuyer.ToString()),
+                IdOwner = GetStringValue(row, RowNames.IdOwner.ToString()),
                 Amount = GetDoubleValue(row, RowNames.Amount.ToString()),
                 EndDate = GetDateValue(row,RowNames.EndDate.ToString()),
-                Nft = new NFTC()
+                Nft = new InfoNFT()
                 {
-                    Id = GetStringValue(row, RowNames.Nft.ToString()),
+                    Id = GetStringValue(row, RowNames.Nft.ToString())
 
                 }
                 
@@ -75,11 +75,12 @@ namespace DataAccess.Mapper
 
             var obj = (Auction)entity;
 
-            sqlOperation.AddVarcharParam(RowNames.Buyer.ToString(), obj.Buyer);
-            sqlOperation.AddVarcharParam(RowNames.Owner.ToString(), obj.Owner);
+            sqlOperation.AddVarcharParam(RowNames.IdBuyer.ToString(), obj.IdBuyer);
+            sqlOperation.AddVarcharParam(RowNames.IdOwner.ToString(), obj.IdOwner);
             sqlOperation.AddDoubleParam(RowNames.Amount.ToString(), obj.Amount);
             sqlOperation.AddVarcharParam(RowNames.Nft.ToString(), obj.Nft.Id);
             sqlOperation.AddDateTimeParam(RowNames.EndDate.ToString(), obj.EndDate);
+            sqlOperation.AddDateTimeParam(RowNames.CreationDate.ToString(), obj.CreationDate);
             return sqlOperation;
         }
         
@@ -92,7 +93,7 @@ namespace DataAccess.Mapper
             };
 
             var obj = (Auction)entity;
-            sqlOperation.AddVarcharParam(RowNames.Buyer.ToString(), obj.Buyer);
+            sqlOperation.AddVarcharParam(RowNames.IdBuyer.ToString(), obj.IdBuyer);
             sqlOperation.AddDoubleParam(RowNames.Amount.ToString(), obj.Amount);
             return sqlOperation;
         }
@@ -100,7 +101,7 @@ namespace DataAccess.Mapper
         {
             var obj = (Auction)entity;
             sqlOperation = new SqlOperation {ProcedureName = "RET_OWNER_AUCTION_PR"};
-            sqlOperation.AddVarcharParam(RowNames.Owner.ToString(), obj.Owner);
+            sqlOperation.AddVarcharParam(RowNames.IdOwner.ToString(), obj.IdOwner);
             return sqlOperation;
 
         }
