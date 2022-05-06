@@ -80,7 +80,7 @@ namespace DataAccess.Mapper
         public SqlOperation GetRetriveAllByReciver(BaseEntity entity)
         {
             var notif = (Notifications)entity;
-            var operation = new SqlOperation { ProcedureName = "RET_ALL_NOTIF_RECIVER_PR" };
+            var operation = new SqlOperation { ProcedureName = "RET_NOTIF_FROM_OFFER_PR" };
             operation.AddVarcharParam(RowNames.ReceiverId.ToString(), notif.ReceiverId);
             return operation;
         }
