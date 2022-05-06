@@ -48,11 +48,14 @@ namespace AppLogic.Managers
             return String.Concat(Array.ConvertAll(byteArray, x => x.ToString("X2")));
         }
 
-
-
         public void UpdateNFT(NFT nft)
         {
             nftCF.Update(nft);
+        }
+
+        public void UpdateWhenBuyNft(NFT nft)
+        {
+            nftCF.UpdateWhenBuyNft(nft);
         }
 
         public NFT RetrieveNFT(NFT nft)
@@ -99,6 +102,26 @@ namespace AppLogic.Managers
         public object RetrieveAllNFTInProperty(NFT nft)
         {
             return nftCF.RetrieveAllNFTInProperty<NFT>(nft);
+        }
+
+        public object RetrieveAllNFTINFO(NFT nft)
+        {
+            return nftCF.RetrieveAllNFTINFO<InfoNFT>(nft);
+        }
+
+        public List<NFTC> RetrieveNftBySaleState(NFT _nft)
+        {
+            return nftCF.RetrieveNftBySaleState<NFTC>(_nft);
+        }
+
+        public void PutOnSale(NFT nft)
+        {
+            nftCF.PutOnSale(nft);
+        }
+
+        public void UpdateNftCollection(NFT _nft)
+        {
+            nftCF.UpdateNftCollection(_nft);
         }
     }
 }

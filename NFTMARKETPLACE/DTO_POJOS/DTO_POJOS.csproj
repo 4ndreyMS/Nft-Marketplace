@@ -51,11 +51,14 @@
     <Compile Include="Collection_Category.cs" />
     <Compile Include="Company.cs" />
     <Compile Include="EnumC.cs" />
+    <Compile Include="InfoNFT.cs" />
     <Compile Include="NFT.cs" />
     <Compile Include="NFTC.cs" />
     <Compile Include="NFTCollection.cs" />
     <Compile Include="NFT_Category.cs" />
+    <Compile Include="Notifications.cs" />
     <Compile Include="ObjectDumper.cs" />
+    <Compile Include="Offer.cs" />
     <Compile Include="Otp.cs" />
     <Compile Include="Prices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -67,6 +70,7 @@
     <Compile Include="UserR.cs" />
     <Compile Include="UserRole.cs" />
     <Compile Include="User_Company.cs" />
+    <Compile Include="Validation.cs" />
     <Compile Include="Wallet.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

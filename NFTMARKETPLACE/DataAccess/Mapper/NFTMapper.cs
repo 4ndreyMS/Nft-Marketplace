@@ -21,6 +21,9 @@ namespace DataAccess.Mapper
         private const string DB_COL_SaleState = "SaleState";
         private const string DB_COL_CATEGORYNAME = "CategoryName";
         private const string DB_COL_OwnerName = "OwnerName";
+        private const string DB_COL_CollectionName = "CollectionName";
+        private const string DB_COL_CompanyName = "Name";
+        private const string DB_COL_UserImage = "UserPic";
 
 
         public SqlOperation GetCreateStatement(BaseEntity entity)
@@ -80,18 +83,52 @@ namespace DataAccess.Mapper
             operation.AddDateTimeParam(DB_COL_CreationDate, c.CreationDate);
             operation.AddIntParam(DB_COL_IdCollection, c.IdCollection);
             operation.AddVarcharParam(DB_COL_IdCreator, c.IdCreator);
-            operation.AddVarcharParam(DB_COL_NFTName, c.IdOwner);
+            operation.AddVarcharParam(DB_COL_IdOwner, c.IdOwner);
             operation.AddVarcharParam(DB_COL_Image, c.Image);
             operation.AddVarcharParam(DB_COL_SaleState, c.SaleState);
 
             return operation;
         }
 
-        internal SqlOperation GetRetrieveAllNFTInProperty(BaseEntity entity)
+        internal SqlOperation PutOnSale(BaseEntity entity)
+        {
+            var operation = new SqlOperation { ProcedureName = "NFT_PUT_ON_SALE" };
+
+            var c = (NFT)entity;
+            operation.AddVarcharParam(DB_COL_Id, c.Id);
+            operation.AddDecimalParam(DB_COL_Price, c.Price);
+            operation.AddVarcharParam(DB_COL_SaleState, c.SaleState);
+
+            return operation;
+        }
+
+        public SqlOperation GetRetrieveAllNFTInProperty(BaseEntity entity)
         {
             var operation = new SqlOperation { ProcedureName = "RET_ALL_NFT_PROPERTY" };
 
             var c = (NFT)entity;
+            operation.AddVarcharParam(DB_COL_IdOwner, c.IdOwner);
+            operation.AddVarcharParam(DB_COL_SaleState, c.SaleState);
+            return operation;
+        }
+
+        public SqlOperation GetRetrieveAllNFTINFO(BaseEntity entity)
+        {
+            var operation = new SqlOperation { ProcedureName = "RET_ALL_NFT_INFORMATION" };
+
+            var c = (NFT)entity;
+            operation.AddVarcharParam(DB_COL_Id, c.Id);          
+            return operation;
+        }
+
+
+        public SqlOperation UpdateWhenBuyNft(BaseEntity entity)
+        {
+            var operation = new SqlOperation { ProcedureName = "UPD_WHEN_BUY_NFT_PR" };
+
+            var c = (NFT)entity;
+            operation.AddVarcharParam(DB_COL_Id, c.Id);
+            operation.AddDecimalParam(DB_COL_Price, c.Price);
             operation.AddVarcharParam(DB_COL_IdOwner, c.IdOwner);
             operation.AddVarcharParam(DB_COL_SaleState, c.SaleState);
             return operation;
@@ -203,10 +240,63 @@ namespace DataAccess.Mapper
                 IdCreator = GetStringValue(row, DB_COL_IdCreator),
                 IdOwner = GetStringValue(row, DB_COL_IdOwner),
                 Image = GetStringValue(row, DB_COL_Image),
-                OwnerName = GetStringValue(row, DB_COL_OwnerName)
+                OwnerName = GetStringValue(row, DB_COL_OwnerName),
+                SaleState = GetStringValue(row, DB_COL_SaleState),
+                UserPic = GetStringValue(row, DB_COL_UserImage)
             };
 
             return nft;
+        }
+
+        public List<BaseEntity> BuildObjectsINFO(List<Dictionary<string, object>> lstRows)
+        {
+            var lstResults = new List<BaseEntity>();
+
+            foreach (var row in lstRows)
+            {
+                var transaction = BuildObjectINFO(row);
+                lstResults.Add(transaction);
+            }
+
+            return lstResults;
+        }
+
+        public BaseEntity BuildObjectINFO(Dictionary<string, object> row)
+        {
+            var nft = new InfoNFT
+            {
+                Id = GetStringValue(row, DB_COL_Id),
+                NftName = GetStringValue(row, DB_COL_NFTName),
+                Price = GetDecimalValue(row, DB_COL_Price),
+                CreationDate = GetDateValue(row, DB_COL_CreationDate),
+                CollectionName = GetStringValue(row, DB_COL_CollectionName),
+                CreatorName = GetStringValue(row, DB_COL_CompanyName),
+                CreatorImage = GetStringValue(row, DB_COL_UserImage),
+                Image = GetStringValue(row, DB_COL_Image)
+            };
+
+            return nft;
+        }
+
+        public SqlOperation getRetrieveNftBySaleState(BaseEntity entity)
+        {
+            var operation = new SqlOperation { ProcedureName = "RET_NFT_SALESTATE_PR" };
+
+            var c = (NFT)entity;
+            operation.AddVarcharParam(DB_COL_SaleState,c.SaleState);
+
+            return operation;
+        }
+
+        public SqlOperation UpdateNftCollection(BaseEntity entity)
+        {
+            var operation = new SqlOperation { ProcedureName = "UPD_NFT_COLLECTION_PR" };
+
+            var c = (NFT)entity;
+            operation.AddVarcharParam(DB_COL_Id, c.Id);
+            operation.AddSmallIntParam(DB_COL_IdCollection, c.IdCollection);
+            
+            return operation;
         }
     }
 }

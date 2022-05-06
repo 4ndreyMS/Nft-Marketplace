@@ -72,17 +72,23 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public void addAmount (Wallet _wallet)
+        public APIResponse addAmount (Wallet _wallet)
         {
             walletManager.AddToAmount(_wallet);
-
+            return new APIResponse()
+            {
+                Data = "Amount added"
+            };
         }
 
         [HttpPost]
-        public void restAmount(Wallet _wallet)
+        public APIResponse restAmount(Wallet _wallet)
         {
             walletManager.RestToAmount(_wallet);
-
+            return new APIResponse()
+            {
+                Data = "Amount rested"
+            };
         }
 
         [HttpDelete]

@@ -41,6 +41,18 @@ namespace WebAPI.Controllers
             nftM.UpdateNFT(nft);
         }
 
+
+        [HttpPost]
+        public APIResponse UpdateWhenBuyNft(NFT nft)
+        {
+            nftM.UpdateWhenBuyNft(nft);
+
+            return new APIResponse()
+            {
+                Data = "Nft info updated"
+            };
+        }
+
         [HttpGet]
         public APIResponse RetrieveAllNFT()
         {
@@ -93,6 +105,18 @@ namespace WebAPI.Controllers
             };
         }
 
+        [HttpPost]
+        public APIResponse RetrieveNftBySaleState(NFT _nft)
+        {
+            var nm = new NFTManager();
+            return new APIResponse()
+            {
+                Data = nm.RetrieveNftBySaleState(_nft),
+                Message = "All NFT in the data base",
+                Status = "Ok",
+                TransacctionDate = DateTime.Now.ToString()
+            };
+        }
 
         [HttpGet]
         public APIResponse RetrieveAllNFTCategory(string nft)
@@ -115,6 +139,38 @@ namespace WebAPI.Controllers
             {
                 Data = nm.RetrieveAllNFTInProperty(nft),
                 Message = "All NFT in the data base",
+                Status = "Ok",
+                TransacctionDate = DateTime.Now.ToString()
+            };
+        }
+
+        [HttpPost]
+        public APIResponse RetrieveAllNFTINFO(NFT nft)
+        {
+            var nm = new NFTManager();
+            return new APIResponse()
+            {
+                Data = nm.RetrieveAllNFTINFO(nft),
+                Message = "All NFT in the data base",
+                Status = "Ok",
+                TransacctionDate = DateTime.Now.ToString()
+            };
+        }
+
+        [HttpPost]
+        public void PutOnSale(NFT nft)
+        {
+            nftM.PutOnSale(nft);
+        }
+
+        [HttpPost]
+        public APIResponse UpdateNftCollection(NFT nft)
+        {
+            nftM.UpdateNftCollection(nft);
+            return new APIResponse()
+            {
+                Data = "NFT collection Updated",
+                Message = "NFT collection Updated",
                 Status = "Ok",
                 TransacctionDate = DateTime.Now.ToString()
             };

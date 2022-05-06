@@ -3823,3 +3823,45 @@ body[data-layout-mode=dark] .footer .logo .logo-light {
   display: inline-block;
 }/*# sourceMappingURL=style.css.map */
 
+ /*USED IT IN CART BAG*/
+ ul li a.cart:hover {
+  text-decoration: none;
+  color: #d60e96;
+}
+
+ul li a.cart .cart-basket {
+    font-size: .6rem;
+    position: absolute;
+    top: -6px;
+    right: -5px;
+    width: 15px;
+    height: 15px;
+    color: #fff;
+    background-color: #418deb;
+    border-radius: 50%;
+}
+.cartColor {
+    color: #183b56;
+}
+
+.options-card {
+    width: 50%
+   
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.offer {
+    display: flex;
+    justify-content: center;
+}
+
+
+.offers {
+    padding-top: 0 !important;
+}

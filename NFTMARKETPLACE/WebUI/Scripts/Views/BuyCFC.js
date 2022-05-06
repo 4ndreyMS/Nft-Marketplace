@@ -145,6 +145,7 @@ $(window).on("load", function () {
         return false;
     }
     BuyCFC();
+    buyCFC.BuyCoins();
     return true;
 });
 

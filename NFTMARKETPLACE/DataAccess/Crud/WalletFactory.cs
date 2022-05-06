@@ -68,5 +68,10 @@ namespace DataAccess.Crud
         {
             dao.ExecuteProcedure(walletMapper.GetDeleteStatement(entity));
         }
+
+        public void UpdateWalletPin(BaseEntity entity)
+        {
+            dao.ExecuteProcedure(walletMapper.UpdateWalletPin(entity));
+        }
     }
 }

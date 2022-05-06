@@ -67,6 +67,20 @@ namespace WebAPI.Controllers
             uManager.UpdateUserStatus(_user);
         }
 
+
+        [HttpPost]
+        public APIResponse updateUserInfo(User _user)
+        {
+            uManager.UpdateUserInfo(_user);
+            return new APIResponse()
+            {
+                Data = "Updated",
+                Message = "Updated",
+                Status = "Ok",
+                TransacctionDate = DateTime.Now.ToString()
+            };
+        }
+
         [HttpPost]
         public APIResponse RetrieveUser(User _user)
         {
@@ -164,7 +178,7 @@ namespace WebAPI.Controllers
         }
 
 
-        [HttpGet]
+        [HttpPost]
         public APIResponse example()
         {
             APIResponse response = new APIResponse()
