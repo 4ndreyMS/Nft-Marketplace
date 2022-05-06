@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Crud\ActionLogFactory.cs" />
     <Compile Include="Crud\AppMessagesCrudFactory.cs" />
+    <Compile Include="Crud\AuctionCrudFactory.cs" />
     <Compile Include="Crud\CategoryCrudFactory.cs" />
     <Compile Include="Crud\CollectionCrud.cs" />
     <Compile Include="Crud\Collection_CategoryCrudFactory.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Dao\SqlOperation.cs" />
     <Compile Include="Mapper\ActionLogMapper.cs" />
     <Compile Include="Mapper\AppMessageMapper.cs" />
+    <Compile Include="Mapper\AuctionMapper.cs" />
     <Compile Include="Mapper\CategoryMapper.cs" />
     <Compile Include="Mapper\CollectionMapper.cs" />
     <Compile Include="Mapper\Collection_CategoryMapper.cs" />

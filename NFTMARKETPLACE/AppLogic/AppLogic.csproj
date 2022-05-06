@@ -83,6 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Managers\ActionLogManager.cs" />
+    <Compile Include="Managers\AuctionManger.cs" />
     <Compile Include="Managers\BaseManager.cs" />
     <Compile Include="Managers\CategoryManager.cs" />
     <Compile Include="Managers\CollectionManager.cs" />
