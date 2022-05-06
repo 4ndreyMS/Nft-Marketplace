@@ -28,7 +28,7 @@
                                     <div class="flex-grow-1 ms-3">
                                         <div class="d-flex align-items-center">
                                             <div class="profile-info">
-                                                <h6 class="fw-bold mb-0"> ${notification.SenderName}</h6>
+                                                <h6 class="fw-bold mb-0"> ${notification.Nft.NftName}</h6>
                                                 <p class="f-16 mb-0"> ${notification.SenderName}
                                                  would like to make an offer
                                                     </span>

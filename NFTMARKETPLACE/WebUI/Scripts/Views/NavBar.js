@@ -5,7 +5,7 @@
     const user = document.querySelectorAll(".user");
     const showLogOut = document.querySelectorAll(".logOut");
     const userValue = sessionStorage.getItem("UserRole");
-
+    const loggedIn = document.querySelectorAll(".logIn");
 
     /* 
      
@@ -41,19 +41,25 @@
         }
     }
 
+    const showLogInFunction = () => {
+        for (var i = 0; i < loggedIn.length; i += 1) {
+            loggedIn[i].style.display = 'none';
+        }
+    }
 
     if (userValue == 1) {
-
+        showLogInFunction()
         contentCreatorFunction()
         userFunction()
 
     } else if (userValue == 2) {
-       
+        showLogInFunction()
         managerFunction()
         contentCreatorFunction()
 
 
     } else if (userValue == 3) {
+        showLogInFunction()
         managerFunction()
         userFunction()
 
@@ -61,8 +67,7 @@
         showLogOutFunction()
         contentCreatorFunction()
         managerFunction()
-        userFunction() 
-      
-    }
+        userFunction()
 
+    } 
 }
