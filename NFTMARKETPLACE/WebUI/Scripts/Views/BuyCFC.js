@@ -11,7 +11,6 @@ function ConvertDolarToCFC(val) {
 }
 
 function BuyCFC() {
-    let validAmount = true;
     paypal.Buttons({
         createOrder: function (data, actions) {
             frmValue = parseFloat(document.getElementById("txtBuyCFC").value);
@@ -25,7 +24,6 @@ function BuyCFC() {
                     }]
                 });
             }
-            validAmount = false;
             return null;
         },
         onApprove: function (data, actions) {
