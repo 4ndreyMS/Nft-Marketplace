@@ -187,10 +187,10 @@
                                         </div>
                                         <hr>
                                         <div class="d-flex mt-3 align-items-center">                                         
-                                            <div class="bid-button ms-auto">
+                                            <div class="bid-button ms-auto" style="width: 60%;">
                                                 <input type="number" class="form-control" id="${card.Id}">
                                             </div>
-                                            <div class="bid-button ms-auto">
+                                            <div class="bid-button ms-auto" >
                                                 <button class="btn btn-sm btn-primary rounded-pill" onclick="MakeAnOffer('${card.Id}', '${card.IdOwner}')">Offer</button>
                                             </div>
                                         </div>

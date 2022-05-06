@@ -3,6 +3,7 @@
     const manager = document.querySelectorAll(".nav-item.manager-links");
     const contentCreator = document.getElementsByClassName("content-creator");
     const user = document.querySelectorAll(".user");
+    const showLogOut = document.querySelectorAll(".logOut");
     const userValue = sessionStorage.getItem("UserRole");
 
 
@@ -34,6 +35,12 @@
         }
     }
 
+    const showLogOutFunction = () => {
+        for (var i = 0; i < showLogOut.length; i += 1) {
+            showLogOut[i].style.display = 'none';
+        }
+    }
+
 
     if (userValue == 1) {
 
@@ -51,7 +58,7 @@
         userFunction()
 
     } else if (userValue === null) {
-
+        showLogOutFunction()
         contentCreatorFunction()
         managerFunction()
         userFunction() 

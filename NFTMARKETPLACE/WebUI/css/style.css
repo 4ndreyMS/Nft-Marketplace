@@ -3860,3 +3860,8 @@ ul li a.cart .cart-basket {
     display: flex;
     justify-content: center;
 }
+
+
+.offers {
+    padding-top: 0 !important;
+}
