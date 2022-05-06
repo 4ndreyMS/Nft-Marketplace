@@ -1,22 +1,16 @@
 ﻿function Activity() {
+
     const cntrlAction = new ControlActions();
     const notificationService = 'Notifications';
-   
-
-
-
+  
     this.Offer = () => {
         const offersSection = document.getElementById("offers")
 
         let notification = { ReceiverId: sessionStorage.getItem('UserCompany') }
 
         cntrlAction.PostToAPI(notificationService + "/RetrieveNotifUserByCompany", notification, function (response) {
-
-            
-
             response.forEach((notification) => {
-                let date = new Date(notification.SentDate).toLocaleDateString('en-us', { weekday: "long" })
-              
+                let date = new Date(notification.SentDate).toLocaleDateString('en-us', { weekday: "long" })         
                 offersSection.innerHTML += `
                             <div class="activity-box activityBox-spacing">
                                <div class="d-flex align-items-center" >
@@ -41,12 +35,10 @@
                                     </div>
                                 </div>
                             </div>
-
                 `
             }
             )
         }
-
 
         )
     }
