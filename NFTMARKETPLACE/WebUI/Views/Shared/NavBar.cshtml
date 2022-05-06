@@ -86,13 +86,13 @@
                     </li>
                     <li class="nav-item">
                         @Html.ActionLink("Marketplace", "Marketplace", "Marketplace", new { @class = "nav-link" })
-                    </li>
+                    @*</li>
                     <li class="nav-item">
                         @Html.ActionLink("Collection", "Collection", "Collection", new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
                         @Html.ActionLink("NFT'S", "ItemDetails", "NFT", new { @class = "nav-link" })
-                    </li>
+                    </li>*@
                     <li class="nav-item">
                         @Html.ActionLink("Login", "Login", "Login", new { @class = "nav-link" })
                     </li>
@@ -167,7 +167,7 @@
                 </ul>
                 <!--end navbar-nav-->
 
-                <div class="button ms-3">
+                <div class="button ms-3 logOut">
 
                     @Html.CtrlButton("Logout", "btnLogOut", "Log out", onClickFunction: "logOut")
 
