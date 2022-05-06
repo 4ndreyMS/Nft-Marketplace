@@ -1,8 +1,5 @@
 ﻿function ManagerNFTCard() {
 
-
- 
-
     const nftSection = document.getElementById("row-cards")
     this.service = 'NFT';
     const cntrlAction = new ControlActions();

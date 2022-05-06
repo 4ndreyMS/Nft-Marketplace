@@ -5,11 +5,13 @@
     let price;
 
     this.validateLogin = function () {
-
-
         if (sessionStorage.getItem('UserCedula') === null || sessionStorage.getItem('UserCedula') === undefined) {
             window.location.href = "Login";
-            return false;
+        } else {
+            if (sessionStorage.getItem('UserRole') != 3) {
+                window.location.href = "profile";
+            }
+            return true;
         }
         return true;
     }
