@@ -122,6 +122,40 @@
         window.location.href = "profile";
     }
 
+    this.PutOnAuction = function () {
+        var ctrlActions = new ControlActions();
+        var AuctionInfo = ctrlActions.GetDataForm("auctionForm");
+        var NFTId = { Id: sessionStorage.getItem('NFTSelected')}
+        var Auction = { IdOwner: sessionStorage.getItem('UserCompany'), IdBuyer: sessionStorage.getItem('UserCompany'), Amount: AuctionInfo.Amount, Nft: NFTId, EndDate: AuctionInfo.Date};
+
+        if (AuctionInfo.Amount == "") {
+
+            Swal.fire({
+                title: 'Error!',
+                text: 'Please insert an initial price',
+                icon: 'error',
+                confirmButtonText: 'Cool',
+                confirmButtonColor: "#DD6B55",
+            })
+
+        } else if (AuctionInfo.Date == "") {
+
+            Swal.fire({
+                title: 'Error!',
+                text: 'Please insert a deadline',
+                icon: 'error',
+                confirmButtonText: 'Cool',
+                confirmButtonColor: "#DD6B55",
+            })
+
+        } else {
+            var ctrlActions = new ControlActions();
+            ctrlActions.PostToAPI("Auction" + "/CreateAuction", Auction, function (response) { });
+            var NFT = { Id: sessionStorage.getItem('NFTSelected'), price, SaleState: "OnAuction" }
+            ctrlActions.PostToAPI("NFT" + "/PutOnSale", NFT, function (response) { });
+            window.location.href = "profile";
+        }
+    }
 }
 
 $(document).ready(function () {

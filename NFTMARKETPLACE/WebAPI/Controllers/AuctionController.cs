@@ -18,6 +18,7 @@ namespace WebAPI.Controllers
         [HttpPost]
         public APIResponse CreateAuction(Auction _auction)
         {
+            _auction.CreationDate = DateTime.Now;
             manger.createAuction(_auction);
             return new APIResponse()
             {
