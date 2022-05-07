@@ -77,10 +77,10 @@
                 <form class="info-box " id="frmUserCustomer">
                     <div class="row">
                         <div class="col-lg-5">
-                            <div class="profile-item">
+                            <div class="profile-item" style="padding-bottom: 30px">
                                 <div class="avatar">
                                     @*<img src="../../Content/images/inner-image/img-1.png" alt="" class="img-fluid rounded-circle avatar-xl" id="uploadedUserImage">*@
-                                    <img id="uploadedUserImage" alt="" class="img-fluid rounded-circle avatar-xl">
+                                    <img id="uploadedUserImage" alt="" src="https://media.istockphoto.com/photos/passport-picture-of-a-woman-with-dark-hair-and-blouse-picture-id477815446?k=20&m=477815446&s=612x612&w=0&h=phiQ0HhhxnLdXlIXJ0xU5sd9IQ5lXERa84BmSCERpZQ=" class="img-fluid rounded-circle avatar-xl">
 
                                 </div>
                                 <p class=" mb-0 my-3 fw-bold">Profile Photo 📷</p>
@@ -101,7 +101,7 @@
 
 
                         </div>
-                        <div class="col-lg-5">
+                        <div class="col-lg-5" style="padding-top: 30px;">
 
                             <div class="profile-item" style="height: 255px; margin-right: 0 "></div>
 
@@ -127,17 +127,20 @@
 
 
                         </div>
+
+                        <hr class="my-4">
+
+                        <p class="text-muted">By using our services, you trust us with your data. We understand that this is a big responsibility and we do our best to protect your information and put you in control of it.</p>
+
+                        <div class="submit-button">
+                            @Html.CtrlButton("Register", "btnSubmitUserContent", "Submit", onClickFunction: "CreateContentUser")
+                        </div>
                     </div>
+
+                 
                 </form>
 
 
-                <hr class="my-4">
-
-                <p class="text-muted">By using our services, you trust us with your data. We understand that this is a big responsibility and we do our best to protect your information and put you in control of it.</p>
-
-                <div class="submit-button">
-                    @Html.CtrlButton("Register", "btnSubmitUserContent", "Submit", onClickFunction: "CreateContentUser")
-                </div>
             </div>
         </div>
         <!-- end container -->

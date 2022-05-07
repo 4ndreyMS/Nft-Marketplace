@@ -5,8 +5,9 @@
     const user = document.querySelectorAll(".user");
     const showLogOut = document.querySelectorAll(".logOut");
     const userValue = sessionStorage.getItem("UserRole");
+    const register = document.querySelectorAll(".register")
     const loggedIn = document.querySelectorAll(".logIn");
-
+    const profile = document.querySelectorAll(".profile");
     /* 
      
        1 = Manager, 
@@ -18,6 +19,19 @@
     const contentCreatorFunction = () => {
         for (var i = 0; i < contentCreator.length; i += 1) {
             contentCreator[i].style.display = 'none';
+        }
+    }
+
+
+    const registerFunction = () => {
+        for (var i = 0; i < register.length; i += 1) {
+            register[i].style.display = 'none';
+        }
+    }
+
+    const profileFunction = () => {
+        for (var i = 0; i < profile.length; i += 1) {
+            profile[i].style.display = 'none';
         }
     }
 
@@ -46,28 +60,31 @@
             loggedIn[i].style.display = 'none';
         }
     }
-
+    
     if (userValue == 1) {
         showLogInFunction()
         contentCreatorFunction()
         userFunction()
+        registerFunction()
 
     } else if (userValue == 2) {
         showLogInFunction()
         managerFunction()
         contentCreatorFunction()
+        registerFunction()
 
 
     } else if (userValue == 3) {
         showLogInFunction()
         managerFunction()
         userFunction()
+        registerFunction()
 
     } else if (userValue === null) {
         showLogOutFunction()
         contentCreatorFunction()
         managerFunction()
         userFunction()
-
+        profileFunction()
     } 
 }

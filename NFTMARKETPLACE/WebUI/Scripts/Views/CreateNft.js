@@ -16,7 +16,7 @@
     this.loadDropdownColl = function () {
         this.ctrlActions.PostToAPI(collService + "/RetrieveAllCollectionByCompany", collection, function (response) {
             response.forEach((val) => {
-                slctCollection.innerHTML += `<option value="${val.Id}" >${val.CollectionName}</option>`;
+                slctCollection.innerHTML += `<option value="${val.Id}">${val.CollectionName}</option>`;
             })
         });
     }
