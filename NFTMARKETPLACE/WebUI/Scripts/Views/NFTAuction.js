@@ -95,7 +95,7 @@
                     `
             price = response.Price;
 
-            const timer = new Date(response.EndDate)
+            const timer = new Date(response.EndDate).getTime()
             const timerElement = document.getElementById("timer")
             const updateSec = setInterval(function () {
                 let now = new Date().getTime();
@@ -111,7 +111,7 @@
                 if (timeleft < 0) {
 
                     clearInterval(updateSec)
-                    timerElement.innerHTML = `This auction is over :( `
+                    timerElement.innerHTML = "This auction is over :( "
                 }
 
             }, 1000)
