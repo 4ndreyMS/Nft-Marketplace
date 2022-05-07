@@ -1,7 +1,8 @@
-﻿function NFTSaleManager() {
+﻿const ctrlActions = new ControlActions();
+const serviceNFT = "NFT";
 
-    const serviceNFT = "NFT";
-    const ctrlActions = new ControlActions();
+function NFTSaleManager() {
+
     let price;
 
     this.validateLogin = function () {
@@ -16,14 +17,16 @@
         return true;
     }
 
+ 
+   
     this.Information = function () {
 
         var NFT = { Id: sessionStorage.getItem('NFTSelected')}
-
+        
         ctrlActions.PostToAPI(serviceNFT + "/RetrieveAllNFTINFO", NFT, function (response) {
 
             response.forEach((card) => {
-
+                let date = new Date(card.CreationDate).toLocaleDateString('en-us', { year: 'numeric', month: 'long', day: 'numeric' })
                 NFTInformation.innerHTML += `
                          <div class="row align-items-center justify-content-center">
                     <div class="col-lg-8">
@@ -53,8 +56,15 @@
                                 <div class="tab-content mt-4 ps-3" id="pills-tabContent">
                                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                                        <p class="text-muted"><i class="mdi mdi-information-outline f-24 align-middle"></i> NFT Identification: ${card.Id}</p>
-                                       <p class="text-muted"><i class="mdi mdi-folder-image f-24 align-middle"></i> Collection name: ${card.CollectionName}</p>
-                                       <p class="text-muted"><i class="mdi mdi-calendar f-24 align-middle"></i> Creation date: ${card.CreationDate}</p>
+                                           <div>
+                                                 <p class="text-muted"><i class="mdi mdi-folder-image f-24 align-middle"></i> Collection name:
+                                                    <select id="slctCollection" class="dropDowns">
+                                                    <option value="" disabled selected hidden>Choose a collection</option>
+                                                </select>
+                                                    </p>
+                                        <button class="changeCollection" id="changeCollection" onclick="updateCollection()">Change Collection </button>
+                                            <div>
+<p class="text-muted"><i class="mdi mdi-calendar f-24 align-middle"></i> Creation date: ${date}</p>
                                     </div>
                                 </div>
                             </div>
@@ -88,10 +98,42 @@
                 </div>
                     `
                 price = card.Price;
+
+
+                let collection = { "CompanyId": sessionStorage.getItem("UserCompany") }/*   '9066'*/
+
+                    const collService = 'Collection'
+
+                    const slctCollection = document.getElementById("slctCollection");
+            
+
+                    
+
+                  ctrlActions.PostToAPI(collService + "/RetrieveAllCollectionByCompany", collection, function (response) {
+                        response.forEach((val) => {
+                            slctCollection.innerHTML += `<option value="${val.Id}">${val.CollectionName}</option>`;
+                        })
+                   
+                  });
+
+
+
+                console.log(document.getElementById("slctCollection").value)
+
+                
             })
 
         });
+
+       
+   
+
+    
     }
+
+    
+
+
 
     this.PutOnSale = function () {
         var ctrlActions = new ControlActions();
@@ -124,11 +166,24 @@
 
 }
 
+function updateCollection() {
+    let value = document.getElementById("slctCollection").value
+    let nftSelected = { "Id": sessionStorage.getItem("NFTSelected"), "IdCollection": value } 
+
+    ctrlActions.PostToAPI(serviceNFT + "/UpdateNftCollection", nftSelected, function (response) {
+
+    });
+
+}
+
 $(document).ready(function () {
 
     var load = new NFTSaleManager();
 
     if (load.validateLogin()) {
         load.Information();
+       
     }
+
+  
 });

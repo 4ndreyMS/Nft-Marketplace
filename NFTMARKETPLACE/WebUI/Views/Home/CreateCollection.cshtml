@@ -85,9 +85,9 @@
                             </div>
                             <div class="mt-4">
                                 <div class="Name">
-                                    <div class="form-group">
+                                    <div class="form-group dropDownBox">
                                         <label class="">Select the collection category</label>
-                                        <select id="slctCollCategory" class="form-control">
+                                        <select id="slctCollCategory" class="dropDowns">
                                             <option value="">- Select -</option>
                                         </select>
                                     </div>
@@ -95,12 +95,14 @@
                             </div>
                         </div>
                     </div>
-                    <hr class="my-4">               
+                    <hr class="my-4">
+                    <div class="submit-button">
+                        @Html.CtrlButton("CreateCollection", "btnSubmitUserContent", "Submit", onClickFunction: "RegisterCollection")
+                    </div>
                 </form>
+
             </div>
-            <div class="submit-button">
-                @Html.CtrlButton("CreateCollection", "btnSubmitUserContent", "Submit", onClickFunction: "RegisterCollection")
-            </div>
+           
         </div>
 
         <!-- end container -->
