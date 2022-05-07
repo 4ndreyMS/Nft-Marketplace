@@ -52,6 +52,12 @@
     <Reference Include="Microsoft.IdentityModel.Tokens, Version=5.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.IdentityModel.Tokens.5.1.2\lib\net451\Microsoft.IdentityModel.Tokens.dll</HintPath>
     </Reference>
+    <Reference Include="PayPalCheckoutSdk">
+      <HintPath>C:\Users\XPC\Downloads\Checkout-NET-SDK-develop\PayPalCheckoutSdk\bin\Debug\netstandard2.0\PayPalCheckoutSdk.dll</HintPath>
+    </Reference>
+    <Reference Include="PayPalHttp-Dotnet">
+      <HintPath>C:\Users\XPC\Downloads\Checkout-NET-SDK-develop\packages\PayPalHttp-Dotnet.1.0.0\lib\netstandard2.0\PayPalHttp-Dotnet.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -172,6 +178,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\ActionLogController.cs" />
+    <Compile Include="Controllers\AuctionController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CollectionController.cs" />
     <Compile Include="Controllers\Collection_CategoryController.cs" />

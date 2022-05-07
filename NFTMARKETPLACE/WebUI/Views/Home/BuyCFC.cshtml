@@ -2,7 +2,6 @@
 
 @{
     Layout = "~/Views/Shared/NavBar.cshtml";
-
 }
 
 @{
@@ -36,7 +35,7 @@
 
     <!-- Custom Css -->
     <link rel="stylesheet" href="../../css/style.min.css" type="text/css" />
-    <script src="~/Scripts/Views/BuyCFC.js"></script>
+    @*<script src="~/Scripts/Views/BuyCFC.js"></script>*@
 
 </head>
 
@@ -50,7 +49,6 @@
 
 
     <!--Navbar Start-->
-
     <!-- Navbar End -->
     <!-- start section -->
     <section class="newsletter section bg-light">
@@ -81,10 +79,12 @@
                         </p>
                         <div class="forum mt-4">
                             <form class="form" id="frmAmount">
-                                @Html.CtrlInput("txtBuyCFC","number","", "Enter the amount you would like to purchase in dollars","DolarAmount")
+                                @Html.CtrlInput("txtBuyCFC", "number", "", "Enter the amount you would like to purchase in dollars", "DolarAmount")
                             </form>
                         </div>
-                        @Html.CtrlButton("BuyCFC","btnBuyCFC","Buy","BuyCoins")
+                        <br/>
+                        <div id="paypal-payment"></div>
+                        
                     </div>
                     <div class="col-lg-6">
                         <div class="newsletter-image mt-4 mt-lg-0">
@@ -183,11 +183,12 @@
 
     <!-- counter -->
     <script src="../../Scripts/counter.init.js"></script>
-
     <!-- App Js -->
     <script src="../../Scripts/app.js"></script>
-
-
+    @*<script src="../../Scripts/paypal.js"></script>*@
+<script src="https://www.paypal.com/sdk/js?client-id=AbWi8BmMKMSm36L1QRAm4qlxQnwP3AUZVFhosoOzNF7V5YmdiQDUF3nRssid1x8Uuc9CjfDbl2Yoq3s7&disable-funding=credit,card"></script>
+@*<script src="~/Scripts/Views/paypal.js"></script>*@
+<script src="~/Scripts/Views/BuyCFC.js"></script>
 </body>
 
 </html>

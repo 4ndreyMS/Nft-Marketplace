@@ -54,9 +54,14 @@ namespace WebAPI.Controllers
             };
         }
 
-        [HttpPost]
-        public APIResponse RetrieveAllOffersByOwner(Offer offer)
+        [HttpGet]
+        public APIResponse RetrieveAllOffersByOwner(string owner)
         {
+            var offer = new Offer()
+            {
+                OwnerID = owner
+            };
+            
             return new APIResponse()
             {
                 Data = OM.RetrieveAllOffersByOwner(offer),

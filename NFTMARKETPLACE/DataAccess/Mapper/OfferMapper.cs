@@ -54,7 +54,7 @@ namespace DataAccess.Mapper
             var operation = new SqlOperation { ProcedureName = "RET_All_OFFERS_BY_OWNER_PR" };
 
             var c = (Offer)entity;
-            operation.AddVarcharParam(DB_COL_NFT, c.NFT);
+            operation.AddVarcharParam(DB_COL_OWNERID, c.OwnerID);
             return operation;
         }
 

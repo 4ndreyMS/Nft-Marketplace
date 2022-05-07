@@ -31,6 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PayPalCheckoutSdk">
+      <HintPath>C:\Users\XPC\Downloads\Checkout-NET-SDK-develop\PayPalCheckoutSdk\bin\Debug\netstandard2.0\PayPalCheckoutSdk.dll</HintPath>
+    </Reference>
+    <Reference Include="PayPalHttp-Dotnet">
+      <HintPath>C:\Users\XPC\Downloads\Checkout-NET-SDK-develop\packages\PayPalHttp-Dotnet.1.0.0\lib\netstandard2.0\PayPalHttp-Dotnet.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -44,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Crud\ActionLogFactory.cs" />
     <Compile Include="Crud\AppMessagesCrudFactory.cs" />
+    <Compile Include="Crud\AuctionCrudFactory.cs" />
     <Compile Include="Crud\CategoryCrudFactory.cs" />
     <Compile Include="Crud\CollectionCrud.cs" />
     <Compile Include="Crud\Collection_CategoryCrudFactory.cs" />
@@ -66,6 +73,7 @@
     <Compile Include="Dao\SqlOperation.cs" />
     <Compile Include="Mapper\ActionLogMapper.cs" />
     <Compile Include="Mapper\AppMessageMapper.cs" />
+    <Compile Include="Mapper\AuctionMapper.cs" />
     <Compile Include="Mapper\CategoryMapper.cs" />
     <Compile Include="Mapper\CollectionMapper.cs" />
     <Compile Include="Mapper\Collection_CategoryMapper.cs" />

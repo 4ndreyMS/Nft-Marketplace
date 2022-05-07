@@ -44,6 +44,7 @@
     <Compile Include="ActionLog.cs" />
     <Compile Include="APIResponse.cs" />
     <Compile Include="ApplicationMessage.cs" />
+    <Compile Include="Auction.cs" />
     <Compile Include="BaseEntity.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="Class1.cs" />

@@ -1,8 +1,5 @@
 ﻿function ManagerNFTCard() {
 
-
- 
-
     const nftSection = document.getElementById("row-cards")
     this.service = 'NFT';
     const cntrlAction = new ControlActions();
@@ -200,6 +197,51 @@
             })                                        
         })
     }
+
+    this.RetrieveAllNftsOnAuction = () => {
+
+        let NFTO = { SaleState: "OnAuction" }
+
+        //devuelve toda la informacion de los nft
+        cntrlAction.PostToAPI(this.service + "/RetrieveNftBySaleState", NFTO, function (response) {
+
+            //itera segun los nft que hayan en la bd
+            response.forEach((card) => {
+                //si el estado del nft esta en venta imprime
+                NFTOnAuction.innerHTML += `
+                             <div class="col-lg-3 mt-4 nftCard">
+                                <div class="tab-content p-4 border-0">
+                                    <div class="header d-flex align-items-center justify-content-start">
+                                        <div class="avatar-xs">
+                                            <img src="${card.UserPic}" alt="" class="img-fluid rounded-circle">
+                                        </div>
+                                        <h6 class="mb-0 ms-2 fw-semibold text-muted f-14">By: ${card.OwnerName}</h6>
+                                    </div>
+                                    <div class="card-image mt-3">
+                                        <a href="NFTAuction" onclick="SaveNFT('${card.Id}')"><img src="${card.Image}" alt="" class="img-fluid"></a>
+                                    </div>
+                                    <div class="body-content mt-3">
+                                        <h6 class="fw-bold">  ${card.NftName}</h6>
+                                        <div class="d-flex">
+                                            <p class="text-muted">1 in stock</p>
+                                            <p class="ms-auto text-muted">
+                                                Price : <span class="text-success">
+                                                   ${card.Price}
+                                                    CFC
+                                                </span>
+                                            </p>
+                                        </div>
+                               
+                                    </div>
+                                </div>
+                            </div>`
+            })
+        })
+    }
+}
+
+var SaveNFT = function (NFT) {
+    sessionStorage.setItem("NFTSelected", NFT)
 }
 
 function MakeAnOffer(Id, IdOwner) {
@@ -222,9 +264,27 @@ function MakeAnOffer(Id, IdOwner) {
                     text: 'Please insert an amount to make the offer',
                 })
             } else {
-                let Offer = { NFT: Id, BidderID: sessionStorage.getItem('UserCompany'), OwnerID: IdOwner, Amount: price}
-                cntrlAction.PostToAPI("Offer" + "/CreateOffer", Offer, function (response) { })
-                window.getElementById(Id).value = "";
+                const companyId = sessionStorage.getItem("UserCompany");
+                let walletInfo = { CompanyId: companyId };
+                cntrlAction.PostToAPI("Wallet" + "/WalletInfoByCompnay", walletInfo, function (response) {
+                    var walletResponse = response;
+                    if (walletResponse.Amount >= price) {
+                        let Offer = { NFT: Id, BidderID: sessionStorage.getItem('UserCompany'), OwnerID: IdOwner, Amount: price }
+                        cntrlAction.PostToAPI("Offer" + "/CreateOffer", Offer, function (response) { })
+                        document.getElementById(Id).value = "";
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Offer completed',
+                            text: 'Your offer was made successfully',
+                        })
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'You have not enough CenfoCoins to make this offer.',
+                        })
+                    }
+                })
             }
         }
     }
@@ -234,4 +294,5 @@ $(document).ready(function () {
     var tblLoad = new ManagerNFTCard();
     tblLoad.RetrieveAllNfts();
     tblLoad.RetrieveAllNftsInOffer();
+    tblLoad.RetrieveAllNftsOnAuction();
 });
