@@ -33,10 +33,10 @@ namespace AppLogic.Managers
             if (RetrieveUser(_user) == null)
             {
                 UserPasswordManager passManager = new UserPasswordManager();
-              
+
                 try
                 {
-                   
+
                     UserFactory.Create(_user);
                     passManager.CreatePassword(_user);
                 }
@@ -71,7 +71,7 @@ namespace AppLogic.Managers
                     {
                         retCompanyId = companyManager.CreateCompany(_user.Company);
                     }
-                    
+
                     if (retCompanyId != null)
                     {
                         //se crea el usuario con el otp y el id de la compania
@@ -90,7 +90,7 @@ namespace AppLogic.Managers
                             RoleId = 3,
                             UserId = retUser.Cedula
                         });
-                        ActionManager.createActionLog(new ActionLog(){ActionName = "USER_REGISTER", IdUser = retUser.Cedula});
+                        ActionManager.createActionLog(new ActionLog() { ActionName = "USER_REGISTER", IdUser = retUser.Cedula });
 
                         return retUser;
                     }
@@ -173,7 +173,7 @@ namespace AppLogic.Managers
                 }
             }
 
-            return new User(){IdOrganization = "0", Status = "false"};
+            return new User() { IdOrganization = "0", Status = "false" };
         }
 
 
@@ -289,7 +289,6 @@ namespace AppLogic.Managers
                 Console.WriteLine(e);
                 throw;
             }
-
             return result;
         }
 
@@ -303,11 +302,11 @@ namespace AppLogic.Managers
             {
                 result = UserFactory.RetrieveByMail<User>(_user);
 
-                if (result!=null)
+                if (result != null)
                 {
                     return result;
                 }
-                
+
                 return null;
             }
             catch (Exception e)
@@ -370,9 +369,9 @@ namespace AppLogic.Managers
             companyManager = new CompanyManager();
             walletManager = new WalletManager();
 
-            if (_user.Company.walletPin!=0)
+            if (_user.Company.walletPin != 0)
             {
-                walletManager.updateWalletPin(new Wallet() {WalletPin = _user.Company.walletPin, CompanyId = _user.Company.id});
+                walletManager.updateWalletPin(new Wallet() { WalletPin = _user.Company.walletPin, CompanyId = _user.Company.id });
 
             }
             companyManager.UpdateName(_user.Company);
