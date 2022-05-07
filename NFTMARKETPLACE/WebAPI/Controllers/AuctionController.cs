@@ -79,7 +79,18 @@ namespace WebAPI.Controllers
             };
         }
 
+        [HttpPost]
+        public APIResponse RetrieveAllByNft(Auction _auction)
+        {
 
+            return new APIResponse()
+            {
+                Data = manger.RetriveAllByNft(_auction),
+                Message ="retrieve",
+                Status = "Ok",
+                TransacctionDate = DateTime.Now.ToString()
+            };
+        }
 
 
     }

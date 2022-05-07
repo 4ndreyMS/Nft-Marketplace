@@ -15,11 +15,17 @@ namespace DataAccess.Mapper
             IdOwner,
             IdBuyer,
             Amount,
+            NftId,
             Nft,
             EndDate,
             CreationDate,
             Image,
-            NftName
+            CreationDateNft,
+            CollectionName,
+            CreatorImage,
+            CreatorName,
+            NftName,
+            Price
         }
 
         public List<BaseEntity> BuildObjects(List<Dictionary<string, object>> lstRows)
@@ -53,12 +59,19 @@ namespace DataAccess.Mapper
                 IdOwner = GetStringValue(row, RowNames.IdOwner.ToString()),
                 Amount = GetDoubleValue(row, RowNames.Amount.ToString()),
                 EndDate = GetDateValue(row,RowNames.EndDate.ToString()),
+                CreationDate= GetDateValue(row, RowNames.CreationDate.ToString()),
                 Nft = new InfoNFT()
                 {
-                    Id = GetStringValue(row, RowNames.Nft.ToString())
-
+                    Id = GetStringValue(row, RowNames.NftId.ToString()),
+                    Image = GetStringValue(row, RowNames.Image.ToString()),
+                    CreationDate = GetDateValue(row, RowNames.CreationDateNft.ToString()),
+                    CollectionName = GetStringValue(row, RowNames.CollectionName.ToString()),
+                    CreatorImage = GetStringValue(row, RowNames.CreatorImage.ToString()),
+                    CreatorName = GetStringValue(row, RowNames.CreatorName.ToString()),
+                    NftName = GetStringValue(row, RowNames.NftName.ToString()),
+                    Price = GetDecimalValue(row, RowNames.Price.ToString())
                 }
-                
+
 
             };
 
@@ -108,6 +121,13 @@ namespace DataAccess.Mapper
         public SqlOperation GetRetriveAllStatement()
         {
            return new SqlOperation { ProcedureName = "RET_ALL_AUCTION_PR" };
+        }
+        public SqlOperation GetRetriveAllAuctionByNft(BaseEntity entity)
+        {
+            var obj = (Auction)entity;
+            sqlOperation = new SqlOperation { ProcedureName = "RET_NFT_AUCTION_PR" };
+            sqlOperation.AddVarcharParam(RowNames.Nft.ToString(), obj.Nft.Id);
+            return sqlOperation;
         }
         public SqlOperation GetDeleteStatement(BaseEntity entity)
         {

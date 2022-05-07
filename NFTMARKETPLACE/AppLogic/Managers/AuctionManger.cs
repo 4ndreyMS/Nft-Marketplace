@@ -35,5 +35,10 @@ namespace AppLogic.Managers
         {
             return auctionFactory.RetrieveAllByOwner<Auction>(entity);
         }
+        public Auction RetriveAllByNft(BaseEntity entity)
+        {
+            return auctionFactory.RetrieveAllByNft<Auction>(entity);
+        }
+
     }
 }
