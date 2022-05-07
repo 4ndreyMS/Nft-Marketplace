@@ -34,7 +34,7 @@ namespace AppLogic.Managers
             nft.IdCreator = nft.IdOwner;
             nft.Id = GenHexaId();
             nftCF.Create(nft);
-            NFTCategoryManager.CreateNFT_Category(new NFT_Category() {NFTId = nft.Id, CategoryId = nft.IdCategory});
+            NFTCategoryManager.CreateNFT_Category(new NFT_Category() { NFTId = nft.Id, CategoryId = nft.IdCategory });
             return nft;
         }
 
@@ -54,6 +54,11 @@ namespace AppLogic.Managers
         }
 
         public void UpdateWhenBuyNft(NFT nft)
+        {
+            nftCF.UpdateWhenBuyNft(nft);
+        }
+
+        public void UpdateNFTOwner(NFT nft)
         {
             nftCF.UpdateWhenBuyNft(nft);
         }

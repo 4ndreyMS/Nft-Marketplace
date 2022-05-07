@@ -84,7 +84,9 @@
                 <div class="col-lg-12">
                     <div class="tab-content mt-5" id="pills-tabContent">
                         <div class="tab-pane fade show active" id="pills-games" role="tabpanel" aria-labelledby="pills-games-tab">
-                            @Html.CtrlTable("ManagerOffersTable", "offerList", "Offer List", "NFT,Bidder,Offer Amount,Approve,Decline", "NFT,BidderId,Amount", "Prueba")
+                            @Html.CtrlTable("ManagerOffersTable", "offerList", "Offer List", "NFT,Bidder,Offer Amount", "NFT,BidderID,Amount", "Prueba")
+                            @Html.CtrlButton("ManagerOffersTable", "ApproveButton", "Approve", "StatusApprove")
+                            @Html.CtrlButton("ManagerOffersTable", "DeclineButton", "Decline", "StatusDecline")
                         </div>
                     </div>
                 </div>

@@ -117,7 +117,7 @@ namespace DataAccess.Mapper
             var operation = new SqlOperation { ProcedureName = "RET_ALL_NFT_INFORMATION" };
 
             var c = (NFT)entity;
-            operation.AddVarcharParam(DB_COL_Id, c.Id);          
+            operation.AddVarcharParam(DB_COL_Id, c.Id);
             return operation;
         }
 
@@ -133,6 +133,17 @@ namespace DataAccess.Mapper
             operation.AddVarcharParam(DB_COL_SaleState, c.SaleState);
             return operation;
         }
+
+        public SqlOperation UpdateNFTOwner(BaseEntity entity)
+        {
+            var operation = new SqlOperation { ProcedureName = "UPD_NFTOWNER_PR" };
+
+            var c = (NFT)entity;
+            operation.AddVarcharParam(DB_COL_Id, c.Id);
+            operation.AddVarcharParam(DB_COL_IdOwner, c.IdOwner);
+            return operation;
+        }
+
 
         public SqlOperation GetDeleteStatement(BaseEntity entity)
         {
@@ -283,7 +294,7 @@ namespace DataAccess.Mapper
             var operation = new SqlOperation { ProcedureName = "RET_NFT_SALESTATE_PR" };
 
             var c = (NFT)entity;
-            operation.AddVarcharParam(DB_COL_SaleState,c.SaleState);
+            operation.AddVarcharParam(DB_COL_SaleState, c.SaleState);
 
             return operation;
         }
@@ -295,7 +306,7 @@ namespace DataAccess.Mapper
             var c = (NFT)entity;
             operation.AddVarcharParam(DB_COL_Id, c.Id);
             operation.AddSmallIntParam(DB_COL_IdCollection, c.IdCollection);
-            
+
             return operation;
         }
     }

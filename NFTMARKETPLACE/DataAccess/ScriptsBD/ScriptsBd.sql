@@ -652,3 +652,11 @@ AS
 	WHERE OwnerID = @P_ReceiverId
 
 
+	CREATE PROCEDURE UPD_NFTOWNER_PR
+	@P_Id NVARCHAR(100),
+	@P_Owner nvarchar(100)
+AS
+	UPDATE [dbo].[NFT]
+	SET IdOwner = @P_Owner 
+	WHERE Id=@P_Id;
+GO
