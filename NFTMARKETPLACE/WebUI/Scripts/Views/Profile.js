@@ -213,7 +213,7 @@
                                                 <h6 class="f-14"><i class="mdi mdi-calendar f-18 text-primary me-2 align-middle"></i><span class="text-muted ms-2">${card.CreationDate}</span></h6>
                                             </div>
                                             <div class="blog-slider-footer">
-                                                <button class="btn btn-primary" type="button" onclick="CancelSale('${card.Id}', ${card.Price})">Cancel</button>
+                                                <button class="btn btn-primary" type="button" onclick="CancelAuction('${card.Id}', ${card.Price})">Cancel</button>
                                             </div>
                                         </div>
                                     </div>
@@ -243,8 +243,11 @@ var CancelSale = function (IdNFT, NFTPrice) {
 }
 
 var CancelAuction = function (IdNFT, NFTPrice) {
+    var NFTId = { Id: IdNFT}
+    var Auction = {Nft: NFTId};
     var NFT = { Id: IdNFT, Price: NFTPrice, SaleState: "InPropiety" }
     var ctrlActions = new ControlActions();
+    ctrlActions.DeleteToAPI("Auction" + "/DeleteAuction", Auction, function (response) { })
     ctrlActions.PostToAPI("NFT" + "/PutOnSale", NFT, function (response) { });
     window.location.href = "profile";
 }

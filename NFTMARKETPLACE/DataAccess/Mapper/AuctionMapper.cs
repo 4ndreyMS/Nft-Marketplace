@@ -138,7 +138,7 @@ namespace DataAccess.Mapper
             };
 
             var obj = (Auction)entity;
-            sqlOperation.AddSmallIntParam(RowNames.Id.ToString(), obj.Id);
+            sqlOperation.AddVarcharParam(RowNames.NftId.ToString(), obj.Nft.Id);
             return sqlOperation;
         }
 
