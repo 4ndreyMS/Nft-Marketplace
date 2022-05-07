@@ -29,6 +29,19 @@ namespace WebAPI.Controllers
             };
         }
 
+        [HttpPost]
+        public APIResponse RetrieveNFT(NFT nft)
+        {
+            APIResponse response = new APIResponse()
+            {
+                Data = nftM.RetrieveNFT(nft),
+                Status = "Ok",
+                Message = "NFT retrieve",
+                TransacctionDate = DateTime.Now.ToString()
+            };
+            return response;
+        }
+
         [HttpDelete]
         public void DeleteNFT(NFT nft)
         {

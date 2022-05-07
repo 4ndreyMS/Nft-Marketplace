@@ -79,6 +79,11 @@ namespace AppLogic.Managers
             return result;
         }
 
+        public NFT RetrieveNFTInfo(NFT nft)
+        {
+            return nftCF.Retrieve<NFT>(nft);
+        }
+
         public void DeleteNFT(NFT nft)
         {
             nftCF.Delete(nft);

@@ -53,6 +53,9 @@ namespace DataAccess.Mapper
 
             return operation;
         }
+
+
+
         public SqlOperation GetRetriveAllStatement()
         {
             var operation = new SqlOperation { ProcedureName = "RET_ALL_NFT_PR" };
