@@ -207,7 +207,6 @@
 
             //itera segun los nft que hayan en la bd
             response.forEach((card) => {
-
                 //si el estado del nft esta en venta imprime
                 NFTOnAuction.innerHTML += `
                              <div class="col-lg-3 mt-4 nftCard">
@@ -219,7 +218,7 @@
                                         <h6 class="mb-0 ms-2 fw-semibold text-muted f-14">By: ${card.OwnerName}</h6>
                                     </div>
                                     <div class="card-image mt-3">
-                                        <a href="NFTSaleManager" onclick="SaveNFT('${card.Id}')"><img src="${card.Image}" alt="" class="img-fluid"></a>
+                                        <a href="NFTAuction" onclick="SaveNFT('${card.Id}')"><img src="${card.Image}" alt="" class="img-fluid"></a>
                                     </div>
                                     <div class="body-content mt-3">
                                         <h6 class="fw-bold">  ${card.NftName}</h6>
@@ -231,7 +230,8 @@
                                                     CFC
                                                 </span>
                                             </p>
-                                        </div>                                       
+                                        </div>
+                               
                                     </div>
                                 </div>
                             </div>`

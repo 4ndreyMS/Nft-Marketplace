@@ -57,6 +57,11 @@ namespace WebUI.Controllers
             return View();
         }
 
+        public ActionResult NFTAuction()
+        {
+            return View();
+        }
+        
         public ActionResult EditProfile()
         {
             return View();
