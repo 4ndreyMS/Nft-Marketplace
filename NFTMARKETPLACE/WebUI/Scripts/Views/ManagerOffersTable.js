@@ -1,11 +1,15 @@
-﻿function ManagerOffersTable() {
-    const cntrlAction = new ControlActions();
+﻿const cntrlAction = new ControlActions();
+const serviceCompany = "Company";
+const serviceNFT = 'NFT';
+function ManagerOffersTable() {
     let Owner = sessionStorage.getItem("UserCompany");
     this.tblOffer = 'offerList';
     const service = 'Offer';
+    const serviceWallet = "Wallet";
     this.columns = "NFT,BidderID,Amount";
-    const service2 = 'NFT';
-
+    let walletResponse = {};
+    let OfferInfo = {};
+    let validationObj = {};
     this.validateLogin = function () {
 
         if (sessionStorage.getItem('UserCedula') === null || sessionStorage.getItem('UserCedula') === undefined) {
@@ -35,30 +39,67 @@
                 confirmButtonColor: "#DD6B55",
             })
         } else {
-            var OfferInfo = {
+            OfferInfo = {
                 BidderID: bidder,
                 NFT: nft,
                 Amount: amount
             };
-            var wallet = {
-                CompanyId: bidder,
-                Amount: amount
-            }
-            cntrlAction.PostToAPI(service + "/WalletInfoByCompnay", wallet, function (response) {
-                console.log(response)
 
+            let walletBidder = { CompanyId: bidder, Amount: amount, Identifier: "" }
+            let walletOwner = { CompanyId: Owner, Amount: amount, Identifier: ""}
+            cntrlAction.PostToAPI(serviceWallet + "/WalletInfoByCompnay", walletBidder, function (response) {
+                walletResponse = response;
+                walletBidder.Identifier = response.Identifier;
+                
 
+                if (amount <= response.Amount) {
+                    cntrlAction.PostToAPI(serviceWallet + "/restAmount", walletBidder, function (response) {
+                        cntrlAction.PostToAPI(serviceWallet + "/WalletInfoByCompnay", walletOwner, function (response) {
+
+                            walletOwner.Identifier = response.Identifier;
+                            cntrlAction.PostToAPI(serviceWallet + "/addAmount", walletOwner, function (response) {
+
+                                var updNft = {
+                                    Id: OfferInfo.NFT,
+                                    Price: OfferInfo.Amount,
+                                    IdCollection: null,
+                                    IdOwner: OfferInfo.BidderID,
+                                    SaleState: "InPropiety"
+                                }
+                                cntrlAction.PostToAPI(serviceNFT + "/UpdateWhenBuyNft", updNft, function(response) {
+                                    cntrlAction.DeleteToAPI(service + "/DeleteOffer", OfferInfo, function (response) {
+                                        let OwnerCompany = {id: Owner};
+                                        cntrlAction.PostToAPI(serviceCompany + "/retriveCompanyInfo", OwnerCompany, function (response) {
+
+                                            validationObj = {
+                                                EmailTo: response.email,
+                                                Title: "Your NFT purchase verification",
+                                                Msj: "Thanks for your purchase!",
+                                                NFTAsset: response.Image
+                                            };
+
+                                            var nft = { Id: OfferInfo.NFT}
+                                            cntrlAction.PostToAPI(serviceNFT + "/RetrieveAllNFTINFO", nft, function(response) {
+                                                validationObj.NFTAsset = response.Image
+                                            });
+                                        });
+                                    });
+                                });
+
+                            });
+                        });
+                    });
+
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: "This user don't have enough CFC!",
+                        icon: 'error',
+                        confirmButtonText: 'Try Again!',
+                        confirmButtonColor: "#DD6B55",
+                    });
+                }
             });
-
-
-
-
-
-
-            // cntrlAction.DeleteToAPI(service2 + "/UpdateNFTOwner", OfferInfo, function (response) { });
-            //cntrlAction.DeleteToAPI(service + "/DeleteOffer", OfferInfo, function (response) { });
-
-
         }
 
         bidder = "";
@@ -91,8 +132,30 @@
 
 }
 
+function quit(parameters) {
+
+    let OwnerCompany = { id: "565" };
+    cntrlAction.PostToAPI(serviceCompany + "/retriveCompanyInfo", OwnerCompany, function (response) {
+
+       let validationObj = {
+            EmailTo: response.email,
+            Title: "Your NFT purchase verification",
+            Msj: "Thanks for your purchase!",
+            NFTAsset: response.Image
+        };
+
+        var nft = { Id: "A47CD3A62A" }
+        cntrlAction.PostToAPI(serviceNFT + "/RetrieveAllNFTINFO", nft, function (response) {
+            validationObj.NFTAsset = response.Image;
+            console.log(response);
+            console.log(validationObj);
+        });
+    });
+}
+
 $(document).ready(function () {
     var tblLoad = new ManagerOffersTable();
     tblLoad.validateLogin();
     tblLoad.RetrieveAllOffers();
+    quit();
 });

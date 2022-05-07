@@ -64,7 +64,6 @@ namespace WebAPI.Controllers
             return response;
         }
 
-
         [HttpGet]
         public APIResponse RetriveAll()
         {

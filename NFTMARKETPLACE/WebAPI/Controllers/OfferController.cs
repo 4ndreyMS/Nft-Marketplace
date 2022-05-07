@@ -31,9 +31,17 @@ namespace WebAPI.Controllers
         }
 
         [HttpDelete]
-        public void DeleteOffer(Offer offer)
+        public APIResponse DeleteOffer(Offer offer)
         {
             OM.DeleteOffer(offer);
+
+            return new APIResponse()
+            {
+                Data = "Offer deleted",
+                Message = "Offer deleted",
+                Status = "OK",
+                TransacctionDate = DateTime.Now.ToString()
+            };
         }
 
         [HttpDelete]
