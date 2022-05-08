@@ -78,7 +78,7 @@ function ManagerOffersTable() {
                                 //se actualizan los parametros del nft, quien pertenece, monto
                                 cntrlAction.PostToAPI(serviceNFT + "/UpdateWhenBuyNft", updNft, function (response) {
                                     //se elimina la oferta
-                                    cntrlAction.PostToAPI(service + "/DeleteOfferbyBidderId", OfferInfo, function (response) {
+                                    cntrlAction.DeleteToAPI(service + "/DeleteALLOffers", OfferInfo, function (response) {
                                         let OwnerCompany = { id: bidderId };
                                         //se devuelve la informacion de la compania
                                         cntrlAction.PostToAPI(serviceCompany + "/retriveCompanyInfo", OwnerCompany, function (response) {
@@ -89,7 +89,6 @@ function ManagerOffersTable() {
                                                 Msj: "Thanks for your purchase!",
                                                 NFTAsset: response.Image
                                             };
-
                                             var nft = { Id: OfferInfo.NFT }
                                             //se consulta la imagen del nft para enviar el qr
                                             cntrlAction.PostToAPI(serviceNFT + "/RetrieveNFT", nft, function (response) {
