@@ -2,11 +2,12 @@
 const serviceCompany = "Company";
 const serviceNFT = 'NFT';
 const serviceValidation = "SendValidations";
+const service = 'Offer';
+let bidderId = "";
 
 function ManagerOffersTable() {
     let Owner = sessionStorage.getItem("UserCompany");
     this.tblOffer = 'offerList';
-    const service = 'Offer';
     const serviceWallet = "Wallet";
     this.columns = "NFT,BidderID,Amount";
     let walletResponse = {};
@@ -29,7 +30,9 @@ function ManagerOffersTable() {
         bidder = Offer.BidderID;
         nft = Offer.NFT;
         amount = Offer.Amount;
+        console.log(Offer);
     }
+
 
     this.StatusApprove = function () {
         if (bidder == "" && nft == "") {
@@ -46,7 +49,7 @@ function ManagerOffersTable() {
                 NFT: nft,
                 Amount: amount
             };
-
+            bidderId = bidder
             let walletBidder = { CompanyId: bidder, Amount: amount, Identifier: "" }
             let walletOwner = { CompanyId: Owner, Amount: amount, Identifier: "" }
 
@@ -54,7 +57,7 @@ function ManagerOffersTable() {
             cntrlAction.PostToAPI(serviceWallet + "/WalletInfoByCompnay", walletBidder, function (response) {
                 walletResponse = response;
                 walletBidder.Identifier = response.Identifier;
-                
+
                 //se valida si el usuario tiene monto suficiente
                 if (amount <= response.Amount) {
                     //se rebaja el montp del nft en la cuenta del bidder
@@ -75,8 +78,8 @@ function ManagerOffersTable() {
                                 //se actualizan los parametros del nft, quien pertenece, monto
                                 cntrlAction.PostToAPI(serviceNFT + "/UpdateWhenBuyNft", updNft, function (response) {
                                     //se elimina la oferta
-                                    cntrlAction.DeleteToAPI(service + "/DeleteOffer", OfferInfo, function (response) {
-                                        let OwnerCompany = { id: Owner };
+                                    cntrlAction.PostToAPI(service + "/DeleteOfferbyBidderId", OfferInfo, function (response) {
+                                        let OwnerCompany = { id: bidderId };
                                         //se devuelve la informacion de la compania
                                         cntrlAction.PostToAPI(serviceCompany + "/retriveCompanyInfo", OwnerCompany, function (response) {
 
@@ -89,10 +92,10 @@ function ManagerOffersTable() {
 
                                             var nft = { Id: OfferInfo.NFT }
                                             //se consulta la imagen del nft para enviar el qr
-                                            cntrlAction.PostToAPI(serviceNFT + "/RetrieveNFT", nft, function(response) {
+                                            cntrlAction.PostToAPI(serviceNFT + "/RetrieveNFT", nft, function (response) {
                                                 validationObj.NFTAsset = response.Image;
                                                 //se envia el qr
-                                                cntrlAction.PostToAPI(serviceValidation + "/SendQR", validationObj, function(response) {
+                                                cntrlAction.PostToAPI(serviceValidation + "/SendQR", validationObj, function (response) {
                                                     Swal.fire({
                                                         title: 'Success!',
                                                         text: 'You accept the offer of your product',
@@ -147,36 +150,43 @@ function ManagerOffersTable() {
                 BidderID: bidder,
                 NFT: nft
             };
-            cntrlAction.DeleteToAPI(service + "/DeleteOffer", OfferInfo, function (response) { });
+            cntrlAction.PostToAPI(service + "/DeleteOfferbyBidderId", OfferInfo, function (response) { });
         }
         bidder = "";
         nft = "";
-        // window.location.reload();
+        window.location.reload();
     }
 
 }
 
 function quit(parameters) {
+    OfferInfo = {
+        BidderID: '8971',
+        NFT: '06E688A9FC',
+        Amount: '10.000'
+    };
+    cntrlAction.PostToAPI(service + "/DeleteOfferbyBidderId", OfferInfo, function (response) {
 
-    let OwnerCompany = { id: "565" };
-    cntrlAction.PostToAPI(serviceCompany + "/retriveCompanyInfo", OwnerCompany, function (response) {
+        let OwnerCompany = { id: "565" };
+        cntrlAction.PostToAPI(serviceCompany + "/retriveCompanyInfo", OwnerCompany, function (response) {
 
-       let validationObj = {
-            EmailTo: response.email,
-            Title: "Your NFT purchase verification",
-            Msj: "Thanks for your purchase!",
-            NFTAsset: response.Image
-        };
+            let validationObj = {
+                EmailTo: response.email,
+                Title: "Your NFT purchase verification",
+                Msj: "Thanks for your purchase!",
+                NFTAsset: response.Image
+            };
 
-        var nft = { Id: "A47CD3A62A" }
-        cntrlAction.PostToAPI(serviceNFT + "/RetrieveNFT", nft, function (response) {
-            validationObj.NFTAsset = response.Image;
+            var nft = { Id: "A47CD3A62A" }
+            cntrlAction.PostToAPI(serviceNFT + "/RetrieveNFT", nft, function (response) {
+                validationObj.NFTAsset = response.Image;
 
-            cntrlAction.PostToAPI(serviceValidation + "/SendQR", validationObj, function(response) {
-                console.log("qr sendt");
-            })
+                cntrlAction.PostToAPI(serviceValidation + "/SendQR", validationObj, function (response) {
+                    console.log("qr sendt");
+                })
 
 
+            });
         });
     });
 }

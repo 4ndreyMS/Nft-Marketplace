@@ -18,8 +18,8 @@ namespace AppLogic.Managers
         }
 
         public Offer CreateOffer(Offer offer)
-        {         
-            offer.CreationDate = DateTime.Now;           
+        {
+            offer.CreationDate = DateTime.Now;
             OCF.Create(offer);
             return offer;
         }
