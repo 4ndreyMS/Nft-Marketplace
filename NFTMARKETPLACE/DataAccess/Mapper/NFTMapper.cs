@@ -298,6 +298,16 @@ namespace DataAccess.Mapper
             
             return operation;
         }
+
+        public SqlOperation GetUpdateStateNft(BaseEntity entity)
+        {
+            var operation = new SqlOperation { ProcedureName = "UPD_NFT_STATE_PR" };
+
+            var c = (NFT)entity;
+            operation.AddVarcharParam(DB_COL_Id, c.Id);
+            operation.AddVarcharParam(DB_COL_SaleState, c.SaleState);
+            return operation;
+        }
     }
 }
 

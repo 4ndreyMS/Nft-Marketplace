@@ -123,5 +123,10 @@ namespace AppLogic.Managers
         {
             nftCF.UpdateNftCollection(_nft);
         }
+
+        public void UpdateStateNft(NFT nft)
+        {
+            nftCF.UpdateStateNft(nft);
+        }
     }
 }
