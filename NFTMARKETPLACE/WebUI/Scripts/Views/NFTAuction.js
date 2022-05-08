@@ -86,7 +86,7 @@
                             <div class="row ">
                                 <div class="col-lg-6">
                                     <h6 class="fw-bold mb-1">Last Price:</h6>
-                                    <p class="fw-semibold">${response.Nft.Price} CFC</p>
+                                    <p class="fw-semibold">${response.Amount} CFC</p>
                                 </div>
                             </div>
                         </div>
