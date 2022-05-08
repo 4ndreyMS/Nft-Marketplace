@@ -30,6 +30,16 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
+        public APIResponse SendSmsMail(Validation _validation)
+        {
+            validationManger.sendSmsMail(_validation);
+            return new APIResponse()
+            {
+                Data = "Info sent"
+            };
+        }
+
+        [HttpPost]
         public APIResponse SendQR(Validation _validation)
         {
             return new APIResponse()

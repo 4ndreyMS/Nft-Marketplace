@@ -1,9 +1,11 @@
 ﻿let auctionResponse = {};
 let priceBid = 0;
 let timeFinish = false;
-const serviceWallet="Wallet"
+const serviceWallet = "Wallet"
+const serviceValidation = "SendValidations";
+const serviceUser = "User";
+const serviceNFT = "NFT";
 function NFTAuction() {
-    const serviceNFT = "NFT";
     const ctrlActions = new ControlActions();
     let price;
     const serviceAuction = "Auction";
@@ -45,7 +47,7 @@ function NFTAuction() {
                                 </ul>
                                 <div class="tab-content mt-4 ps-3" id="pills-tabContent">
                                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                                       <p class="text-muted"><i class="mdi mdi-information-outline f-24 align-middle"></i> NFT Identification: ${response.Id}</p>
+                                       <p class="text-muted"><i class="mdi mdi-information-outline f-24 align-middle"></i> NFT Identification: ${response.Nft.Id}</p>
                                        <p class="text-muted"><i class="mdi mdi-folder-image f-24 align-middle"></i> Collection name: ${response.Nft.CollectionName}</p>
                                        <p class="text-muted"><i class="mdi mdi-calendar f-24 align-middle"></i> Creation date: ${response.Nft.CreationDate}</p>
 <p  class="text-muted"><i class="mdi mdi-av-timer f-24 align-middle"></i> This auction ends in:</p>
@@ -127,7 +129,7 @@ function NFTAuction() {
             if (auctionResponse.IdOwner === idCompany) {
                 Swal.fire({
                     title: 'Error!',
-                    text: "You can't offer to your own NFT",
+                    text: "You can't bid to your own NFT",
                     icon: 'error',
                     confirmButtonText: 'Error',
                     confirmButtonColor: "#DD6B55",
@@ -148,44 +150,56 @@ function NFTAuction() {
 
                         if (auctionResponse.Amount < parseFloat(valueForm.Amount)) {
                             if (response.Amount >= auctionResponse.Amount) {
-                                let AUCTION = {
-                                    Nft: {
-                                        Id: sessionStorage.getItem('NFTSelected'),
-                                        Amount: valueForm.Amount,
-                                        IdBuyer: idCompany
-                                    }
-                                }
-                                ctrlActions.PostToAPI(serviceAuction + "/UpdateAuction", AUCTION, function (response) {
-                                    Swal.fire({
-                                        title: 'Success!',
-                                        text: 'Your bid has been aproved',
-                                        width: 600,
-                                        padding: '3em',
-                                        color: '#000',
-                                        background: '#fff',
-                                        confirmButtonColor: "#DD6B55",
-                                        icon: 'success'
-                                    }).then(function () {
-                                        location.reload();
-                                    });
+
+                                let User = { Cedula: sessionStorage.getItem('UserCedula')}
+                                ctrlActions.PostToAPI(serviceUser + "/RetrieveUser", User, function (response) {
+
+                                    let sendMail = { EmailTo: response.Email, PhoneTo: response.Phone, Title: "About your bid", Msj: "Your offer has been exceeded, the highest bid is " + valueForm.Amount+" CFC"}
+                                    ctrlActions.PostToAPI(serviceValidation + "/SendSmsMail", sendMail, function(response) {
+                                        let AUCTION = {
+                                            Amount: valueForm.Amount,
+                                            IdBuyer: idCompany,
+                                            Nft: {
+                                                Id: sessionStorage.getItem('NFTSelected'),
+                                            }
+                                        }   
+                                        ctrlActions.PostToAPI(serviceAuction + "/UpdateAuction", AUCTION, function (response) {
+                                            Swal.fire({
+                                                title: 'Success!',
+                                                text: 'Your bid has been aproved',
+                                                width: 600,
+                                                padding: '3em',
+                                                color: '#000',
+                                                background: '#fff',
+                                                confirmButtonColor: "#DD6B55",
+                                                icon: 'success'
+                                            }).then(function () {
+                                                location.reload();
+                                            });
+                                        })
+                                    })
+                                })
+
+                            } else {
+                                Swal.fire({
+                                    title: 'Not enough funds!',
+                                    text: 'Buy more CFC',
+                                    icon: 'alert',
+                                    confirmButtonText: 'Try Again!',
+                                    confirmButtonColor: "#DD6B55",
                                 })
                             }
                         } else {
                             Swal.fire({
                                 title: 'Error!',
-                                text: 'Please insert a valid amount',
+                                text: 'Please increase the amount of your bid',
                                 icon: 'error',
                                 confirmButtonText: 'Error',
                                 confirmButtonColor: "#DD6B55",
                             })
                         }
-
                     })
-                    
-                    
                 }
-
-                
             }
         } else {
             Swal.fire({
