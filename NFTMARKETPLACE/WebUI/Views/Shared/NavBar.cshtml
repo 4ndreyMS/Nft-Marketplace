@@ -100,11 +100,11 @@
                     <li class="nav-item dropdown dropdown-hover content-creator">
                         @Html.ActionLink("Activity", "", "", new { @class = "nav-link dropdown-toggle" })
                         <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="homedrop">
-                            <li class="nav-item logOut ">
-                                @Html.ActionLink("Notifications", "Activity", "Activity", new { @class = "nav-link" })
+                            <li class="logOut ">
+                                @Html.ActionLink("Notifications", "Activity", "Activity", new { @class = "dropdown-item" })
                             </li>
-                            <li class="nav-item">
-                                @Html.ActionLink("Offers", "OffersTable", "OffersTable", new { @class = "nav-link" })
+                            <li>
+                                @Html.ActionLink("Offers", "OffersTable", "OffersTable", new { @class = "dropdown-item" })
                             </li>
                         </ul>
                     </li>
@@ -119,11 +119,11 @@
                     <li class="nav-item dropdown dropdown-hover content-creator">
                         @Html.ActionLink("Create", "CreateCollection", "CreateCollection", new { @class = "nav-link dropdown-toggle" })
                         <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="homedrop">
-                            <li class="nav-item">
-                                @Html.ActionLink("Create Collection", "CreateCollection", "Create Collection", new { @class = "nav-link" })
+                            <li>
+                                @Html.ActionLink("Create Collection", "CreateCollection", "Create Collection", new { @class = "dropdown-item" })
                             </li>
-                            <li class="nav-item">
-                                @Html.ActionLink("Register NFT", "RegisterNFT", "Register NFT", new { @class = "nav-link" })
+                            <li>
+                                @Html.ActionLink("Register NFT", "RegisterNFT", "Register NFT", new { @class = "dropdown-item" })
                             </li>
                         </ul>
                     </li>
