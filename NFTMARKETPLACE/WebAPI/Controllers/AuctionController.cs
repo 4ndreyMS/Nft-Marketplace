@@ -40,7 +40,7 @@ namespace WebAPI.Controllers
                 TransacctionDate = DateTime.Now.ToString()
             };
         }
-        [HttpPost]
+        [HttpDelete]
         public APIResponse DeleteAuction(Auction _auction)
         {
             manger.DeleteAuction(_auction);
