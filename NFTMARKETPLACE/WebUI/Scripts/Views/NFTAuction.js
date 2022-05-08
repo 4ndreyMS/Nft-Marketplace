@@ -1,22 +1,12 @@
-﻿function NFTAuction() {
-
+﻿let auctionResponse = {};
+let priceBid = 0;
+let timeFinish = false;
+const serviceWallet="Wallet"
+function NFTAuction() {
     const serviceNFT = "NFT";
     const ctrlActions = new ControlActions();
     let price;
-    const serviceAuction = "Auction"
-
-    this.validateLogin = function () {
-        if (sessionStorage.getItem('UserCedula') === null || sessionStorage.getItem('UserCedula') === undefined) {
-            window.location.href = "Login";
-        } else {
-            if (sessionStorage.getItem('UserRole') != 3) {
-                window.location.href = "profile";
-            }
-            return true;
-        }
-        return true;
-    }
-
+    const serviceAuction = "Auction";
     this.Information = function () {
         let AUCTION = {
             Nft: {
@@ -25,7 +15,7 @@
         }
       
         ctrlActions.PostToAPI(serviceAuction + "/RetrieveAllByNft", AUCTION, function (response) {
-           
+            auctionResponse = response;
         
                 NFTAuctionInformation.innerHTML += `
                          <div class="row align-items-center justify-content-center">
@@ -86,7 +76,7 @@
                             <div class="row ">
                                 <div class="col-lg-6">
                                     <h6 class="fw-bold mb-1">Last Price:</h6>
-                                    <p class="fw-semibold">${response.Nft.Price} CFC</p>
+                                    <p class="fw-semibold">${response.Amount} CFC</p>
                                 </div>
                             </div>
                         </div>
@@ -109,7 +99,7 @@
                 timerElement.innerHTML = `${days} d ${hours} h ${minutes} min ${seconds} secs`
 
                 if (timeleft < 0) {
-
+                    timeFinish = true;
                     clearInterval(updateSec)
                     timerElement.innerHTML = "This auction is over :( "
                 }
@@ -122,35 +112,87 @@
 
     }
 
-    this.PutOnSale = function () {
-        var ctrlActions = new ControlActions();
-        var saleInfo = ctrlActions.GetDataForm("saleForm");
-        var NFT = { Id: sessionStorage.getItem('NFTSelected'), Price: saleInfo.Amount, SaleState: "OnSale" }
 
-        if (saleInfo.Amount == "") {
+    this.SendAuctionBid = function () {
 
+        if (sessionStorage.getItem('UserCedula') === null || sessionStorage.getItem('UserCedula') === undefined) {
+            window.location.href = "Login";
+            return false;
+        }
+        let valueForm = ctrlActions.GetDataForm("acutionForm");
+        let idCompany = sessionStorage.getItem('UserCompany');
+        
+        if (!timeFinish) {
+            
+            if (auctionResponse.IdOwner === idCompany) {
+                Swal.fire({
+                    title: 'Error!',
+                    text: "You can't offer to your own NFT",
+                    icon: 'error',
+                    confirmButtonText: 'Error',
+                    confirmButtonColor: "#DD6B55",
+                })
+            } else {
+                if (valueForm.Amount === "" || valueForm.Amount === null) {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Please insert a valid amount',
+                        icon: 'error',
+                        confirmButtonText: 'Error',
+                        confirmButtonColor: "#DD6B55",
+                    })
+
+                } else {
+                    let wallet = { CompanyId: idCompany}
+                    ctrlActions.PostToAPI(serviceWallet + "/WalletInfoByCompnay", wallet, function (response) {
+
+                        if (auctionResponse.Amount < parseFloat(valueForm.Amount)) {
+                            if (response.Amount >= auctionResponse.Amount) {
+                                let AUCTION = {
+                                    Nft: {
+                                        Id: sessionStorage.getItem('NFTSelected')
+                                    }
+                                }
+                                ctrlActions.PostToAPI(serviceAuction + "/UpdateAuction", AUCTION, function (response) {
+
+                                })
+                            }
+                        } else {
+                            Swal.fire({
+                                title: 'Error!',
+                                text: 'Please insert a valid amount',
+                                icon: 'error',
+                                confirmButtonText: 'Error',
+                                confirmButtonColor: "#DD6B55",
+                            })
+                        }
+
+                    })
+                    
+                    
+                }
+
+                
+            }
+        } else {
             Swal.fire({
                 title: 'Error!',
-                text: 'Please insert a price',
+                text: 'The offer time has ended',
                 icon: 'error',
-                confirmButtonText: 'Cool',
+                confirmButtonText: 'Error',
                 confirmButtonColor: "#DD6B55",
             })
-
-        } else {
-            var ctrlActions = new ControlActions();
-            ctrlActions.PostToAPI("NFT" + "/PutOnSale", NFT, function (response) { });
-            window.location.href = "profile";
         }
+        
+
+        
+
     }
 
-    this.PutInOffer = function () {
-        var ctrlActions = new ControlActions();
-        var NFT = { Id: sessionStorage.getItem('NFTSelected'), price, SaleState: "InOffer" }
-        ctrlActions.PostToAPI("NFT" + "/PutOnSale", NFT, function (response) { });
-        window.location.href = "profile";
-    }
-
+    setTimeout(function () {
+        location.reload();
+    }, 300000);
+    
     this.PutOnAuction = function () {
         var ctrlActions = new ControlActions();
         var AuctionInfo = ctrlActions.GetDataForm("auctionForm");
@@ -191,7 +233,6 @@ $(document).ready(function () {
 
     var load = new NFTAuction();
 
-    if (load.validateLogin()) {
-        load.Information();
-    }
+    load.Information();
+    
 });

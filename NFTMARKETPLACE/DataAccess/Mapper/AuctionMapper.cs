@@ -106,6 +106,7 @@ namespace DataAccess.Mapper
             };
 
             var obj = (Auction)entity;
+            sqlOperation.AddVarcharParam(RowNames.Nft.ToString(), obj.Nft.Id);
             sqlOperation.AddVarcharParam(RowNames.IdBuyer.ToString(), obj.IdBuyer);
             sqlOperation.AddDoubleParam(RowNames.Amount.ToString(), obj.Amount);
             return sqlOperation;

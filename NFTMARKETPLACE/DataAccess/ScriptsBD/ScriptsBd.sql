@@ -641,7 +641,6 @@ AS
 	WHERE ReceiverId = @P_ReceiverId
 
 --ret notif offer
-
 CREATE PROCEDURE RET_NOTIF_FROM_OFFER_PR
 	@P_ReceiverId NVARCHAR(100)
 AS
@@ -664,3 +663,59 @@ CONSTRAINT FK_Nft_Auction FOREIGN KEY (Nft) REFERENCES NFT(Id),
 CONSTRAINT FK_IdBuyer_Notif FOREIGN KEY (IdBuyer) REFERENCES Company(Id),
 CONSTRAINT FK_IdOwner_Notif FOREIGN KEY (IdOwner) REFERENCES Company(Id),
 )
+GO
+CREATE PROCEDURE CRE_AUCTION_PR
+	@P_IdBuyer NVARCHAR(100),
+	@P_IdOwner NVARCHAR(100),
+	@P_Amount DECIMAL(10,3),
+	@P_Nft NVARCHAR(100),
+	@P_EndDate DATETIME,
+	@P_CreationDate DATETIME
+AS
+	INSERT INTO Auction(IdOwner,IdBuyer,Amount,Nft,EndDate,CreationDate)
+	VALUES(@P_IdOwner,@P_IdBuyer,@P_Amount,@P_Nft,@P_EndDate,@P_CreationDate)
+GO
+
+ALTER PROCEDURE RET_NFT_AUCTION_PR
+	@P_Nft NVARCHAR(100)
+AS
+
+	BEGIN 
+	Declare @Collection smallint
+	select @Collection = IdCollection from NFT where Id = @P_Nft
+	
+	IF @Collection is null
+
+	BEGIN 
+	SELECT a.Id, a.IdOwner, a.IdBuyer, a.Amount, a.EndDate, a.CreationDate, n.Id as NftId,n.NftName,n.Image,n.Price, n.CreationDate, 'Undefined' as CollectionName,co.Name as CreatorName,u.UserPic as CreatorImage
+	FROM Auction AS a
+	INNER JOIN NFT AS n On a.Nft = n.Id
+	INNER JOIN Company as co on n.IdOwner = co.Id
+	INNER JOIN [User] as u on u.IdOrganization = co.Id
+	WHERE Nft = @P_Nft
+	END
+
+	ELSE
+
+	BEGIN
+
+	SELECT a.Id, a.IdOwner, a.IdBuyer, a.Amount, a.EndDate, a.CreationDate, n.Id as NftId,n.NftName,n.Image,n.Price, n.CreationDate as CreationDateNft, c.CollectionName,co.Name as CreatorName,u.UserPic as CreatorImage
+	FROM Auction AS a
+	INNER JOIN NFT AS n On a.Nft = n.Id
+	INNER JOIN Company as co on n.IdOwner = co.Id
+	INNER JOIN [User] as u on u.IdOrganization = co.Id
+	INNER JOIN Collection as c on N.IdCollection = c.Id
+	WHERE Nft = @P_Nft
+	END
+
+	END
+RETURN 0;
+
+CREATE PROCEDURE UPD_AUCTION_BID_PR
+@P_IdBuyer NVARCHAR(100),
+@P_Amount DECIMAL(10,3),
+@P_Nft NVARCHAR(100)
+AS
+UPDATE AUCTION
+SET Amount = @P_Amount, IdBuyer =@P_IdBuyer
+WHERE Nft = @P_Nft
