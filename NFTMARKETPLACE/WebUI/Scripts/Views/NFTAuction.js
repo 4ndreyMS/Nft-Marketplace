@@ -150,11 +150,24 @@ function NFTAuction() {
                             if (response.Amount >= auctionResponse.Amount) {
                                 let AUCTION = {
                                     Nft: {
-                                        Id: sessionStorage.getItem('NFTSelected')
+                                        Id: sessionStorage.getItem('NFTSelected'),
+                                        Amount: valueForm.Amount,
+                                        IdBuyer: idCompany
                                     }
                                 }
                                 ctrlActions.PostToAPI(serviceAuction + "/UpdateAuction", AUCTION, function (response) {
-
+                                    Swal.fire({
+                                        title: 'Success!',
+                                        text: 'Your bid has been aproved',
+                                        width: 600,
+                                        padding: '3em',
+                                        color: '#000',
+                                        background: '#fff',
+                                        confirmButtonColor: "#DD6B55",
+                                        icon: 'success'
+                                    }).then(function () {
+                                        location.reload();
+                                    });
                                 })
                             }
                         } else {
