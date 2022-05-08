@@ -197,6 +197,51 @@
             })                                        
         })
     }
+
+    this.RetrieveAllNftsOnAuction = () => {
+
+        let NFTO = { SaleState: "OnAuction" }
+
+        //devuelve toda la informacion de los nft
+        cntrlAction.PostToAPI(this.service + "/RetrieveNftBySaleState", NFTO, function (response) {
+
+            //itera segun los nft que hayan en la bd
+            response.forEach((card) => {
+                //si el estado del nft esta en venta imprime
+                NFTOnAuction.innerHTML += `
+                             <div class="col-lg-3 mt-4 nftCard">
+                                <div class="tab-content p-4 border-0">
+                                    <div class="header d-flex align-items-center justify-content-start">
+                                        <div class="avatar-xs">
+                                            <img src="${card.UserPic}" alt="" class="img-fluid rounded-circle">
+                                        </div>
+                                        <h6 class="mb-0 ms-2 fw-semibold text-muted f-14">By: ${card.OwnerName}</h6>
+                                    </div>
+                                    <div class="card-image mt-3">
+                                        <a href="NFTAuction" onclick="SaveNFT('${card.Id}')"><img src="${card.Image}" alt="" class="img-fluid"></a>
+                                    </div>
+                                    <div class="body-content mt-3">
+                                        <h6 class="fw-bold">  ${card.NftName}</h6>
+                                        <div class="d-flex">
+                                            <p class="text-muted">1 in stock</p>
+                                            <p class="ms-auto text-muted">
+                                                Price : <span class="text-success">
+                                                   ${card.Price}
+                                                    CFC
+                                                </span>
+                                            </p>
+                                        </div>
+                               
+                                    </div>
+                                </div>
+                            </div>`
+            })
+        })
+    }
+}
+
+var SaveNFT = function (NFT) {
+    sessionStorage.setItem("NFTSelected", NFT)
 }
 
 function MakeAnOffer(Id, IdOwner) {
@@ -249,4 +294,5 @@ $(document).ready(function () {
     var tblLoad = new ManagerNFTCard();
     tblLoad.RetrieveAllNfts();
     tblLoad.RetrieveAllNftsInOffer();
+    tblLoad.RetrieveAllNftsOnAuction();
 });

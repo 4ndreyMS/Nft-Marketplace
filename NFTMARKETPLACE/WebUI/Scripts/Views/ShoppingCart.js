@@ -283,10 +283,10 @@ function ShoppingCart() {
 
         if (!containItems()) {
             nftContainer.innerHTML += `
-                            <div class="row d-flex justify-content-between align-items-center nftContainerCard">
+                            <div class="row d-flex justify-content-between align-items-center ">
                                 
                                 <div class="col-md-3 col-lg-3 col-xl-3">
-                                    <p class="lead fw-normal mb-2">No Items in cart</p>
+                                    <p class="lead fw-normal mb-2">No items in cart</p>
                                   
                                 </div>
                             </div>`

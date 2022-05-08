@@ -4250,3 +4250,26 @@ body[data-layout-mode=dark] .footer {
 .activityBox-spacing {
     margin-bottom: 20px;
 }
+
+
+
+.dropDowns {
+    width: 100%;
+    border: 1px solid #ced4da;
+    background-color: white;
+    border-radius: 15px !important;
+}
+
+.dropDownBox {
+    display: flex;
+    flex-direction: column;
+}
+
+.changeCollection {
+    background: none!important;
+    border: none;
+    color:darkorange;
+    padding-bottom: 30px;
+    text-decoration: underline;
+    cursor: pointer;
+}

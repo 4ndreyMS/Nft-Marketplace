@@ -3853,6 +3853,7 @@ ul li a.cart .cart-basket {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 120px;
 }
 
 

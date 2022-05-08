@@ -83,12 +83,12 @@
 
                                 <div class="col-12 ">
                                     <div class="d-flex align-items-center mt-4">
-                                        <div class="verify">
-                                            <button type="button" class="btn border btn-light text-dark shadow-sm"
-                                                    id="liveToastBtn">
-                                                Click to verify
-                                            </button>
+                                        <div class="submit-button mt-4">
+
+                                            @Html.CtrlButton("Login", "btnSubmitLogin", "Submit", "LoginUser", "primary w - 100")
+
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -122,12 +122,7 @@
                             </div>
                         </div>
                     </form>
-                    <div class="submit-button mt-4">
-
-                        @Html.CtrlButton("Login", "btnSubmitLogin", "Submit", "LoginUser", "primary w - 100")
-
-                    </div>
-
+                   
 
                 </div>
             </div>

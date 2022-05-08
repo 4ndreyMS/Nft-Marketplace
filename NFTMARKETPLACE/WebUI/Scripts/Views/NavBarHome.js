@@ -1,4 +1,4 @@
-﻿function NavBar() {
+﻿function NavBarHome() {
 
     const manager = document.querySelectorAll(".nav-item.manager-links");
     const contentCreator = document.getElementsByClassName("content-creator");
@@ -60,7 +60,7 @@
             loggedIn[i].style.display = 'none';
         }
     }
-    
+
     if (userValue == 1) {
         showLogInFunction()
         contentCreatorFunction()
@@ -86,5 +86,5 @@
         managerFunction()
         userFunction()
         profileFunction()
-    } 
+    }
 }
