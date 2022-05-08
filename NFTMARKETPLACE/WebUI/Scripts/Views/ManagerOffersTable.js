@@ -78,35 +78,35 @@ function ManagerOffersTable() {
                                 //se actualizan los parametros del nft, quien pertenece, monto
                                 cntrlAction.PostToAPI(serviceNFT + "/UpdateWhenBuyNft", updNft, function (response) {
                                     //se elimina la oferta
-                                    cntrlAction.DeleteToAPI(service + "/DeleteALLOffers", OfferInfo, function (response) {
-                                        let OwnerCompany = { id: bidderId };
-                                        //se devuelve la informacion de la compania
-                                        cntrlAction.PostToAPI(serviceCompany + "/retriveCompanyInfo", OwnerCompany, function (response) {
+                                });
+                                cntrlAction.PostToAPI(service + "/DeleteALLOffers", OfferInfo, function (response) {
+                                    let OwnerCompany = { id: bidderId };
+                                    //se devuelve la informacion de la compania
+                                    cntrlAction.PostToAPI(serviceCompany + "/retriveCompanyInfo", OwnerCompany, function (response) {
 
-                                            validationObj = {
-                                                EmailTo: response.email,
-                                                Title: "Your NFT purchase verification",
-                                                Msj: "Thanks for your purchase!",
-                                                NFTAsset: response.Image
-                                            };
-                                            var nft = { Id: OfferInfo.NFT }
-                                            //se consulta la imagen del nft para enviar el qr
-                                            cntrlAction.PostToAPI(serviceNFT + "/RetrieveNFT", nft, function (response) {
-                                                validationObj.NFTAsset = response.Image;
-                                                //se envia el qr
-                                                cntrlAction.PostToAPI(serviceValidation + "/SendQR", validationObj, function (response) {
-                                                    Swal.fire({
-                                                        title: 'Success!',
-                                                        text: 'You accept the offer of your product',
-                                                        width: 600,
-                                                        padding: '3em',
-                                                        color: '#000',
-                                                        background: '#fff',
-                                                        confirmButtonColor: "#DD6B55",
-                                                        icon: 'success'
-                                                    }).then(function () {
-                                                        location.reload();
-                                                    });
+                                        validationObj = {
+                                            EmailTo: response.email,
+                                            Title: "Your NFT purchase verification",
+                                            Msj: "Thanks for your purchase!",
+                                            NFTAsset: response.Image
+                                        };
+                                        var nft = { Id: OfferInfo.NFT }
+                                        //se consulta la imagen del nft para enviar el qr
+                                        cntrlAction.PostToAPI(serviceNFT + "/RetrieveNFT", nft, function (response) {
+                                            validationObj.NFTAsset = response.Image;
+                                            //se envia el qr
+                                            cntrlAction.PostToAPI(serviceValidation + "/SendQR", validationObj, function (response) {
+                                                Swal.fire({
+                                                    title: 'Success!',
+                                                    text: 'You accept the offer of your product',
+                                                    width: 600,
+                                                    padding: '3em',
+                                                    color: '#000',
+                                                    background: '#fff',
+                                                    confirmButtonColor: "#DD6B55",
+                                                    icon: 'success'
+                                                }).then(function () {
+                                                    location.reload();
                                                 });
                                             });
                                         });

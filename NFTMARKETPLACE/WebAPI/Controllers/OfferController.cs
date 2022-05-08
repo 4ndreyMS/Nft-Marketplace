@@ -62,6 +62,7 @@ namespace WebAPI.Controllers
         [HttpPost]
         public APIResponse DeleteALLOffers(Offer offer)
         {
+            OM.DeleteAllOffers(offer);
             return new APIResponse()
             {
                 Data = "Offer deleted",

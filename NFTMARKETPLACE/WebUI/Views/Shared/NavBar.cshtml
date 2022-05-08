@@ -86,21 +86,28 @@
                     </li>
                     <li class="nav-item">
                         @Html.ActionLink("Marketplace", "Marketplace", "Marketplace", new { @class = "nav-link" })
-                        
-                    </li>                    
-    @*
-            <li class="nav-item">
-                @Html.ActionLink("Collection", "Collection", "Collection", new { @class = "nav-link" })
-            </li>
-            <li class="nav-item">
-                @Html.ActionLink("NFT'S", "ItemDetails", "NFT", new { @class = "nav-link" })
-            </li>*@
 
-
-                    <li class="nav-item logOut ">
-                        @Html.ActionLink("Activity", "Activity", "Activity", new { @class = "nav-link" })
                     </li>
+                    @*
+                        <li class="nav-item">
+                            @Html.ActionLink("Collection", "Collection", "Collection", new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("NFT'S", "ItemDetails", "NFT", new { @class = "nav-link" })
+                        </li>*@
 
+
+                    <li class="nav-item dropdown dropdown-hover content-creator">
+                        @Html.ActionLink("Activity", "", "", new { @class = "nav-link dropdown-toggle" })
+                        <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="homedrop">
+                            <li class="nav-item logOut ">
+                                @Html.ActionLink("Notifications", "Activity", "Activity", new { @class = "nav-link" })
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Offers", "OffersTable", "OffersTable", new { @class = "nav-link" })
+                            </li>
+                        </ul>
+                    </li>
 
 
                     <li class="nav-item logIn">
