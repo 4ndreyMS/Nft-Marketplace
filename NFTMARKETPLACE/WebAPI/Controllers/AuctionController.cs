@@ -54,6 +54,19 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
+        public APIResponse DeleteAuctions(Auction _auction)
+        {
+            manger.DeleteAuction(_auction);
+            return new APIResponse()
+            {
+                Data = "Auction delted",
+                Message = "Auction delted",
+                Status = "Ok",
+                TransacctionDate = DateTime.Now.ToString()
+            };
+        }
+
+        [HttpPost]
         public APIResponse RetrieveAllAuction()
         {
             

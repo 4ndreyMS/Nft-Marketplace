@@ -1,5 +1,6 @@
 ﻿const ctrlActions = new ControlActions();
 const serviceNFT = "NFT";
+var NFTprice;
 
 function NFTSaleManager() {
 
@@ -64,7 +65,7 @@ function NFTSaleManager() {
                                                     </p>
                                         <button class="changeCollection" id="changeCollection" onclick="updateCollection()">Change Collection </button>
                                             <div>
-<p class="text-muted"><i class="mdi mdi-calendar f-24 align-middle"></i> Creation date: ${date}</p>
+                                            <p class="text-muted"><i class="mdi mdi-calendar f-24 align-middle"></i> Creation date: ${date}</p>
                                     </div>
                                 </div>
                             </div>
@@ -95,9 +96,9 @@ function NFTSaleManager() {
                             </div>
                         </div>
                     </div>
-                </div>
-                    `
-                price = card.Price;
+                    </div>
+                    `               
+                NFTprice = card.Price;
 
 
                 let collection = { "CompanyId": sessionStorage.getItem("UserCompany") }/*   '9066'*/
@@ -160,7 +161,7 @@ function NFTSaleManager() {
     this.PutInOffer = function () {
         var price = { Price: sessionStorage.getItem('Price') }
         var ctrlActions = new ControlActions();
-        var NFT = { Id: sessionStorage.getItem('NFTSelected'), price, SaleState: "InOffer" }
+        var NFT = { Id: sessionStorage.getItem('NFTSelected'),Price: NFTprice, SaleState: "InOffer" }
         ctrlActions.PostToAPI("NFT" + "/PutOnSale", NFT, function (response) { });
         window.location.href = "profile";
     }
@@ -194,7 +195,7 @@ function NFTSaleManager() {
         } else {
             var ctrlActions = new ControlActions();
             ctrlActions.PostToAPI("Auction" + "/CreateAuction", Auction, function (response) { });
-            var NFT = { Id: sessionStorage.getItem('NFTSelected'), price, SaleState: "OnAuction" }
+            var NFT = { Id: sessionStorage.getItem('NFTSelected'), Price: NFTprice, SaleState: "OnAuction" }
             ctrlActions.PostToAPI("NFT" + "/PutOnSale", NFT, function (response) { });
             window.location.href = "profile";
         }

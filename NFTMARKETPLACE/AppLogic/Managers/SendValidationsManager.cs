@@ -26,6 +26,12 @@ namespace AppLogic.Managers
             return obj.Otp;
         }
 
+        public void sendSmsMail(Validation obj)
+        {
+            var sendMail = SendMailManager.SendSmsMail(obj);
+            SmsManager.SendMainSms(obj);
+        }
+
         public string sendQrNFT(Validation obj)
         {
             qrManager = new QrGeneratorManager();

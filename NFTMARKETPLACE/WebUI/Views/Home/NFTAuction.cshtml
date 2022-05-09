@@ -66,18 +66,18 @@
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active f-20" id="pills-games-tab" data-bs-toggle="pill" data-bs-target="#pills-games" type="button" role="tab" aria-controls="pills-games" aria-selected="true">
                             <i class="mdi mdi-cash-multiple f-24 align-middle"></i>
-                            Make an offer
+                            Make your bid
                         </button>
                     </li>
               
                 </ul>
                 <div class="tab-content mt-5 options-card" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-games" role="tabpanel" aria-labelledby="pills-games-tab">
-                        <form id="saleForm" style="margin-right: 15px;">
-                            @Html.CtrlInput("txtPriceAmount", "number", "Price amount:", "Enter the price", "Amount")
+                        <form id="acutionForm" style="margin-right: 15px;">
+                            @Html.CtrlInput("txtAuctionAmount", "number", "Price amount:", "Enter the price", "Amount")
                         </form>
                         <div class="submit-button mt-4">
-                            @Html.CtrlButton("NFTAuction", "btnOffer", "Offer", "", "primary w - 100")
+                            @Html.CtrlButton("NFTAuction", "btnAuction", "Auction", "SendAuctionBid", "primary w - 100")
                         </div>
                     </div>
                   

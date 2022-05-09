@@ -42,11 +42,9 @@
             document.getElementById('userName').innerHTML = User.Name + " " + User.SureName;
             document.getElementById('userCedula').innerHTML = User.Cedula;
             document.getElementById('profilePic').innerHTML = `<img src="${User.UserPic}" alt="" class="img-fluid avatar-xl border border-4 border-white rounded-circle">`;
-
-            document.getElementById('facebookName').innerHTML = "Facebook / "+User.Name;
+        
             document.getElementById('messengerName').innerHTML = "Email / " + User.Email;
             document.getElementById('phoneNumber').innerHTML = "Phone / " + User.Phone;
-            document.getElementById('ytName').innerHTML = "YouTube / " + User.Email;
 
             let Wallet = { UserId: sessionStorage.getItem('UserCedula') }
 
@@ -70,6 +68,8 @@
 
             response.forEach((card) => {
 
+                var date = new Date(card.CreationDate).toLocaleDateString('en-us', { year: 'numeric', month: 'long', day: 'numeric' })
+
                 nftSection.innerHTML += `
                         <div class="col-lg-4 mt-4">
                                     <div class="tab-box p-4 border-0">                                    
@@ -88,7 +88,7 @@
                                             </div>
                                             <hr class="my-3">
                                             <div class="blog-slider-footer">
-                                                <h6 class="f-14"><i class="mdi mdi-calendar f-18 text-primary me-2 align-middle"></i><span class="text-muted ms-2">${card.CreationDate}</span></h6>
+                                                <h6 class="f-14"><i class="mdi mdi-calendar f-18 text-primary me-2 align-middle"></i><span class="text-muted ms-2">${date}</span></h6>
                                             </div>
                                         </div>
                                     </div>
@@ -108,6 +108,8 @@
 
             response.forEach((card) => {
 
+                var date = new Date(card.CreationDate).toLocaleDateString('en-us', { year: 'numeric', month: 'long', day: 'numeric' })
+
                 NFTOnSale.innerHTML += `
                         <div class="col-lg-4 mt-4">
                                     <div class="tab-box p-4 border-0">                                    
@@ -126,7 +128,7 @@
                                             </div>
                                             <hr class="my-3">
                                             <div class="blog-slider-footer">
-                                                <h6 class="f-14"><i class="mdi mdi-calendar f-18 text-primary me-2 align-middle"></i><span class="text-muted ms-2">${card.CreationDate}</span></h6>
+                                                <h6 class="f-14"><i class="mdi mdi-calendar f-18 text-primary me-2 align-middle"></i><span class="text-muted ms-2">${date}</span></h6>
                                             </div>
                                             <div class="blog-slider-footer">
                                                 <button class="btn btn-primary" type="button" onclick="CancelSale('${card.Id}', ${card.Price})">Cancel</button>
@@ -145,9 +147,11 @@
 
         let CompanyID = { IdOwner: sessionStorage.getItem('UserCompany'), SaleState: "InOffer" }
 
-        ctrlActions.PostToAPI(serviceNFT + "/RetrieveAllNFTInProperty", CompanyID, function (response) {
+        ctrlActions.PostToAPI(serviceNFT + "/RetrieveAllNFTInProperty", CompanyID, function (response) {        
 
             response.forEach((card) => {
+
+                var date = new Date(card.CreationDate).toLocaleDateString('en-us', { year: 'numeric', month: 'long', day: 'numeric' })
 
                 NFTOnSale.innerHTML += `
                         <div class="col-lg-4 mt-4">
@@ -167,7 +171,7 @@
                                             </div>
                                             <hr class="my-3">
                                             <div class="blog-slider-footer">
-                                                <h6 class="f-14"><i class="mdi mdi-calendar f-18 text-primary me-2 align-middle"></i><span class="text-muted ms-2">${card.CreationDate}</span></h6>
+                                                <h6 class="f-14"><i class="mdi mdi-calendar f-18 text-primary me-2 align-middle"></i><span class="text-muted ms-2">${date}</span></h6>
                                             </div>
                                             <div class="blog-slider-footer">
                                                 <button class="btn btn-primary" type="button" onclick="CancelOffer('${card.Id}', ${card.Price})">Cancel</button>
@@ -192,6 +196,8 @@
 
             response.forEach((card) => {
 
+                var date = new Date(card.CreationDate).toLocaleDateString('en-us', { year: 'numeric', month: 'long', day: 'numeric' })
+
                 NFTOnSale.innerHTML += `
                         <div class="col-lg-4 mt-4">
                                     <div class="tab-box p-4 border-0">                                    
@@ -210,7 +216,7 @@
                                             </div>
                                             <hr class="my-3">
                                             <div class="blog-slider-footer">
-                                                <h6 class="f-14"><i class="mdi mdi-calendar f-18 text-primary me-2 align-middle"></i><span class="text-muted ms-2">${card.CreationDate}</span></h6>
+                                                <h6 class="f-14"><i class="mdi mdi-calendar f-18 text-primary me-2 align-middle"></i><span class="text-muted ms-2">${date}</span></h6>
                                             </div>
                                             <div class="blog-slider-footer">
                                                 <button class="btn btn-primary" type="button" onclick="CancelAuction('${card.Id}', ${card.Price})">Cancel</button>

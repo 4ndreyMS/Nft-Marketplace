@@ -76,6 +76,17 @@ namespace WebAPI.Controllers
             };
         }
 
+        [HttpPost]
+        public APIResponse UpdateStateNft(NFT nft)
+        {
+            nftM.UpdateStateNft(nft);
+
+            return new APIResponse()
+            {
+                Data = "Nft info updated"
+            };
+        }
+
         [HttpGet]
         public APIResponse RetrieveAllNFT()
         {
@@ -127,7 +138,7 @@ namespace WebAPI.Controllers
                 TransacctionDate = DateTime.Now.ToString()
             };
         }
-
+        
         [HttpPost]
         public APIResponse RetrieveNftBySaleState(NFT _nft)
         {

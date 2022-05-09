@@ -1,21 +1,94 @@
-﻿function NFTAuction() {
+﻿let auctionResponse = {};
+let priceBid = 0;
+let timeFinish = false;
+const serviceWallet = "Wallet"
+const serviceValidation = "SendValidations";
+const serviceUser = "User";
+const serviceNFT = "NFT";
+const serviceAuction = "Auction";
+const ctrlActions = new ControlActions();
+const serviceCompany = "Company"
 
-    const serviceNFT = "NFT";
-    const ctrlActions = new ControlActions();
-    let price;
-    const serviceAuction = "Auction"
-
-    this.validateLogin = function () {
-        if (sessionStorage.getItem('UserCedula') === null || sessionStorage.getItem('UserCedula') === undefined) {
-            window.location.href = "Login";
-        } else {
-            if (sessionStorage.getItem('UserRole') != 3) {
-                window.location.href = "profile";
-            }
-            return true;
-        }
-        return true;
+function moveToSameOwner() {
+    let AUCTION = {
+        Nft: { Id: sessionStorage.getItem('NFTSelected') }
     }
+    ctrlActions.PostToAPI(serviceAuction + "/DeleteAuctions", AUCTION, function (response) {
+        let nftState = { Id: sessionStorage.getItem('NFTSelected'), SaleState: "InPropiety" }
+        ctrlActions.PostToAPI(serviceNFT + "/UpdateStateNft", nftState, function (response) {
+            window.location.href = "Marketplace";
+        });
+    });
+}
+
+function WhenTimeEnds() {
+    let walletResponse = {}
+
+    //nadie oferta
+    if (auctionResponse.IdBuyer === auctionResponse.IdOwner) {
+        moveToSameOwner();
+    } else {
+        let walletInfo = { CompanyId: auctionResponse.IdBuyer };
+        ctrlActions.PostToAPI(serviceWallet + "/WalletInfoByCompnay",
+            walletInfo,
+            function(response) {
+                walletResponse = response;
+                //si es menor al monto de lo ofertado no la acepta
+                if (walletResponse.Amount < auctionResponse.Amount) {
+                    moveToSameOwner();
+                } else {
+                    //el monto es mayor
+                    let moveMoneyWallet = { Identifier: walletResponse.Identifier, Amount: auctionResponse.Amount }
+                    ctrlActions.PostToAPI(serviceWallet + "/restAmount",
+                        moveMoneyWallet,
+                        function(response) {
+
+                            walletInfo.CompanyId = auctionResponse.IdOwner;
+                            ctrlActions.PostToAPI(serviceWallet + "/WalletInfoByCompnay",
+                                walletInfo,
+                                function(response) {
+                                    moveMoneyWallet = {
+                                        Identifier: response.Identifier,
+                                        Amount: auctionResponse.Amount
+                                    }
+                                    //se realiza el aumento del precio en cada una de las cuentas
+                                    ctrlActions.PostToAPI(serviceWallet + "/addAmount",
+                                        moveMoneyWallet,
+                                        function(response) {
+                                            var updNft = {
+                                                Id: auctionResponse.Nft.Id,
+                                                Price: auctionResponse.Amount,
+                                                IdCollection: null,
+                                                IdOwner: auctionResponse.IdBuyer,
+                                                SaleState: "InPropiety"
+                                            }
+
+                                            let Company = { id: auctionResponse.IdBuyer }
+                                            ctrlActions.PostToAPI(serviceCompany + "/retriveCompanyInfo", Company, function(response) {
+                                                let validationObj = {
+                                                    EmailTo: response.email,
+                                                    Title: "Your NFT purchase verification",
+                                                    Msj: "Thanks for your purchase!",
+                                                    NFTAsset: auctionResponse.Nft.Image
+                                                }
+
+                                                    ctrlActions.PostToAPI(serviceNFT + "/UpdateWhenBuyNft", updNft, function(response) {
+
+                                                            ctrlActions.PostToAPI(serviceValidation + "/SendQR", validationObj, function(response) {
+                                                                    window.location.href = "Marketplace";
+                                                                })
+                                                        })
+                                                })
+                                        })
+                                })
+                        })
+                }
+            })
+    }
+}
+
+function NFTAuction() {
+    let price;
 
     this.Information = function () {
         let AUCTION = {
@@ -25,7 +98,7 @@
         }
       
         ctrlActions.PostToAPI(serviceAuction + "/RetrieveAllByNft", AUCTION, function (response) {
-           
+            auctionResponse = response;
         
                 NFTAuctionInformation.innerHTML += `
                          <div class="row align-items-center justify-content-center">
@@ -55,7 +128,7 @@
                                 </ul>
                                 <div class="tab-content mt-4 ps-3" id="pills-tabContent">
                                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                                       <p class="text-muted"><i class="mdi mdi-information-outline f-24 align-middle"></i> NFT Identification: ${response.Id}</p>
+                                       <p class="text-muted"><i class="mdi mdi-information-outline f-24 align-middle"></i> NFT Identification: ${response.Nft.Id}</p>
                                        <p class="text-muted"><i class="mdi mdi-folder-image f-24 align-middle"></i> Collection name: ${response.Nft.CollectionName}</p>
                                        <p class="text-muted"><i class="mdi mdi-calendar f-24 align-middle"></i> Creation date: ${response.Nft.CreationDate}</p>
 <p  class="text-muted"><i class="mdi mdi-av-timer f-24 align-middle"></i> This auction ends in:</p>
@@ -86,7 +159,7 @@
                             <div class="row ">
                                 <div class="col-lg-6">
                                     <h6 class="fw-bold mb-1">Last Price:</h6>
-                                    <p class="fw-semibold">${response.Nft.Price} CFC</p>
+                                    <p class="fw-semibold">${response.Amount} CFC</p>
                                 </div>
                             </div>
                         </div>
@@ -109,9 +182,10 @@
                 timerElement.innerHTML = `${days} d ${hours} h ${minutes} min ${seconds} secs`
 
                 if (timeleft < 0) {
-
+                    timeFinish = true;
                     clearInterval(updateSec)
                     timerElement.innerHTML = "This auction is over :( "
+                    WhenTimeEnds();
                 }
 
             }, 1000)
@@ -122,76 +196,116 @@
 
     }
 
-    this.PutOnSale = function () {
-        var ctrlActions = new ControlActions();
-        var saleInfo = ctrlActions.GetDataForm("saleForm");
-        var NFT = { Id: sessionStorage.getItem('NFTSelected'), Price: saleInfo.Amount, SaleState: "OnSale" }
+    this.SendAuctionBid = function () {
 
-        if (saleInfo.Amount == "") {
-
-            Swal.fire({
-                title: 'Error!',
-                text: 'Please insert a price',
-                icon: 'error',
-                confirmButtonText: 'Cool',
-                confirmButtonColor: "#DD6B55",
-            })
-
-        } else {
-            var ctrlActions = new ControlActions();
-            ctrlActions.PostToAPI("NFT" + "/PutOnSale", NFT, function (response) { });
-            window.location.href = "profile";
+        if (sessionStorage.getItem('UserCedula') === null || sessionStorage.getItem('UserCedula') === undefined) {
+            window.location.href = "Login";
+            return false;
         }
-    }
+        let valueForm = ctrlActions.GetDataForm("acutionForm");
+        let idCompany = sessionStorage.getItem('UserCompany');
+        
+        if (!timeFinish) {
+            
+            if (auctionResponse.IdOwner === idCompany) {
+                Swal.fire({
+                    title: 'Error!',
+                    text: "You can't bid to your own NFT",
+                    icon: 'error',
+                    confirmButtonText: 'Error',
+                    confirmButtonColor: "#DD6B55",
+                })
+            } else {
+                if (valueForm.Amount === "" || valueForm.Amount === null) {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Please insert a valid amount',
+                        icon: 'error',
+                        confirmButtonText: 'Error',
+                        confirmButtonColor: "#DD6B55",
+                    })
 
-    this.PutInOffer = function () {
-        var ctrlActions = new ControlActions();
-        var NFT = { Id: sessionStorage.getItem('NFTSelected'), price, SaleState: "InOffer" }
-        ctrlActions.PostToAPI("NFT" + "/PutOnSale", NFT, function (response) { });
-        window.location.href = "profile";
-    }
+                } else {
+                    let wallet = { CompanyId: idCompany}
+                    ctrlActions.PostToAPI(serviceWallet + "/WalletInfoByCompnay", wallet, function (response) {
 
-    this.PutOnAuction = function () {
-        var ctrlActions = new ControlActions();
-        var AuctionInfo = ctrlActions.GetDataForm("auctionForm");
-        var NFTId = { Id: sessionStorage.getItem('NFTSelected') }
-        var Auction = { IdOwner: sessionStorage.getItem('UserCompany'), IdBuyer: sessionStorage.getItem('UserCompany'), Amount: AuctionInfo.Amount, Nft: NFTId, EndDate: AuctionInfo.Date };
+                        if (auctionResponse.Amount < parseFloat(valueForm.Amount)) {
+                            if (response.Amount >= auctionResponse.Amount) {
 
-        if (AuctionInfo.Amount == "") {
+                                let User = { Cedula: sessionStorage.getItem('UserCedula')}
+                                ctrlActions.PostToAPI(serviceUser + "/RetrieveUser", User, function (response) {
 
-            Swal.fire({
-                title: 'Error!',
-                text: 'Please insert an initial price',
-                icon: 'error',
-                confirmButtonText: 'Cool',
-                confirmButtonColor: "#DD6B55",
-            })
+                                    let sendMail = { EmailTo: response.Email, PhoneTo: response.Phone, Title: "About your bid", Msj: "Your offer has been exceeded, the highest bid is " + valueForm.Amount+" CFC"}
+                                    ctrlActions.PostToAPI(serviceValidation + "/SendSmsMail", sendMail, function(response) {
+                                        let AUCTION = {
+                                            Amount: valueForm.Amount,
+                                            IdBuyer: idCompany,
+                                            Nft: {
+                                                Id: sessionStorage.getItem('NFTSelected'),
+                                            }
+                                        }   
+                                        ctrlActions.PostToAPI(serviceAuction + "/UpdateAuction", AUCTION, function (response) {
+                                            Swal.fire({
+                                                title: 'Success!',
+                                                text: 'Your bid has been aproved',
+                                                width: 600,
+                                                padding: '3em',
+                                                color: '#000',
+                                                background: '#fff',
+                                                confirmButtonColor: "#DD6B55",
+                                                icon: 'success'
+                                            }).then(function () {
+                                                location.reload();
+                                            });
+                                        })
+                                    })
+                                })
 
-        } else if (AuctionInfo.Date == "") {
-
-            Swal.fire({
-                title: 'Error!',
-                text: 'Please insert a deadline',
-                icon: 'error',
-                confirmButtonText: 'Cool',
-                confirmButtonColor: "#DD6B55",
-            })
-
+                            } else {
+                                Swal.fire({
+                                    title: 'Not enough funds!',
+                                    text: 'Buy more CFC',
+                                    icon: 'alert',
+                                    confirmButtonText: 'Try Again!',
+                                    confirmButtonColor: "#DD6B55",
+                                })
+                            }
+                        } else {
+                            Swal.fire({
+                                title: 'Error!',
+                                text: 'Please increase the amount of your bid',
+                                icon: 'error',
+                                confirmButtonText: 'Error',
+                                confirmButtonColor: "#DD6B55",
+                            })
+                        }
+                    })
+                }
+            }
         } else {
-            var ctrlActions = new ControlActions();
-            ctrlActions.PostToAPI("Auction" + "/CreateAuction", Auction, function (response) { });
-            var NFT = { Id: sessionStorage.getItem('NFTSelected'), price, SaleState: "OnAuction" }
-            ctrlActions.PostToAPI("NFT" + "/PutOnSale", NFT, function (response) { });
-            window.location.href = "profile";
+            Swal.fire({
+                title: 'Error!',
+                text: 'The offer time has ended',
+                icon: 'error',
+                confirmButtonText: 'Error',
+                confirmButtonColor: "#DD6B55",
+            })
         }
+        
+
+        
+
     }
+
+    setTimeout(function () {
+        location.reload();
+    }, 300000);
 }
 
 $(document).ready(function () {
 
     var load = new NFTAuction();
 
-    if (load.validateLogin()) {
-        load.Information();
-    }
+    load.Information();
+    
 });

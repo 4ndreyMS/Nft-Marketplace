@@ -195,6 +195,12 @@ namespace DataAccess.Crud
         {
             dao.ExecuteProcedure(mapper.UpdateNftCollection(entity));
         }
+
+        public void UpdateStateNft(BaseEntity entity)
+        {
+            dao.ExecuteProcedure(mapper.GetUpdateStateNft(entity));
+
+        }
     }
 }
 
