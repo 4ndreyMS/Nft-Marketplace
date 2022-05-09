@@ -78,7 +78,7 @@
             })
         } else {
             this.ctrlActions.PostToAPI(this.service + "/CreateNFT", NFT, function (response) { });
-
+            document.getElementById("frmNFTRegister").reset();
             Swal.fire(
               'NFT created!',
               'success'

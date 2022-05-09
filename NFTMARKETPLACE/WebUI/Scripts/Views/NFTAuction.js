@@ -74,8 +74,14 @@ function WhenTimeEnds() {
 
                                                     ctrlActions.PostToAPI(serviceNFT + "/UpdateWhenBuyNft", updNft, function(response) {
 
-                                                            ctrlActions.PostToAPI(serviceValidation + "/SendQR", validationObj, function(response) {
+                                                        ctrlActions.PostToAPI(serviceValidation + "/SendQR", validationObj, function (response) {
+                                                            let AUCTION = {
+                                                                Nft: { Id: auctionResponse.Nft.Id}
+                                                            }
+                                                                ctrlActions.PostToAPI(serviceAuction + "/DeleteAuctions", AUCTION, function (response) {
                                                                     window.location.href = "Marketplace";
+                                                                })
+                                                            
                                                                 })
                                                         })
                                                 })

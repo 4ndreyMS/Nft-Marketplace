@@ -28,7 +28,7 @@
 
                 var responseApi = response;
                 console.log(responseApi.Id)
-
+                document.getElementById("frmCreateCollection").reset();
                 Swal.fire(
                     'Collection created',
                     'success'
