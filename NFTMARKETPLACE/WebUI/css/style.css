@@ -1929,35 +1929,35 @@ body[data-layout-mode=dark] .breadcrumb {
 .home-2 .home-content-2 .count-detail .counter-box h6:last-child {
   color: #e46e2a !important;
 }
-.home-2 .clientslider-2 .item .card {
+.home-2 .client-slider-2 .item .card {
   padding: 20px;
   border-radius: 20px;
   border: none;
   box-shadow: 0px 3px 10px 0px rgba(24, 59, 86, 0.08);
 }
-.home-2 .clientslider-2 .item .card .header .badge {
+.home-2 .client-slider-2 .item .card .header .badge {
   background-color: rgba(238, 87, 76, 0.3);
   color: #ee574c;
   padding: 8px 10px;
 }
-.home-2 .clientslider-2 .item .card .header .dropdown-menu {
+.home-2 .client-slider-2 .item .card .header .dropdown-menu {
   padding: 0;
 }
-.home-2 .clientslider-2 .item .card .header .dropdown-menu .dropdown-item {
+.home-2 .client-slider-2 .item .card .header .dropdown-menu .dropdown-item {
   padding: 10px;
   transition: all 0.3s;
 }
-.home-2 .clientslider-2 .item .card .header .dropdown-menu .dropdown-item:hover, .home-2 .clientslider-2 .item .card .header .dropdown-menu .dropdown-item:focus, .home-2 .clientslider-2 .item .card .header .dropdown-menu .dropdown-item:active {
+.home-2 .client-slider-2 .item .card .header .dropdown-menu .dropdown-item:hover, .home-2 .client-slider-2 .item .card .header .dropdown-menu .dropdown-item:focus, .home-2 .client-slider-2 .item .card .header .dropdown-menu .dropdown-item:active {
   background-color: rgba(238, 87, 76, 0.5);
   color: #ffffff;
 }
-.home-2 .clientslider-2 .item .card .card-image img {
+.home-2 .client-slider-2 .item .card .card-image img {
   border-radius: 20px;
 }
-.home-2 .clientslider-2 .item .card .card-body {
+.home-2 .client-slider-2 .item .card .card-body {
   padding: 20px 0 0 0;
 }
-.home-2 .clientslider-2 .item .card .card-body .profile-content img {
+.home-2 .client-slider-2 .item .card .card-body .profile-content img {
   border-radius: 50px;
 }
 .home-2 .tns-ovh {

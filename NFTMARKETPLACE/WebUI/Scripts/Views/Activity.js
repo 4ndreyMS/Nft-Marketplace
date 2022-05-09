@@ -36,8 +36,18 @@
                                 </div>
                             </div>
                 `
+
             }
             )
+            console.log(response)
+            if (Object.keys(response).length < 1) {
+                offersSection.innerHTML += `
+                    <p style="padding-left: 80px;">
+                       Ups!! There are not offers at this point
+                    </p>
+                          
+                `
+            }
         }
 
         )
