@@ -22,8 +22,8 @@ function NFTSaleManager() {
    
     this.Information = function () {
 
-        var NFT = { Id: sessionStorage.getItem('NFTSelected')}
-        
+        var NFT = { Id: sessionStorage.getItem('NFTSelected') }
+
         ctrlActions.PostToAPI(serviceNFT + "/RetrieveAllNFTINFO", NFT, function (response) {
 
             response.forEach((card) => {
@@ -159,6 +159,7 @@ function NFTSaleManager() {
     }
 
     this.PutInOffer = function () {
+        var price = { Price: sessionStorage.getItem('Price') }
         var ctrlActions = new ControlActions();
         var NFT = { Id: sessionStorage.getItem('NFTSelected'),Price: NFTprice, SaleState: "InOffer" }
         ctrlActions.PostToAPI("NFT" + "/PutOnSale", NFT, function (response) { });

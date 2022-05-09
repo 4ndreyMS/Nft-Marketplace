@@ -1,7 +1,7 @@
 ﻿function ManagerNFTTable() {
 
     this.tblNFT = 'nftList';
-    this.service = 'NFT';
+    this.service = 'Offer';
     this.cntrlAction = new ControlActions();
 
     this.columns = "Name,Price, Creator, Owner, Category";

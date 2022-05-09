@@ -1,4 +1,4 @@
-﻿ function ManagerUserTable() {
+﻿function ManagerUserTable() {
 
     this.idUser = "";
     this.UserOldStatus = "";
@@ -17,7 +17,7 @@
     }
 
     this.StatusUser = function () {
-    
+
         if (UserOldStatus == "Active") {
             UserNewStatus = "Inactive"
         } else {
@@ -38,7 +38,7 @@
                 Status: UserNewStatus
             };
 
-            this.cntrlAction.PostToAPI(this.service + "/UpdateUserStatus", UserInfo, function (response) {});
+            this.cntrlAction.PostToAPI(this.service + "/UpdateUserStatus", UserInfo, function (response) { });
         }
 
         idUser = "";
@@ -49,7 +49,7 @@
     }
 }
 
-$(document).ready( function () {
+$(document).ready(function () {
 
     if (!sessionStorage.getItem('UserCedula') || sessionStorage.getItem('UserRole') != 1) {
         window.location.href = "Login";

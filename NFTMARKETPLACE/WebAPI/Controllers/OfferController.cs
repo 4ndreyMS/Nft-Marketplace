@@ -31,20 +31,50 @@ namespace WebAPI.Controllers
         }
 
         [HttpDelete]
-        public void DeleteOffer(Offer offer)
+        public APIResponse DeleteOffer(Offer offer)
         {
             OM.DeleteOffer(offer);
+
+            return new APIResponse()
+            {
+                Data = "Offer deleted",
+                Message = "Offer deleted",
+                Status = "OK",
+                TransacctionDate = DateTime.Now.ToString()
+            };
         }
 
-        [HttpDelete]
-        public void DeleteALLOffers(Offer offer)
+
+        [HttpPost]
+        public APIResponse DeleteOfferbyBidderId(Offer offer)
+        {
+            OM.DeleteOffer(offer);
+
+            return new APIResponse()
+            {
+                Data = "Offer deleted",
+                Message = "Offer deleted",
+                Status = "OK",
+                TransacctionDate = DateTime.Now.ToString()
+            };
+        }
+
+        [HttpPost]
+        public APIResponse DeleteALLOffers(Offer offer)
         {
             OM.DeleteAllOffers(offer);
+            return new APIResponse()
+            {
+                Data = "Offer deleted",
+                Message = "Offer deleted",
+                Status = "OK",
+                TransacctionDate = DateTime.Now.ToString()
+            };
         }
 
         [HttpPost]
         public APIResponse RetrieveOffer(Offer offer)
-        {          
+        {
             return new APIResponse()
             {
                 Data = OM.RetrieveOffer(offer),
@@ -61,7 +91,7 @@ namespace WebAPI.Controllers
             {
                 OwnerID = owner
             };
-            
+
             return new APIResponse()
             {
                 Data = OM.RetrieveAllOffersByOwner(offer),

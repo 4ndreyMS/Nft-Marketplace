@@ -486,6 +486,7 @@
     <Content Include="Scripts\Views\Home.js" />
     <Content Include="Scripts\Views\NavBarHome.js" />
     <Content Include="Scripts\Views\NFTAuction.js" />
+    <Content Include="Scripts\Views\ManagerOffersTable.js" />
     <Content Include="Scripts\Views\ShoppingCart.js" />
     <Content Include="Scripts\Views\Login.js" />
     <Content Include="Scripts\Views\Logout.js" />
@@ -577,6 +578,7 @@
     <Content Include="Views\Home\ShoppingCart.cshtml" />
     <Content Include="Views\Home\Activity.cshtml" />
     <Content Include="Views\Home\NFTAuction.cshtml" />
+    <Content Include="Views\Home\OffersTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
