@@ -480,6 +480,7 @@
     <Content Include="Scripts\Views\CreateCollection.js" />
     <Content Include="Scripts\Views\CreateNft.js" />
     <Content Include="Scripts\Views\EditProfile.js" />
+    <Content Include="Scripts\Views\NavBarHome.js" />
     <Content Include="Scripts\Views\NFTAuction.js" />
     <Content Include="Scripts\Views\ShoppingCart.js" />
     <Content Include="Scripts\Views\Login.js" />
