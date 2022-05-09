@@ -682,7 +682,7 @@ AS
 	VALUES(@P_IdOwner,@P_IdBuyer,@P_Amount,@P_Nft,@P_EndDate,@P_CreationDate)
 GO
 
-ALTER PROCEDURE RET_NFT_AUCTION_PR
+ALTER PROCEDURE [dbo].[RET_NFT_AUCTION_PR]
 	@P_Nft NVARCHAR(100)
 AS
 
@@ -693,7 +693,7 @@ AS
 	IF @Collection is null
 
 	BEGIN 
-	SELECT a.Id, a.IdOwner, a.IdBuyer, a.Amount, a.EndDate, a.CreationDate, n.Id as NftId,n.NftName,n.Image,n.Price, n.CreationDate, 'Undefined' as CollectionName,co.Name as CreatorName,u.UserPic as CreatorImage
+	SELECT a.Id, a.IdOwner, a.IdBuyer, a.Amount, a.EndDate, a.CreationDate, n.Id as NftId,n.NftName,n.Image,n.Price, n.CreationDate as CreationDateNft, 'Without Collection' as CollectionName, co.Name as CreatorName,u.UserPic as CreatorImage
 	FROM Auction AS a
 	INNER JOIN NFT AS n On a.Nft = n.Id
 	INNER JOIN Company as co on n.IdOwner = co.Id
@@ -725,3 +725,4 @@ AS
 UPDATE AUCTION
 SET Amount = @P_Amount, IdBuyer =@P_IdBuyer
 WHERE Nft = @P_Nft
+
