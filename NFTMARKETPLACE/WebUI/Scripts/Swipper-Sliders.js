@@ -1,5 +1,5 @@
 ﻿var slider = tns({
-    container: 'bannerSlider',
+    container: '.client-slider',
     loop: true,
     autoplay: true,
     mouseDrag: true,

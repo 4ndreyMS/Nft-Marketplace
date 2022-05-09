@@ -51,7 +51,14 @@
                             </div>`
                 })
 
-
+            if (Object.keys(response).length < 1) {
+                nftSection.innerHTML += `
+                    <p style="font-size: 30px">
+                       Ups!! There are not NFTS on sale now <span style="font-size: 40px">:(</span>
+                    </p>
+                          
+                `
+            }
             let carts = document.querySelectorAll(".addToCart")
           
 
@@ -148,6 +155,66 @@
 
     }
 
+
+    this.RetrieveAllNftsMarketPlaceBanner = () => {
+
+        let marketPlace = { SaleState: "MarketPlaceBanner" }
+
+        //devuelve toda la informacion de los nft
+        cntrlAction.PostToAPI(this.service + "/RetrieveNftBySaleState", marketPlace, function (response) {
+
+            //itera segun los nft que hayan en la bd
+            response.forEach((card) => {
+
+                //si el estado del nft esta en venta imprime
+                NFTInOffer.innerHTML += `
+                             <div class="col-lg-3 mt-4 nftCard">
+                                <div class="tab-content p-4 border-0">
+                                    <div class="header d-flex align-items-center justify-content-start">
+                                        <div class="avatar-xs">
+                                            <img src="${card.UserPic}" alt="" class="img-fluid rounded-circle">
+                                        </div>
+                                        <h6 class="mb-0 ms-2 fw-semibold text-muted f-14">By: ${card.OwnerName}</h6>
+                                    </div>
+                                    <div class="card-image mt-3">
+                                        <img src="${card.Image}" alt="" class="img-fluid">
+                                    </div>
+                                    <div class="body-content mt-3">
+                                        <h6 class="fw-bold">  ${card.NftName}</h6>
+                                        <div class="d-flex">
+                                            <p class="text-muted">1 in stock</p>
+                                            <p class="ms-auto text-muted">
+                                                Price : <span class="text-success">
+                                                   ${card.Price}
+                                                    CFC
+                                                </span>
+                                            </p>
+                                        </div>
+                                        <hr>
+                                        <div class="d-flex mt-3 align-items-center">                                         
+                                            <div class="bid-button ms-auto" style="width: 60%;">
+                                                <input type="number" class="form-control" id="${card.Id}">
+                                            </div>
+                                            <div class="bid-button ms-auto" >
+                                                <button class="btn btn-sm btn-primary rounded-pill" onclick="MakeAnOffer('${card.Id}', '${card.IdOwner}')">Offer</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>`
+            })
+            if (Object.keys(response).length < 1) {
+                NFTInOffer.innerHTML += `
+                     <p style="font-size: 30px">
+                       Ups!! There are not NFTS on offer now <span style="font-size: 40px">:(</span>
+                    </p>
+                          
+                `
+            }
+        })
+    }
+
+
     this.RetrieveAllNftsInOffer = () => {
 
         let NFTO = { SaleState: "InOffer" }
@@ -194,7 +261,15 @@
                                     </div>
                                 </div>
                             </div>`
-            })                                        
+            })
+            if (Object.keys(response).length < 1) {
+                NFTInOffer.innerHTML += `
+                     <p style="font-size: 30px">
+                       Ups!! There are not NFTS on offer now <span style="font-size: 40px">:(</span>
+                    </p>
+                          
+                `
+            }
         })
     }
 
@@ -236,6 +311,15 @@
                                 </div>
                             </div>`
             })
+
+            if (Object.keys(response).length < 1) {
+                NFTOnAuction.innerHTML += `
+                    <p style="font-size: 30px">
+                       Ups!! There are not NFTS on auction now <span style="font-size: 40px">:(</span>
+                    </p>
+                          
+                `
+            }
         })
     }
 }
