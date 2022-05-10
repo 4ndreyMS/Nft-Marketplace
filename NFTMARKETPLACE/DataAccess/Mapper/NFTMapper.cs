@@ -208,7 +208,6 @@ namespace DataAccess.Mapper
                 NftName = GetStringValue(row, DB_COL_NFTName),
                 Price = GetDecimalValue(row, DB_COL_Price),
                 CreationDate = GetDateValue(row, DB_COL_CreationDate),
-                IdCollection = GetIntValue(row, DB_COL_IdCollection),
                 IdCreator = GetStringValue(row, DB_COL_IdCreator),
                 IdOwner = GetStringValue(row, DB_COL_IdOwner),
                 Image = GetStringValue(row, DB_COL_Image),
