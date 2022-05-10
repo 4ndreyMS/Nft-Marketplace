@@ -13,7 +13,7 @@
             console.log(response)
             response.forEach((card) => {
                 bannerSlider.innerHTML += `
-                           <div class="item" style="width: 75%; padding: 0 25px;margin: 0;">
+                           <div class="item" style="width: 75%; padding: 0 25px;margin: 0; >
 
                             <div class="card position-relative overflow-hidden m-2 m-lg-0">
                                 <img src="${card.Image}" alt="logo-img" class="img-fluid">
@@ -65,7 +65,7 @@
             response.forEach((card) => {
                 homeNftSection.innerHTML += `
                                   <div class="col-lg-3 col-md-6" style="padding-bottom: 30px">
-                    <div class="card border-0">
+                    <div class="card border-0" style="box-shadow: 0 5px 13px rgb(60 72 88 / 20%)">
                         <div class="blog-image">
                             <img src="${card.Image}" alt="" class="img-fluid">
                         </div>

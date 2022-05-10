@@ -18,7 +18,7 @@
                 //si el estado del nft esta en venta imprime
                 nftSection.innerHTML += `
                              <div class="col-lg-3 mt-4 nftCard">
-                                <div class="tab-content p-4 border-0">
+                                <div class="tab-content p-4 border-0" style="box-shadow: 0 5px 13px rgb(60 72 88 / 20%)">
                                     <div class="header d-flex align-items-center justify-content-start">
                                         <div class="avatar-xs">
                                             <img src="${card.UserPic}" alt="" class="img-fluid rounded-circle">
@@ -168,8 +168,8 @@
 
                 //si el estado del nft esta en venta imprime
                 NFTInOffer.innerHTML += `
-                             <div class="col-lg-3 mt-4 nftCard">
-                                <div class="tab-content p-4 border-0">
+                             <div class="col-lg-3 mt-4 nftCard" >
+                                <div class="tab-content p-4 border-0" style="box-shadow: 0 5px 13px rgb(60 72 88 / 20%)">
                                     <div class="header d-flex align-items-center justify-content-start">
                                         <div class="avatar-xs">
                                             <img src="${card.UserPic}" alt="" class="img-fluid rounded-circle">
@@ -228,7 +228,7 @@
                 //si el estado del nft esta en venta imprime
                 NFTInOffer.innerHTML += `
                              <div class="col-lg-3 mt-4 nftCard">
-                                <div class="tab-content p-4 border-0">
+                                <div class="tab-content p-4 border-0" style="box-shadow: 0 5px 13px rgb(60 72 88 / 20%)">
                                     <div class="header d-flex align-items-center justify-content-start">
                                         <div class="avatar-xs">
                                             <img src="${card.UserPic}" alt="" class="img-fluid rounded-circle">
@@ -285,7 +285,7 @@
                 //si el estado del nft esta en venta imprime
                 NFTOnAuction.innerHTML += `
                              <div class="col-lg-3 mt-4 nftCard">
-                                <div class="tab-content p-4 border-0">
+                                <div class="tab-content p-4 border-0" style="box-shadow: 0 5px 13px rgb(60 72 88 / 20%)">
                                     <div class="header d-flex align-items-center justify-content-start">
                                         <div class="avatar-xs">
                                             <img src="${card.UserPic}" alt="" class="img-fluid rounded-circle">
